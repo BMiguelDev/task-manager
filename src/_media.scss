@@ -1,0 +1,11 @@
+// Media query for mobile content (portrait)
+@media (max-width: 500px) {
+    .App {
+        gap: 1rem;
+
+        .heading {
+            margin-top: 1rem;
+            font-size: 2rem;
+        }
+    }
+}
