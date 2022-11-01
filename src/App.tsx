@@ -2,7 +2,7 @@ import React, { useReducer, useRef, useState, useEffect, createContext } from "r
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 import InputField from "./components/InputField/InputField";
-import { Todo, Actions } from "./model";
+import { Actions, TodoListsType } from "./model";
 import TodoList from "./components/TodosList/TodoList";
 import Footer from "./components/Footer/Footer";
 import "./App.scss";
@@ -15,7 +15,7 @@ const LOCAL_STORAGE_TODO_KEY = "TaskManagerApp.Todo";
 export const TodoListsDispatchContext = createContext<React.Dispatch<Actions>>(() => {});
 
 const App: React.FC = () => {
-    const [todo, setTodo] = useState<string>(() => {
+    const [inputTodo, setInputTodo] = useState<string>(() => {
         const localStorageItem = localStorage.getItem(LOCAL_STORAGE_TODO_KEY);
         if (localStorageItem) return JSON.parse(localStorageItem);
         else return "";
@@ -25,8 +25,8 @@ const App: React.FC = () => {
     //const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
 
     useEffect(() => {
-        localStorage.setItem(LOCAL_STORAGE_TODO_KEY, JSON.stringify(todo));
-    }, [todo]);
+        localStorage.setItem(LOCAL_STORAGE_TODO_KEY, JSON.stringify(inputTodo));
+    }, [inputTodo]);
 
     // UseRef hook with typescript
     const inputRef = useRef<HTMLInputElement>(null);
@@ -41,33 +41,15 @@ const App: React.FC = () => {
     );
 
     // Initializer function to initialize the <todoList> variable of useReducer with localStorage data
-    function reducerVariableInitializer1(): todoListsType {
+    function reducerVariableInitializer1(): TodoListsType {
         // return JSON.parse(localStorage.getItem("LOCAL_STORAGE_TODOLIST_KEY") || "{[]}");
         const localStorageItem = localStorage.getItem(LOCAL_STORAGE_TODOLISTS_KEY);
         if (localStorageItem) return JSON.parse(localStorageItem);
         else return { activeTodos: [], completedTodos: [] };
     }
 
-    // <TodoListActions> defines the several types that the reducer's action can take
-    type Actions =
-        | { type: "set"; payload: { newTodoList: Todo[]; isActive: boolean } }
-        | { type: "add"; payload: { todo: string } }
-        | { type: "remove"; payload: { id: number; isActive: boolean } }
-        | { type: "complete"; payload: { id: number; isActive: boolean } }
-        | { type: "edit"; payload: { id: number; newText: string; isActive: boolean } }
-        | { type: "move"; payload: { id: number; destinationIndex: number; isActive: boolean } }
-        | {
-              type: "moveInsideTab";
-              payload: { sourceIndex: number; destinationIndex: number; isActive: boolean };
-          };
-
-    interface todoListsType {
-        activeTodos: Todo[];
-        completedTodos: Todo[];
-    }
-
     // Reducer function that conditionally changes <todoList> variable based on the parameters received
-    function todoListsReducer(todoLists: todoListsType, action: Actions): any {
+    function todoListsReducer(todoLists: TodoListsType, action: Actions): any {
         switch (action.type) {
             case "add":
                 return {
@@ -179,19 +161,19 @@ const App: React.FC = () => {
         localStorage.setItem(LOCAL_STORAGE_TODOLISTS_KEY, JSON.stringify(todoLists));
     }, [todoLists]);
 
-    // Function to add a todo to the <todoList>
+    // Function to add a inputTodo to the <todoList>
     function handleSubmitTodoWithReducer(e: React.FormEvent) {
         e.preventDefault();
-        if (todo) {
-            todoListsDispatch({ type: "add", payload: { todo: todo } });
-            setTodo("");
+        if (inputTodo) {
+            todoListsDispatch({ type: "add", payload: { todo: inputTodo } });
+            setInputTodo("");
         }
         inputRef.current?.blur();
     }
 
     // Function that computes what to do when a todo item is dropped (after dragging)
     function onDragEnd(result: DropResult) {
-        console.log(result);
+        //console.log(result);
         const { source, destination, draggableId } = result;
         if (!destination) return; // If todo isn't dropped in a droppable area, do nothing
         // If a todo is dropped in the same spot, do nothing
@@ -232,8 +214,8 @@ const App: React.FC = () => {
             <span className="heading">Taskify</span>
             <InputField
                 inputRef={inputRef}
-                todo={todo}
-                setTodo={setTodo}
+                inputTodo={inputTodo}
+                setInputTodo={setInputTodo}
                 handleSubmitTodoWithReducer={handleSubmitTodoWithReducer}
             />
             <DragDropContext onDragEnd={onDragEnd}>

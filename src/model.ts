@@ -1,3 +1,4 @@
+// <Todo> defines the type of a todo item object
 export interface Todo {
     id: number;
     todo: string;
@@ -5,27 +6,13 @@ export interface Todo {
     isActive: boolean;
 }
 
-// TodoList actions type variable for useReducer hook
-export type TodoListActions =
-    | { type: "set"; payload: { newTodoList: Todo[] } }
-    | { type: "add"; payload: { e: React.FormEvent; todo: string } }
-    | { type: "remove"; payload: { id: number } }
-    | { type: "complete"; payload: { id: number } }
-    | { type: "edit"; payload: { id: number; newText: string } }
-    | { type: "moveOut"; payload: { id: number } }
-    | { type: "moveIn"; payload: { todoItem: Todo } };
+// <TodoListsType> defines the type of a variable holding the arrays of todos
+export interface TodoListsType {
+    activeTodos: Todo[];
+    completedTodos: Todo[];
+}
 
-// CompletedTodos actions type variable for useReducer hook
-export type CompletedTodoActions =
-    | { type: "set"; payload: { newTodoList: Todo[] } }
-    | { type: "remove"; payload: { id: number } }
-    | { type: "complete"; payload: { id: number } }
-    | { type: "edit"; payload: { id: number; newText: string } }
-    | { type: "moveOut"; payload: { id: number } }
-    | { type: "moveIn"; payload: { todoItem: Todo } };
-
-
-    
+// <Actions> defines the several types that the reducer's action can take (from useReducer hook)
 export type Actions =
     | { type: "set"; payload: { newTodoList: Todo[]; isActive: boolean } }
     | { type: "add"; payload: { todo: string } }
@@ -33,4 +20,7 @@ export type Actions =
     | { type: "complete"; payload: { id: number; isActive: boolean } }
     | { type: "edit"; payload: { id: number; newText: string; isActive: boolean } }
     | { type: "move"; payload: { id: number; destinationIndex: number; isActive: boolean } }
-    | { type: "moveInsideTab"; payload: { /*id: number;*/ sourceIndex: number, destinationIndex: number, isActive: boolean } };
+    | {
+          type: "moveInsideTab";
+          payload: { sourceIndex: number; destinationIndex: number; isActive: boolean };
+      };
