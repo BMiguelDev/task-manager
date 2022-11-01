@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable, DraggableStateSnapshot } from "react-beautiful-dnd";
 
 import { Todo } from "../../model";
 import { TodoListsDispatchContext } from "../../App";
@@ -49,7 +49,7 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
         }
     }
 
-    function getTodoItemClassName(snapshot: any): string {
+    function getTodoItemClassName(snapshot: DraggableStateSnapshot): string {
         if(snapshot.isDragging) {
             if(snapshot.isDropAnimating) {
                 return todo.isPriority ? `${styles.todo_item} ${styles.dragging} ${styles.drop_animating} ${styles.todo_item_priority}` : `${styles.todo_item} ${styles.dragging} ${styles.drop_animating}`

@@ -26,6 +26,12 @@
 
         &.todo_item_priority {
             background-color: rgb(255, 85, 0);
+            box-shadow: 0 0 1rem .25rem rgb(255, 85, 0);
+            scale: 1.01;
+
+            &:hover {
+                box-shadow: 0 0 1.25rem rgb(124, 29, 0);
+            }
         }
 
         &:hover {
