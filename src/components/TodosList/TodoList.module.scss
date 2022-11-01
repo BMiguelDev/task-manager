@@ -56,8 +56,9 @@
         .todo_item_text {
             color: green;
 
-            &.todo_item_text_done {
-                text-decoration: line-through;
+            &.todo_item_text_priority {
+                //text-decoration: line-through;
+                background-color: grey;
             }
         }
 
