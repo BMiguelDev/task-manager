@@ -71,19 +71,19 @@ const App: React.FC = () => {
                           completedTodos: todoLists.completedTodos.filter((todo) => todo.id !== action.payload.id),
                       };
 
-            case "complete":
+            case "prioritize":
                 if (action.payload.isActive) {
                     return {
                         ...todoLists,
                         activeTodos: todoLists.activeTodos.map((todo) => {
-                            return todo.id === action.payload.id ? { ...todo, isDone: !todo.isDone } : todo;
+                            return todo.id === action.payload.id ? { ...todo, isPriority: !todo.isPriority } : todo;
                         }),
                     };
                 } else {
                     return {
                         ...todoLists,
                         completedTodos: todoLists.completedTodos.map((todo) => {
-                            return todo.id === action.payload.id ? { ...todo, isDone: !todo.isDone } : todo;
+                            return todo.id === action.payload.id ? { ...todo, isPriority: !todo.isPriority } : todo;
                         }),
                     };
                 }
