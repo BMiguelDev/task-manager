@@ -49,19 +49,27 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
         }
     }
 
+    function getTodoItemClassName(snapshot: any): string {
+        if(snapshot.isDragging) {
+            if(snapshot.isDropAnimating) {
+                return todo.isPriority ? `${styles.todo_item} ${styles.dragging} ${styles.drop_animating} ${styles.todo_item_priority}` : `${styles.todo_item} ${styles.dragging} ${styles.drop_animating}`
+            } else {
+                return todo.isPriority ? `${styles.todo_item} ${styles.dragging} ${styles.todo_item_priority}` : `${styles.todo_item} ${styles.dragging}`
+            }
+        } else {
+            if(snapshot.isDropAnimating) {
+                return todo.isPriority ? `${styles.todo_item} ${styles.drop_animating} ${styles.todo_item_priority}` : `${styles.todo_item} ${styles.drop_animating}`
+            } else {
+                return todo.isPriority ? `${styles.todo_item} ${styles.todo_item_priority}` : styles.todo_item
+            }
+        }
+    }
+
     return (
         <Draggable draggableId={todo.id.toString()} index={index}>
             {(provided, snapshot) => (
                 <li
-                    className={
-                        snapshot.isDragging
-                            ? snapshot.isDropAnimating
-                                ? `${styles.todo_item} ${styles.dragging} ${styles.drop_animating}`
-                                : `${styles.todo_item} ${styles.dragging}`
-                            : snapshot.isDropAnimating
-                            ? `${styles.todo_item} ${styles.drop_animating}`
-                            : styles.todo_item
-                    }
+                    className={getTodoItemClassName(snapshot)}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}

@@ -24,6 +24,10 @@
         cursor: grab;
         transition: all .2s ease-in-out;
 
+        &.todo_item_priority {
+            background-color: rgb(255, 85, 0);
+        }
+
         &:hover {
             scale: 1.05;
             box-shadow: 0 0 .35rem black;
@@ -56,10 +60,10 @@
         .todo_item_text {
             color: green;
 
-            &.todo_item_text_priority {
-                //text-decoration: line-through;
-                background-color: grey;
-            }
+            // &.todo_item_text_priority {
+            //     //text-decoration: line-through;
+            //     background-color: grey;
+            // }
         }
 
         .todo_item_btn_container {
