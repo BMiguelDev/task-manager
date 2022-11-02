@@ -246,7 +246,6 @@ const App: React.FC = () => {
 
     // Function that computes what to do when a todo item is dropped (after dragging)
     function onDragEnd(result: DropResult) {
-        //console.log(result);
         const { source, destination, draggableId } = result;
         if (!destination) return; // If todo isn't dropped in a droppable area, do nothing
         // If a todo is dropped in the same spot, do nothing
@@ -278,11 +277,9 @@ const App: React.FC = () => {
     function handleSortAlphabetically(todoTabText: string) {
         // If previous sorting was alphabetical and ascending, sort alphabetically and descending
         if (sortingStatus.sortCondition === "alphabetical" && sortingStatus.isAscending) {
-            console.log("hey");
             todoListsDispatch({ type: "sortAlphabetical", payload: { tabName: todoTabText, direction: "descending" } });
             setSortingStatus({ ...sortingStatus, isAscending: false }); // Store latest sorting
         } else {
-            console.log("Hello");
             // Else sort alphabetically and ascending
             todoListsDispatch({ type: "sortAlphabetical", payload: { tabName: todoTabText, direction: "ascending" } });
             setSortingStatus({ sortCondition: "alphabetical", isAscending: true }); // Store latest sorting
