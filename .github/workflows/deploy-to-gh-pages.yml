@@ -2,9 +2,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - dev
       - main
-      - feature-add_deploy_workflow
 
 permissions:
   contents: write
