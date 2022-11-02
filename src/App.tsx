@@ -202,7 +202,6 @@ const App: React.FC = () => {
     }
 
     // TODO:
-    // Replace "done" with "priority"
     // Sort: alphabetical and maybe by priority items?
     // Make main state variable an array of more (possibly) more than 2 tabs. Add button to add new tab.
     // Make tabs draggable also
@@ -227,7 +226,19 @@ const App: React.FC = () => {
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
                             >
-                                <h3>Active Tasks</h3>
+                                <div className="tab_top_row">
+                                    <h3>Active Tasks</h3>
+                                    <div className="tab_top_row_sort_buttons">
+                                        <div className="sort_button_container">
+                                            <i className="fa-solid fa-arrow-down-a-z"></i>
+                                            {/* <i className="fa-solid fa-arrow-down-z-a"></i> */}
+                                        </div>
+                                        <div className="sort_button_container">
+                                            <i className="fa-solid fa-arrow-down-1-9"></i>
+                                            {/* <i className="fa-solid fa-arrow-down-9-1"></i> */}
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <TodoListsDispatchContext.Provider value={todoListsDispatch}>
                                     <TodoList todos={todoLists.activeTodos} />
