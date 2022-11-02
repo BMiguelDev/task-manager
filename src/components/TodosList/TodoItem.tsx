@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable, DraggableStateSnapshot } from "react-beautiful-dnd";
 
 import { Todo } from "../../model";
 import { TodoListsDispatchContext } from "../../App";
@@ -30,7 +30,7 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
 
     function handleCompleteTodoWithReducer(): any {
         if (!isEditMode) {
-            todoListsDispatchWithContext({ type: "complete", payload: { id: todo.id, isActive: todo.isActive } });
+            todoListsDispatchWithContext({ type: "prioritize", payload: { id: todo.id, isActive: todo.isActive } });
         }
     }
 
@@ -49,19 +49,27 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
         }
     }
 
+    function getTodoItemClassName(snapshot: DraggableStateSnapshot): string {
+        if(snapshot.isDragging) {
+            if(snapshot.isDropAnimating) {
+                return todo.isPriority ? `${styles.todo_item} ${styles.dragging} ${styles.drop_animating} ${styles.todo_item_priority}` : `${styles.todo_item} ${styles.dragging} ${styles.drop_animating}`
+            } else {
+                return todo.isPriority ? `${styles.todo_item} ${styles.dragging} ${styles.todo_item_priority}` : `${styles.todo_item} ${styles.dragging}`
+            }
+        } else {
+            if(snapshot.isDropAnimating) {
+                return todo.isPriority ? `${styles.todo_item} ${styles.drop_animating} ${styles.todo_item_priority}` : `${styles.todo_item} ${styles.drop_animating}`
+            } else {
+                return todo.isPriority ? `${styles.todo_item} ${styles.todo_item_priority}` : styles.todo_item
+            }
+        }
+    }
+
     return (
         <Draggable draggableId={todo.id.toString()} index={index}>
             {(provided, snapshot) => (
                 <li
-                    className={
-                        snapshot.isDragging
-                            ? snapshot.isDropAnimating
-                                ? `${styles.todo_item} ${styles.dragging} ${styles.drop_animating}`
-                                : `${styles.todo_item} ${styles.dragging}`
-                            : snapshot.isDropAnimating
-                            ? `${styles.todo_item} ${styles.drop_animating}`
-                            : styles.todo_item
-                    }
+                    className={getTodoItemClassName(snapshot)}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
@@ -81,8 +89,8 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
                     ) : (
                         <p
                             className={
-                                todo.isDone
-                                    ? `${styles.todo_item_text} ${styles.todo_item_text_done}`
+                                todo.isPriority
+                                    ? `${styles.todo_item_text} ${styles.todo_item_text_priority}`
                                     : styles.todo_item_text
                             }
                         >
@@ -97,7 +105,7 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
                             <i className="fa-solid fa-trash"></i>
                         </div>
                         <div className={styles.todo_item_done_btn_container} onClick={handleCompleteTodoWithReducer}>
-                            {todo.isDone ? (
+                            {todo.isPriority ? (
                                 <i className="fa-solid fa-xmark"></i>
                             ) : (
                                 <i className="fa-solid fa-check"></i>

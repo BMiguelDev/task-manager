@@ -2,7 +2,7 @@
 export interface Todo {
     id: number;
     todo: string;
-    isDone: boolean;
+    isPriority: boolean;
     isActive: boolean;
 }
 
@@ -17,7 +17,7 @@ export type Actions =
     | { type: "set"; payload: { newTodoList: Todo[]; isActive: boolean } }
     | { type: "add"; payload: { todo: string } }
     | { type: "remove"; payload: { id: number; isActive: boolean } }
-    | { type: "complete"; payload: { id: number; isActive: boolean } }
+    | { type: "prioritize"; payload: { id: number; isActive: boolean } }
     | { type: "edit"; payload: { id: number; newText: string; isActive: boolean } }
     | { type: "move"; payload: { id: number; destinationIndex: number; isActive: boolean } }
     | {
