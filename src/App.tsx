@@ -150,10 +150,8 @@ const App: React.FC = () => {
             case "sortAlphabetical":
                 if (action.payload.tabName === "active") {
                     let newActiveTodos = todoLists.activeTodos.slice();
-                    console.log(newActiveTodos);
                     if (action.payload.direction === "ascending") {
                         newActiveTodos.sort((a, b) => (a.todo < b.todo ? -1 : a.todo > b.todo ? 1 : 0));
-                        console.log(newActiveTodos);
                         return {
                             ...todoLists,
                             activeTodos: newActiveTodos,
@@ -182,11 +180,38 @@ const App: React.FC = () => {
                     }
                 }
 
-            // case "sortByPriority":
-            //     if (action.payload.tabName === "active") {
-            //     } else {
-            //     }
-            //     break;
+            case "sortByPriority":
+                if (action.payload.tabName === "active") {
+                    let newActiveTodos = todoLists.activeTodos.slice();
+                    if (action.payload.direction === "ascending") {
+                        newActiveTodos.sort((a, b) => (a.isPriority ? -1 : b.isPriority ? 1 : 0));
+                        return {
+                            ...todoLists,
+                            activeTodos: newActiveTodos,
+                        };
+                    } else {
+                        newActiveTodos.sort((a, b) => (a.isPriority ? 1 : b.isPriority ? -1 : 0));
+                        return {
+                            ...todoLists,
+                            activeTodos: newActiveTodos,
+                        };
+                    }
+                } else {
+                    let newCompletedTodos = todoLists.completedTodos.slice();
+                    if (action.payload.direction === "ascending") {
+                        newCompletedTodos.sort((a, b) => (a.isPriority ? -1 : b.isPriority ? 1 : 0));
+                        return {
+                            ...todoLists,
+                            completedTodos: newCompletedTodos,
+                        };
+                    } else {
+                        newCompletedTodos.sort((a, b) => (a.isPriority ? 1 : b.isPriority ? -1 : 0));
+                        return {
+                            ...todoLists,
+                            completedTodos: newCompletedTodos,
+                        };
+                    }
+                }
 
             case "set":
                 return action.payload.isActive
