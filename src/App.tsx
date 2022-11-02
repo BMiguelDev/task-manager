@@ -2,7 +2,7 @@ import React, { useReducer, useRef, useState, useEffect, createContext } from "r
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 import InputField from "./components/InputField/InputField";
-import { Actions, TodoListsType } from "./model";
+import { Actions, TodoListsType, SortingStatusType } from "./model";
 import TodoList from "./components/TodosList/TodoList";
 import Footer from "./components/Footer/Footer";
 import "./App.scss";
@@ -10,6 +10,7 @@ import "./App.scss";
 // Local Storage Keys
 const LOCAL_STORAGE_TODOLISTS_KEY = "TaskManagerApp.TodoLists";
 const LOCAL_STORAGE_TODO_KEY = "TaskManagerApp.Todo";
+const LOCAL_STORAGE_SORTING_STATUS_KEY = "TaskManagerApp.SortingStatus";
 
 /* useContext to pass dispatch function (from useReducer) to deep children */
 export const TodoListsDispatchContext = createContext<React.Dispatch<Actions>>(() => {});
@@ -22,7 +23,7 @@ const App: React.FC = () => {
     });
 
     // const [todos, setTodos] = useState<Todo[]>([]);  // replaced by useReducer
-    //const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
+    // const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
 
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_TODO_KEY, JSON.stringify(inputTodo));
@@ -37,11 +38,11 @@ const App: React.FC = () => {
     const [todoLists, todoListsDispatch] = useReducer(
         todoListsReducer,
         { activeTodos: [], completedTodos: [] },
-        reducerVariableInitializer1
+        reducerVariableInitializer
     );
 
     // Initializer function to initialize the <todoList> variable of useReducer with localStorage data
-    function reducerVariableInitializer1(): TodoListsType {
+    function reducerVariableInitializer(): TodoListsType {
         // return JSON.parse(localStorage.getItem("LOCAL_STORAGE_TODOLIST_KEY") || "{[]}");
         const localStorageItem = localStorage.getItem(LOCAL_STORAGE_TODOLISTS_KEY);
         if (localStorageItem) return JSON.parse(localStorageItem);
@@ -146,6 +147,47 @@ const App: React.FC = () => {
                     };
                 }
 
+            case "sortAlphabetical":
+                if (action.payload.tabName === "active") {
+                    let newActiveTodos = todoLists.activeTodos.slice();
+                    console.log(newActiveTodos);
+                    if (action.payload.direction === "ascending") {
+                        newActiveTodos.sort((a, b) => (a.todo < b.todo ? -1 : a.todo > b.todo ? 1 : 0));
+                        console.log(newActiveTodos);
+                        return {
+                            ...todoLists,
+                            activeTodos: newActiveTodos,
+                        };
+                    } else {
+                        newActiveTodos.sort((a, b) => (a.todo < b.todo ? 1 : a.todo > b.todo ? -1 : 0));
+                        return {
+                            ...todoLists,
+                            activeTodos: newActiveTodos,
+                        };
+                    }
+                } else {
+                    let newCompletedTodos = todoLists.completedTodos.slice();
+                    if (action.payload.direction === "ascending") {
+                        newCompletedTodos.sort((a, b) => (a.todo < b.todo ? -1 : a.todo > b.todo ? 1 : 0));
+                        return {
+                            ...todoLists,
+                            completedTodos: newCompletedTodos,
+                        };
+                    } else {
+                        newCompletedTodos.sort((a, b) => (a.todo < b.todo ? 1 : a.todo > b.todo ? -1 : 0));
+                        return {
+                            ...todoLists,
+                            completedTodos: newCompletedTodos,
+                        };
+                    }
+                }
+
+            // case "sortByPriority":
+            //     if (action.payload.tabName === "active") {
+            //     } else {
+            //     }
+            //     break;
+
             case "set":
                 return action.payload.isActive
                     ? { ...todoLists, activeTodos: action.payload.newTodoList }
@@ -160,6 +202,12 @@ const App: React.FC = () => {
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_TODOLISTS_KEY, JSON.stringify(todoLists));
     }, [todoLists]);
+
+    const [sortingStatus, setSortingStatus] = useState<SortingStatusType>({ sortCondition: "", isAscending: false });
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_SORTING_STATUS_KEY, JSON.stringify(sortingStatus));
+    }, [sortingStatus]);
 
     // Function to add a inputTodo to the <todoList>
     function handleSubmitTodoWithReducer(e: React.FormEvent) {
@@ -201,6 +249,34 @@ const App: React.FC = () => {
         }
     }
 
+    // Function that sorts todo items in a tab alphabetically, by calling the appropriate dispatcher function
+    function handleSortAlphabetically(todoTabText: string) {
+        // If previous sorting was alphabetical and ascending, sort alphabetically and descending
+        if (sortingStatus.sortCondition === "alphabetical" && sortingStatus.isAscending) {
+            console.log("hey");
+            todoListsDispatch({ type: "sortAlphabetical", payload: { tabName: todoTabText, direction: "descending" } });
+            setSortingStatus({ ...sortingStatus, isAscending: false }); // Store latest sorting
+        } else {
+            console.log("Hello");
+            // Else sort alphabetically and ascending
+            todoListsDispatch({ type: "sortAlphabetical", payload: { tabName: todoTabText, direction: "ascending" } });
+            setSortingStatus({ sortCondition: "alphabetical", isAscending: true }); // Store latest sorting
+        }
+    }
+
+    // Function that sorts todo items in a tab by priority, by calling the appropriate dispatcher function
+    function handleSortByPriority(todoTabText: string) {
+        // If previous sorting was by priority and ascending, sort by priority and descending
+        if (sortingStatus.sortCondition === "priority" && sortingStatus.isAscending) {
+            todoListsDispatch({ type: "sortByPriority", payload: { tabName: todoTabText, direction: "descending" } });
+            setSortingStatus({ ...sortingStatus, isAscending: false }); // Store latest sorting
+        } else {
+            // Else sort by priority and ascending
+            todoListsDispatch({ type: "sortByPriority", payload: { tabName: todoTabText, direction: "ascending" } });
+            setSortingStatus({ sortCondition: "priority", isAscending: true }); // Store latest sorting
+        }
+    }
+
     // TODO:
     // Sort: alphabetical and maybe by priority items?
     // Make main state variable an array of more (possibly) more than 2 tabs. Add button to add new tab.
@@ -229,13 +305,29 @@ const App: React.FC = () => {
                                 <div className="tab_top_row">
                                     <h3>Active Tasks</h3>
                                     <div className="tab_top_row_sort_buttons">
-                                        <div className="sort_button_container">
-                                            <i className="fa-solid fa-arrow-down-a-z"></i>
-                                            {/* <i className="fa-solid fa-arrow-down-z-a"></i> */}
+                                        <div
+                                            className="sort_button_container"
+                                            onClick={() => handleSortAlphabetically("active")}
+                                        >
+                                            {sortingStatus.isAscending ? (
+                                                sortingStatus.sortCondition === "alphabetical" ? (
+                                                    <i className="fa-solid fa-arrow-down-a-z"></i>
+                                                ) : <i className="fa-solid fa-arrow-down-z-a"></i>
+                                            ) : (
+                                                <i className="fa-solid fa-arrow-down-z-a"></i>
+                                            )}
                                         </div>
-                                        <div className="sort_button_container">
-                                            <i className="fa-solid fa-arrow-down-1-9"></i>
-                                            {/* <i className="fa-solid fa-arrow-down-9-1"></i> */}
+                                        <div
+                                            className="sort_button_container"
+                                            onClick={() => handleSortByPriority("active")}
+                                        >
+                                            {sortingStatus.isAscending ? (
+                                                sortingStatus.sortCondition === "priority" ? (
+                                                    <i className="fa-solid fa-arrow-down-1-9"></i>
+                                                ) : <i className="fa-solid fa-arrow-down-9-1"></i>
+                                            ) : (
+                                                <i className="fa-solid fa-arrow-down-9-1"></i>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -254,7 +346,35 @@ const App: React.FC = () => {
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
                             >
-                                <h3>Completed Tasks</h3>
+                                <div className="tab_top_row">
+                                    <h3>Completed Tasks</h3>
+                                    <div className="tab_top_row_sort_buttons">
+                                        <div
+                                            className="sort_button_container"
+                                            onClick={() => handleSortAlphabetically("completed")}
+                                        >
+                                            {sortingStatus.isAscending ? (
+                                                sortingStatus.sortCondition === "alphabetical" ? (
+                                                    <i className="fa-solid fa-arrow-down-a-z"></i>
+                                                ) : <i className="fa-solid fa-arrow-down-z-a"></i>
+                                            ) : (
+                                                <i className="fa-solid fa-arrow-down-z-a"></i>
+                                            )}
+                                        </div>
+                                        <div
+                                            className="sort_button_container"
+                                            onClick={() => handleSortByPriority("completed")}
+                                        >
+                                            {sortingStatus.isAscending ? (
+                                                sortingStatus.sortCondition === "priority" ? (
+                                                    <i className="fa-solid fa-arrow-down-1-9"></i>
+                                                ) : <i className="fa-solid fa-arrow-down-9-1"></i>
+                                            ) : (
+                                                <i className="fa-solid fa-arrow-down-9-1"></i>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
                                 <TodoListsDispatchContext.Provider value={todoListsDispatch}>
                                     <TodoList todos={todoLists.completedTodos} />
                                 </TodoListsDispatchContext.Provider>
