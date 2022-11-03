@@ -149,36 +149,29 @@ const App: React.FC = () => {
                 }
 
             case "sortAlphabetical":
+                const sortAlphabetical = (a: string, b: string, direction: string): number => {
+                    if (direction === "ascending") return a < b ? -1 : a > b ? 1 : 0;
+                    else if (direction === "descending") return a < b ? 1 : a > b ? -1 : 0;
+                    else return 0;
+                };
                 if (action.payload.tabName === "active") {
                     let newActiveTodos = todoLists.activeTodos.slice();
-                    if (action.payload.direction === "ascending") {
-                        newActiveTodos.sort((a, b) => (a.todo < b.todo ? -1 : a.todo > b.todo ? 1 : 0));
-                        return {
-                            ...todoLists,
-                            activeTodos: newActiveTodos,
-                        };
-                    } else {
-                        newActiveTodos.sort((a, b) => (a.todo < b.todo ? 1 : a.todo > b.todo ? -1 : 0));
-                        return {
-                            ...todoLists,
-                            activeTodos: newActiveTodos,
-                        };
-                    }
+                    newActiveTodos.sort((a, b) =>
+                        sortAlphabetical(a.todo.toLowerCase(), b.todo.toLowerCase(), action.payload.direction)
+                    );
+                    return {
+                        ...todoLists,
+                        activeTodos: newActiveTodos,
+                    };
                 } else {
                     let newCompletedTodos = todoLists.completedTodos.slice();
-                    if (action.payload.direction === "ascending") {
-                        newCompletedTodos.sort((a, b) => (a.todo < b.todo ? -1 : a.todo > b.todo ? 1 : 0));
-                        return {
-                            ...todoLists,
-                            completedTodos: newCompletedTodos,
-                        };
-                    } else {
-                        newCompletedTodos.sort((a, b) => (a.todo < b.todo ? 1 : a.todo > b.todo ? -1 : 0));
-                        return {
-                            ...todoLists,
-                            completedTodos: newCompletedTodos,
-                        };
-                    }
+                    newCompletedTodos.sort((a, b) =>
+                        sortAlphabetical(a.todo.toLowerCase(), b.todo.toLowerCase(), action.payload.direction)
+                    );
+                    return {
+                        ...todoLists,
+                        completedTodos: newCompletedTodos,
+                    };
                 }
 
             case "sortByPriority":
