@@ -2,7 +2,7 @@ import React, { useReducer, useRef, useState, useEffect, createContext } from "r
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 import InputField from "./components/InputField/InputField";
-import { Actions, TodoListsType, SortingStatusType } from "./model";
+import { Actions, Todo, TodoListsType, SortingStatusType, tabSearchInputsType } from "./model";
 import TodoList from "./components/TodosList/TodoList";
 import Footer from "./components/Footer/Footer";
 import "./App.scss";
@@ -11,6 +11,7 @@ import "./App.scss";
 const LOCAL_STORAGE_TODOLISTS_KEY = "TaskManagerApp.TodoLists";
 const LOCAL_STORAGE_TODO_KEY = "TaskManagerApp.Todo";
 const LOCAL_STORAGE_SORTING_STATUS_KEY = "TaskManagerApp.SortingStatus";
+const LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY = "TaskManagerApp.TabSearchInputs";
 
 /* useContext to pass dispatch function (from useReducer) to deep children */
 export const TodoListsDispatchContext = createContext<React.Dispatch<Actions>>(() => {});
@@ -228,11 +229,24 @@ const App: React.FC = () => {
         localStorage.setItem(LOCAL_STORAGE_TODOLISTS_KEY, JSON.stringify(todoLists));
     }, [todoLists]);
 
+    // TODO: CHANGE INITIALIZATION OF STATE VARIABLE <sortingStatus> TO WHAT'S CURRENTLY IN THE LOCAL STORAGE
+    // State variable <sortingStatus> holds the data relative to the latest sorting status
     const [sortingStatus, setSortingStatus] = useState<SortingStatusType>({ sortCondition: "", isAscending: false });
 
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_SORTING_STATUS_KEY, JSON.stringify(sortingStatus));
     }, [sortingStatus]);
+
+    const [tabSearchInputs, setTabSearchInputs] = useState<tabSearchInputsType>(() => {
+        const localStorageItem = localStorage.getItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY);
+        if (localStorageItem) return JSON.parse(localStorageItem);
+        else return { activeTodosSearchInput: "", completedTodosSearchInput: "" };
+    });
+
+    // Function to store new input text in local storage everytime <tabSearchInputs> changes
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY, JSON.stringify(tabSearchInputs));
+    }, [tabSearchInputs]);
 
     // Function to add a inputTodo to the <todoList>
     function handleSubmitTodoWithReducer(e: React.FormEvent) {
@@ -299,12 +313,25 @@ const App: React.FC = () => {
         }
     }
 
+    // Function that sets <tabSearchInputs> variable according to which tab's search field was changed
+    function handleChangeTabSearchInputs(event: React.ChangeEvent<HTMLInputElement>, tabChanged: string) {
+        if (tabChanged === "active") {
+            setTabSearchInputs((prevTabSearchInputs) => ({
+                ...prevTabSearchInputs,
+                activeTodosSearchInput: event.target.value,
+            }));
+        } else if (tabChanged === "completed") {
+            setTabSearchInputs((prevTabSearchInputs) => ({
+                ...prevTabSearchInputs,
+                completedTodosSearchInput: event.target.value,
+            }));
+        } else return;
+    }
+
     // TODO:
-    // Sort: alphabetical and maybe by priority items?
     // Make main state variable an array of more (possibly) more than 2 tabs. Add button to add new tab.
     // Make tabs draggable also
     // Add projects entity. Each project has its own set of tasks.
-    // input field to search for task. Task array updates on each stroke (dynamically; no function, do the sorting right on the render function)
 
     return (
         <div className="App">
@@ -326,6 +353,14 @@ const App: React.FC = () => {
                             >
                                 <div className="tab_top_row">
                                     <h3>Active Tasks</h3>
+                                    <div className="tab_top_row_search_input_container">
+                                        <input
+                                            type="text"
+                                            placeholder="Search for todo..."
+                                            value={tabSearchInputs.activeTodosSearchInput}
+                                            onChange={(e) => handleChangeTabSearchInputs(e, "active")}
+                                        />
+                                    </div>
                                     <div className="tab_top_row_sort_buttons">
                                         <div
                                             className="sort_button_container"
@@ -334,7 +369,9 @@ const App: React.FC = () => {
                                             {sortingStatus.isAscending ? (
                                                 sortingStatus.sortCondition === "alphabetical" ? (
                                                     <i className="fa-solid fa-arrow-down-a-z"></i>
-                                                ) : <i className="fa-solid fa-arrow-down-z-a"></i>
+                                                ) : (
+                                                    <i className="fa-solid fa-arrow-down-z-a"></i>
+                                                )
                                             ) : (
                                                 <i className="fa-solid fa-arrow-down-z-a"></i>
                                             )}
@@ -346,7 +383,9 @@ const App: React.FC = () => {
                                             {sortingStatus.isAscending ? (
                                                 sortingStatus.sortCondition === "priority" ? (
                                                     <i className="fa-solid fa-arrow-down-1-9"></i>
-                                                ) : <i className="fa-solid fa-arrow-down-9-1"></i>
+                                                ) : (
+                                                    <i className="fa-solid fa-arrow-down-9-1"></i>
+                                                )
                                             ) : (
                                                 <i className="fa-solid fa-arrow-down-9-1"></i>
                                             )}
@@ -355,7 +394,17 @@ const App: React.FC = () => {
                                 </div>
 
                                 <TodoListsDispatchContext.Provider value={todoListsDispatch}>
-                                    <TodoList todos={todoLists.activeTodos} />
+                                    {tabSearchInputs.activeTodosSearchInput ? (
+                                        <TodoList
+                                            todos={todoLists.activeTodos.filter((todoItem: Todo) =>
+                                                todoItem.todo
+                                                    .toLowerCase()
+                                                    .includes(tabSearchInputs.activeTodosSearchInput)
+                                            )}
+                                        />
+                                    ) : (
+                                        <TodoList todos={todoLists.activeTodos} />
+                                    )}
                                 </TodoListsDispatchContext.Provider>
                                 {provided.placeholder}
                             </div>
@@ -370,6 +419,14 @@ const App: React.FC = () => {
                             >
                                 <div className="tab_top_row">
                                     <h3>Completed Tasks</h3>
+                                    <div className="tab_top_row_search_input_container">
+                                        <input
+                                            type="text"
+                                            placeholder="Search for todo..."
+                                            value={tabSearchInputs.completedTodosSearchInput}
+                                            onChange={(e) => handleChangeTabSearchInputs(e, "completed")}
+                                        />
+                                    </div>
                                     <div className="tab_top_row_sort_buttons">
                                         <div
                                             className="sort_button_container"
@@ -378,7 +435,9 @@ const App: React.FC = () => {
                                             {sortingStatus.isAscending ? (
                                                 sortingStatus.sortCondition === "alphabetical" ? (
                                                     <i className="fa-solid fa-arrow-down-a-z"></i>
-                                                ) : <i className="fa-solid fa-arrow-down-z-a"></i>
+                                                ) : (
+                                                    <i className="fa-solid fa-arrow-down-z-a"></i>
+                                                )
                                             ) : (
                                                 <i className="fa-solid fa-arrow-down-z-a"></i>
                                             )}
@@ -390,7 +449,9 @@ const App: React.FC = () => {
                                             {sortingStatus.isAscending ? (
                                                 sortingStatus.sortCondition === "priority" ? (
                                                     <i className="fa-solid fa-arrow-down-1-9"></i>
-                                                ) : <i className="fa-solid fa-arrow-down-9-1"></i>
+                                                ) : (
+                                                    <i className="fa-solid fa-arrow-down-9-1"></i>
+                                                )
                                             ) : (
                                                 <i className="fa-solid fa-arrow-down-9-1"></i>
                                             )}
@@ -398,7 +459,17 @@ const App: React.FC = () => {
                                     </div>
                                 </div>
                                 <TodoListsDispatchContext.Provider value={todoListsDispatch}>
-                                    <TodoList todos={todoLists.completedTodos} />
+                                    {tabSearchInputs.completedTodosSearchInput ? (
+                                        <TodoList
+                                            todos={todoLists.completedTodos.filter((todoItem: Todo) =>
+                                                todoItem.todo
+                                                    .toLowerCase()
+                                                    .includes(tabSearchInputs.completedTodosSearchInput)
+                                            )}
+                                        />
+                                    ) : (
+                                        <TodoList todos={todoLists.completedTodos} />
+                                    )}
                                 </TodoListsDispatchContext.Provider>
                                 {provided.placeholder}
                             </div>

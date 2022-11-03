@@ -32,3 +32,9 @@ export interface SortingStatusType {
     sortCondition: string;
     isAscending: boolean;
 }
+
+export interface tabSearchInputsType {
+    activeTodosSearchInput: string;
+    completedTodosSearchInput: string;
+
+}

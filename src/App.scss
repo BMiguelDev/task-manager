@@ -68,6 +68,14 @@ body {
             margin: 0;
         }
 
+        .tab_top_row_search_input_container {
+
+            input {
+               border-radius: .25rem;
+               padding: .2rem .5rem;
+            }
+       }
+
         .tab_top_row_sort_buttons {
             display: flex;
             align-items: center;
@@ -110,6 +118,14 @@ body {
 
         h3 {
             margin: 0;
+        }
+
+        .tab_top_row_search_input_container {
+
+             input {
+                border-radius: .25rem;
+                padding: .2rem .5rem;
+             }
         }
 
         .tab_top_row_sort_buttons {
