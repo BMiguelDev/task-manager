@@ -11,6 +11,7 @@ import "./App.scss";
 const LOCAL_STORAGE_TODOLISTS_KEY = "TaskManagerApp.TodoLists";
 const LOCAL_STORAGE_TODO_KEY = "TaskManagerApp.Todo";
 const LOCAL_STORAGE_SORTING_STATUS_KEY = "TaskManagerApp.SortingStatus";
+const LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY = "TaskManagerApp.TabSearchInputs";
 
 /* useContext to pass dispatch function (from useReducer) to deep children */
 export const TodoListsDispatchContext = createContext<React.Dispatch<Actions>>(() => {});
@@ -228,6 +229,7 @@ const App: React.FC = () => {
         localStorage.setItem(LOCAL_STORAGE_TODOLISTS_KEY, JSON.stringify(todoLists));
     }, [todoLists]);
 
+    // TODO: CHANGE INITIALIZATION OF STATE VARIABLE <sortingStatus> TO WHAT'S CURRENTLY IN THE LOCAL STORAGE
     // State variable <sortingStatus> holds the data relative to the latest sorting status
     const [sortingStatus, setSortingStatus] = useState<SortingStatusType>({ sortCondition: "", isAscending: false });
 
@@ -235,10 +237,20 @@ const App: React.FC = () => {
         localStorage.setItem(LOCAL_STORAGE_SORTING_STATUS_KEY, JSON.stringify(sortingStatus));
     }, [sortingStatus]);
 
-    const [tabSearchInputs, setTabSearchInputs] = useState<tabSearchInputsType>({
-        activeTodosSearchInput: "",
-        completedTodosSearchInput: "",
+    // const [tabSearchInputs, setTabSearchInputs] = useState<tabSearchInputsType>({
+    //     activeTodosSearchInput: "",
+    //     completedTodosSearchInput: "",
+    // } || JSON.parse(localStorage.getItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY)) );
+
+    const [tabSearchInputs, setTabSearchInputs] = useState<tabSearchInputsType>(() => {
+        const localStorageItem = localStorage.getItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY);
+        if(localStorageItem) return JSON.parse(localStorageItem);
+        else return { activeTodosSearchInput: "", completedTodosSearchInput: "" };
     });
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY, JSON.stringify(tabSearchInputs));
+    }, [tabSearchInputs]);
 
     // Function to add a inputTodo to the <todoList>
     function handleSubmitTodoWithReducer(e: React.FormEvent) {
@@ -307,10 +319,16 @@ const App: React.FC = () => {
 
     // Function that sets <tabSearchInputs> variable according to which tab's search field was changed
     function handleChangeTabSearchInputs(event: React.ChangeEvent<HTMLInputElement>, tabChanged: string) {
-        if(tabChanged==='active') {
-            setTabSearchInputs(prevTabSearchInputs => ({...prevTabSearchInputs, activeTodosSearchInput: event.target.value}));
-        } else if(tabChanged==='completed') {
-            setTabSearchInputs(prevTabSearchInputs => ({...prevTabSearchInputs, completedTodosSearchInput: event.target.value}));
+        if (tabChanged === "active") {
+            setTabSearchInputs((prevTabSearchInputs) => ({
+                ...prevTabSearchInputs,
+                activeTodosSearchInput: event.target.value,
+            }));
+        } else if (tabChanged === "completed") {
+            setTabSearchInputs((prevTabSearchInputs) => ({
+                ...prevTabSearchInputs,
+                completedTodosSearchInput: event.target.value,
+            }));
         } else return;
     }
 
@@ -342,7 +360,12 @@ const App: React.FC = () => {
                                 <div className="tab_top_row">
                                     <h3>Active Tasks</h3>
                                     <div className="tab_top_row_search_input_container">
-                                        <input type="text" placeholder="Search for todo..." value={tabSearchInputs.activeTodosSearchInput} onChange={(e) => handleChangeTabSearchInputs(e, 'active')} />
+                                        <input
+                                            type="text"
+                                            placeholder="Search for todo..."
+                                            value={tabSearchInputs.activeTodosSearchInput}
+                                            onChange={(e) => handleChangeTabSearchInputs(e, "active")}
+                                        />
                                     </div>
                                     <div className="tab_top_row_sort_buttons">
                                         <div
@@ -393,7 +416,12 @@ const App: React.FC = () => {
                                 <div className="tab_top_row">
                                     <h3>Completed Tasks</h3>
                                     <div className="tab_top_row_search_input_container">
-                                        <input type="text" placeholder="Search for todo..." value={tabSearchInputs.completedTodosSearchInput} onChange={(e) => handleChangeTabSearchInputs(e, 'completed')} />
+                                        <input
+                                            type="text"
+                                            placeholder="Search for todo..."
+                                            value={tabSearchInputs.completedTodosSearchInput}
+                                            onChange={(e) => handleChangeTabSearchInputs(e, "completed")}
+                                        />
                                     </div>
                                     <div className="tab_top_row_sort_buttons">
                                         <div
