@@ -229,9 +229,16 @@ const App: React.FC = () => {
         localStorage.setItem(LOCAL_STORAGE_TODOLISTS_KEY, JSON.stringify(todoLists));
     }, [todoLists]);
 
-    // TODO: CHANGE INITIALIZATION OF STATE VARIABLE <sortingStatus> TO WHAT'S CURRENTLY IN THE LOCAL STORAGE
     // State variable <sortingStatus> holds the data relative to the latest sorting status
-    const [sortingStatus, setSortingStatus] = useState<SortingStatusType>({ sortCondition: "", isAscending: false });
+    const [sortingStatus, setSortingStatus] = useState<SortingStatusType>(() => {
+        const localStorageItem = localStorage.getItem(LOCAL_STORAGE_SORTING_STATUS_KEY);
+        if (localStorageItem) return JSON.parse(localStorageItem);
+        else
+            return {
+                activeTab: { sortCondition: "", isAscending: false },
+                completedTab: { sortCondition: "", isAscending: false },
+            };
+    });
 
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_SORTING_STATUS_KEY, JSON.stringify(sortingStatus));
@@ -289,28 +296,85 @@ const App: React.FC = () => {
 
     // Function that sorts todo items in a tab alphabetically, by calling the appropriate dispatcher function
     function handleSortAlphabetically(todoTabText: string) {
-        // If previous sorting was alphabetical and ascending, sort alphabetically and descending
-        if (sortingStatus.sortCondition === "alphabetical" && sortingStatus.isAscending) {
-            todoListsDispatch({ type: "sortAlphabetical", payload: { tabName: todoTabText, direction: "descending" } });
-            setSortingStatus({ ...sortingStatus, isAscending: false }); // Store latest sorting
-        } else {
-            // Else sort alphabetically and ascending
-            todoListsDispatch({ type: "sortAlphabetical", payload: { tabName: todoTabText, direction: "ascending" } });
-            setSortingStatus({ sortCondition: "alphabetical", isAscending: true }); // Store latest sorting
-        }
+        if (todoTabText === "active") {
+            // If previous sorting was alphabetical and ascending, sort alphabetically and descending
+            if (sortingStatus.activeTab.sortCondition === "alphabetical" && sortingStatus.activeTab.isAscending) {
+                todoListsDispatch({
+                    type: "sortAlphabetical",
+                    payload: { tabName: todoTabText, direction: "descending" },
+                });
+                setSortingStatus({ ...sortingStatus, activeTab: { ...sortingStatus.activeTab, isAscending: false } }); // Store latest sorting
+            } else {
+                // Else sort alphabetically and ascending
+                todoListsDispatch({
+                    type: "sortAlphabetical",
+                    payload: { tabName: todoTabText, direction: "ascending" },
+                });
+                setSortingStatus({ ...sortingStatus, activeTab: { sortCondition: "alphabetical", isAscending: true } }); // Store latest sorting
+            }
+        } else if (todoTabText === "completed") {
+            // If previous sorting was alphabetical and ascending, sort alphabetically and descending
+            if (sortingStatus.completedTab.sortCondition === "alphabetical" && sortingStatus.completedTab.isAscending) {
+                todoListsDispatch({
+                    type: "sortAlphabetical",
+                    payload: { tabName: todoTabText, direction: "descending" },
+                });
+                setSortingStatus({
+                    ...sortingStatus,
+                    completedTab: { ...sortingStatus.completedTab, isAscending: false },
+                }); // Store latest sorting
+            } else {
+                // Else sort alphabetically and ascending
+                todoListsDispatch({
+                    type: "sortAlphabetical",
+                    payload: { tabName: todoTabText, direction: "ascending" },
+                });
+                setSortingStatus({
+                    ...sortingStatus,
+                    completedTab: { sortCondition: "alphabetical", isAscending: true },
+                }); // Store latest sorting
+            }
+        } else return;
     }
 
     // Function that sorts todo items in a tab by priority, by calling the appropriate dispatcher function
     function handleSortByPriority(todoTabText: string) {
-        // If previous sorting was by priority and ascending, sort by priority and descending
-        if (sortingStatus.sortCondition === "priority" && sortingStatus.isAscending) {
-            todoListsDispatch({ type: "sortByPriority", payload: { tabName: todoTabText, direction: "descending" } });
-            setSortingStatus({ ...sortingStatus, isAscending: false }); // Store latest sorting
-        } else {
-            // Else sort by priority and ascending
-            todoListsDispatch({ type: "sortByPriority", payload: { tabName: todoTabText, direction: "ascending" } });
-            setSortingStatus({ sortCondition: "priority", isAscending: true }); // Store latest sorting
-        }
+        if (todoTabText === "active") {
+            // If previous sorting was by priority and ascending, sort by priority and descending
+            if (sortingStatus.activeTab.sortCondition === "priority" && sortingStatus.activeTab.isAscending) {
+                todoListsDispatch({
+                    type: "sortByPriority",
+                    payload: { tabName: todoTabText, direction: "descending" },
+                });
+                setSortingStatus({ ...sortingStatus, activeTab: { ...sortingStatus.activeTab, isAscending: false } }); // Store latest sorting
+            } else {
+                // Else sort by priority and ascending
+                todoListsDispatch({
+                    type: "sortByPriority",
+                    payload: { tabName: todoTabText, direction: "ascending" },
+                });
+                setSortingStatus({ ...sortingStatus, activeTab: { sortCondition: "priority", isAscending: true } }); // Store latest sorting
+            }
+        } else if (todoTabText === "completed") {
+            // If previous sorting was by priority and ascending, sort by priority and descending
+            if (sortingStatus.completedTab.sortCondition === "priority" && sortingStatus.completedTab.isAscending) {
+                todoListsDispatch({
+                    type: "sortByPriority",
+                    payload: { tabName: todoTabText, direction: "descending" },
+                });
+                setSortingStatus({
+                    ...sortingStatus,
+                    completedTab: { ...sortingStatus.completedTab, isAscending: false },
+                }); // Store latest sorting
+            } else {
+                // Else sort by priority and ascending
+                todoListsDispatch({
+                    type: "sortByPriority",
+                    payload: { tabName: todoTabText, direction: "ascending" },
+                });
+                setSortingStatus({ ...sortingStatus, completedTab: { sortCondition: "priority", isAscending: true } }); // Store latest sorting
+            }
+        } else return;
     }
 
     // Function that sets <tabSearchInputs> variable according to which tab's search field was changed
@@ -366,8 +430,8 @@ const App: React.FC = () => {
                                             className="sort_button_container"
                                             onClick={() => handleSortAlphabetically("active")}
                                         >
-                                            {sortingStatus.isAscending ? (
-                                                sortingStatus.sortCondition === "alphabetical" ? (
+                                            {sortingStatus.activeTab.isAscending ? (
+                                                sortingStatus.activeTab.sortCondition === "alphabetical" ? (
                                                     <i className="fa-solid fa-arrow-down-a-z"></i>
                                                 ) : (
                                                     <i className="fa-solid fa-arrow-down-z-a"></i>
@@ -380,8 +444,8 @@ const App: React.FC = () => {
                                             className="sort_button_container"
                                             onClick={() => handleSortByPriority("active")}
                                         >
-                                            {sortingStatus.isAscending ? (
-                                                sortingStatus.sortCondition === "priority" ? (
+                                            {sortingStatus.activeTab.isAscending ? (
+                                                sortingStatus.activeTab.sortCondition === "priority" ? (
                                                     <i className="fa-solid fa-arrow-down-1-9"></i>
                                                 ) : (
                                                     <i className="fa-solid fa-arrow-down-9-1"></i>
@@ -432,8 +496,8 @@ const App: React.FC = () => {
                                             className="sort_button_container"
                                             onClick={() => handleSortAlphabetically("completed")}
                                         >
-                                            {sortingStatus.isAscending ? (
-                                                sortingStatus.sortCondition === "alphabetical" ? (
+                                            {sortingStatus.completedTab.isAscending ? (
+                                                sortingStatus.completedTab.sortCondition === "alphabetical" ? (
                                                     <i className="fa-solid fa-arrow-down-a-z"></i>
                                                 ) : (
                                                     <i className="fa-solid fa-arrow-down-z-a"></i>
@@ -446,8 +510,8 @@ const App: React.FC = () => {
                                             className="sort_button_container"
                                             onClick={() => handleSortByPriority("completed")}
                                         >
-                                            {sortingStatus.isAscending ? (
-                                                sortingStatus.sortCondition === "priority" ? (
+                                            {sortingStatus.completedTab.isAscending ? (
+                                                sortingStatus.completedTab.sortCondition === "priority" ? (
                                                     <i className="fa-solid fa-arrow-down-1-9"></i>
                                                 ) : (
                                                     <i className="fa-solid fa-arrow-down-9-1"></i>
