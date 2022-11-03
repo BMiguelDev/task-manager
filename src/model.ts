@@ -23,4 +23,22 @@ export type Actions =
     | {
           type: "moveInsideTab";
           payload: { sourceIndex: number; destinationIndex: number; isActive: boolean };
-      };
+      }
+    | { type: "sortAlphabetical"; payload: { tabName: string; direction: string } }
+    | { type: "sortByPriority"; payload: { tabName: string; direction: string } };
+
+export interface SortingStatusType {
+    activeTab: {
+        sortCondition: string;
+        isAscending: boolean;
+    };
+    completedTab: {
+        sortCondition: string;
+        isAscending: boolean;
+    };
+}
+
+export interface tabSearchInputsType {
+    activeTodosSearchInput: string;
+    completedTodosSearchInput: string;
+}

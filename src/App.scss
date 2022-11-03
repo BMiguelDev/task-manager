@@ -7,7 +7,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     font-family: 'Neucha', cursive;
@@ -58,23 +59,43 @@ html, body {
     padding: 1rem;
     background-color: rgb(77, 199, 221);
 
-    h3 {
-        margin: 0;
-    }
+    .tab_top_row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-    height: fit-content;
-        max-height: 100%;
-        overflow-y: auto;
-
-        &.dragging_over {
-            background-color: rgb(54, 146, 162);
+        h3 {
+            margin: 0;
         }
 
-    .active_todos_content {
-        //height: fit-content;
-        // height: 100%;
-        // max-height: 100%;
-        // overflow-y: auto;
+        .tab_top_row_search_input_container {
+
+            input {
+               border-radius: .25rem;
+               padding: .2rem .5rem;
+            }
+       }
+
+        .tab_top_row_sort_buttons {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: .75rem;
+
+            .sort_button_container {
+                background-color: grey;
+                i {
+                    color: black;
+                    cursor:pointer;
+                }
+            }  
+        }
+    }
+
+    overflow-y: auto;
+
+    &.dragging_over {
+        background-color: rgb(54, 146, 162);
     }
 }
 
@@ -90,23 +111,43 @@ html, body {
     background-color: rgb(255, 106, 0);
     transition: all .9s ease-in-out;
 
-    h3 {
-        margin: 0;
+    .tab_top_row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            margin: 0;
+        }
+
+        .tab_top_row_search_input_container {
+
+             input {
+                border-radius: .25rem;
+                padding: .2rem .5rem;
+             }
+        }
+
+        .tab_top_row_sort_buttons {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: .75rem;
+
+            .sort_button_container {
+                background-color: grey;
+                i {
+                    color: black;
+                    cursor:pointer;
+                }
+            }  
+        }
     }
 
-    height: fit-content;
-        //max-height: 100%;
-        overflow-y: auto;
+    overflow-y: auto;
 
-        &.dragging_over {
-            background-color: rgb(174, 75, 5);
-        }
-        
-    .completed_todos_content {
-        //height: fit-content;
-        // height: 100%;
-        // max-height: 100%;
-        // overflow-y: auto;
+    &.dragging_over {
+        background-color: rgb(174, 75, 5);
     }
 }
 
