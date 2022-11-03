@@ -152,13 +152,13 @@ const App: React.FC = () => {
                 if (action.payload.tabName === "active") {
                     let newActiveTodos = todoLists.activeTodos.slice();
                     if (action.payload.direction === "ascending") {
-                        newActiveTodos.sort((a, b) => (a.todo < b.todo ? -1 : a.todo > b.todo ? 1 : 0));
+                        newActiveTodos.sort((a, b) => (a.todo.toLowerCase() < b.todo.toLowerCase() ? -1 : a.todo.toLowerCase() > b.todo.toLowerCase() ? 1 : 0));
                         return {
                             ...todoLists,
                             activeTodos: newActiveTodos,
                         };
                     } else {
-                        newActiveTodos.sort((a, b) => (a.todo < b.todo ? 1 : a.todo > b.todo ? -1 : 0));
+                        newActiveTodos.sort((a, b) => (a.todo.toLowerCase() < b.todo.toLowerCase() ? 1 : a.todo.toLowerCase() > b.todo.toLowerCase() ? -1 : 0));
                         return {
                             ...todoLists,
                             activeTodos: newActiveTodos,
@@ -167,13 +167,13 @@ const App: React.FC = () => {
                 } else {
                     let newCompletedTodos = todoLists.completedTodos.slice();
                     if (action.payload.direction === "ascending") {
-                        newCompletedTodos.sort((a, b) => (a.todo < b.todo ? -1 : a.todo > b.todo ? 1 : 0));
+                        newCompletedTodos.sort((a, b) => (a.todo.toLowerCase() < b.todo.toLowerCase() ? -1 : a.todo.toLowerCase() > b.todo.toLowerCase() ? 1 : 0));
                         return {
                             ...todoLists,
                             completedTodos: newCompletedTodos,
                         };
                     } else {
-                        newCompletedTodos.sort((a, b) => (a.todo < b.todo ? 1 : a.todo > b.todo ? -1 : 0));
+                        newCompletedTodos.sort((a, b) => (a.todo.toLowerCase() < b.todo.toLowerCase() ? 1 : a.todo.toLowerCase() > b.todo.toLowerCase() ? -1 : 0));
                         return {
                             ...todoLists,
                             completedTodos: newCompletedTodos,
