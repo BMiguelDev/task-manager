@@ -2,7 +2,7 @@ import React, { useReducer, useRef, useState, useEffect, createContext } from "r
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 import InputField from "./components/InputField/InputField";
-import { Actions, TodoListsType, SortingStatusType, tabSearchInputsType } from "./model";
+import { Actions, Todo, TodoListsType, SortingStatusType, tabSearchInputsType } from "./model";
 import TodoList from "./components/TodosList/TodoList";
 import Footer from "./components/Footer/Footer";
 import "./App.scss";
@@ -237,17 +237,13 @@ const App: React.FC = () => {
         localStorage.setItem(LOCAL_STORAGE_SORTING_STATUS_KEY, JSON.stringify(sortingStatus));
     }, [sortingStatus]);
 
-    // const [tabSearchInputs, setTabSearchInputs] = useState<tabSearchInputsType>({
-    //     activeTodosSearchInput: "",
-    //     completedTodosSearchInput: "",
-    // } || JSON.parse(localStorage.getItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY)) );
-
     const [tabSearchInputs, setTabSearchInputs] = useState<tabSearchInputsType>(() => {
         const localStorageItem = localStorage.getItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY);
-        if(localStorageItem) return JSON.parse(localStorageItem);
+        if (localStorageItem) return JSON.parse(localStorageItem);
         else return { activeTodosSearchInput: "", completedTodosSearchInput: "" };
     });
 
+    // Function to store new input text in local storage everytime <tabSearchInputs> changes
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY, JSON.stringify(tabSearchInputs));
     }, [tabSearchInputs]);
@@ -400,7 +396,17 @@ const App: React.FC = () => {
                                 </div>
 
                                 <TodoListsDispatchContext.Provider value={todoListsDispatch}>
-                                    <TodoList todos={todoLists.activeTodos} />
+                                    {tabSearchInputs.activeTodosSearchInput ? (
+                                        <TodoList
+                                            todos={todoLists.activeTodos.filter((todoItem: Todo) =>
+                                                todoItem.todo
+                                                    .toLowerCase()
+                                                    .includes(tabSearchInputs.activeTodosSearchInput)
+                                            )}
+                                        />
+                                    ) : (
+                                        <TodoList todos={todoLists.activeTodos} />
+                                    )}
                                 </TodoListsDispatchContext.Provider>
                                 {provided.placeholder}
                             </div>
@@ -455,7 +461,17 @@ const App: React.FC = () => {
                                     </div>
                                 </div>
                                 <TodoListsDispatchContext.Provider value={todoListsDispatch}>
-                                    <TodoList todos={todoLists.completedTodos} />
+                                    {tabSearchInputs.completedTodosSearchInput ? (
+                                        <TodoList
+                                            todos={todoLists.completedTodos.filter((todoItem: Todo) =>
+                                                todoItem.todo
+                                                    .toLowerCase()
+                                                    .includes(tabSearchInputs.completedTodosSearchInput)
+                                            )}
+                                        />
+                                    ) : (
+                                        <TodoList todos={todoLists.completedTodos} />
+                                    )}
                                 </TodoListsDispatchContext.Provider>
                                 {provided.placeholder}
                             </div>
