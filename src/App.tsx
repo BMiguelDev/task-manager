@@ -229,9 +229,16 @@ const App: React.FC = () => {
         localStorage.setItem(LOCAL_STORAGE_TODOLISTS_KEY, JSON.stringify(todoLists));
     }, [todoLists]);
 
-    // TODO: CHANGE INITIALIZATION OF STATE VARIABLE <sortingStatus> TO WHAT'S CURRENTLY IN THE LOCAL STORAGE
     // State variable <sortingStatus> holds the data relative to the latest sorting status
-    const [sortingStatus, setSortingStatus] = useState<SortingStatusType>({ sortCondition: "", isAscending: false });
+    const [sortingStatus, setSortingStatus] = useState<SortingStatusType>(() => {
+        const localStorageItem = localStorage.getItem(LOCAL_STORAGE_SORTING_STATUS_KEY);
+        if (localStorageItem) return JSON.parse(localStorageItem);
+        else
+            return {
+                activeTab: { sortCondition: "", isAscending: false },
+                completedTab: { sortCondition: "", isAscending: false },
+            };
+    });
 
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_SORTING_STATUS_KEY, JSON.stringify(sortingStatus));
