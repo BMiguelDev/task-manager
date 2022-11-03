@@ -329,11 +329,9 @@ const App: React.FC = () => {
     }
 
     // TODO:
-    // Sort: alphabetical and maybe by priority items?
     // Make main state variable an array of more (possibly) more than 2 tabs. Add button to add new tab.
     // Make tabs draggable also
     // Add projects entity. Each project has its own set of tasks.
-    // input field to search for task. Task array updates on each stroke (dynamically; no function, do the sorting right on the render function)
 
     return (
         <div className="App">
