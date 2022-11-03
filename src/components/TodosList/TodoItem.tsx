@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Draggable, DraggableStateSnapshot } from "react-beautiful-dnd";
 
-import { Todo } from "../../model";
+import { Todo } from "../../models/model";
 import { TodoListsDispatchContext } from "../../App";
 import styles from "./TodoList.module.scss";
 
