@@ -1,11 +1,16 @@
 import React, { useReducer, useRef, useState, useEffect, createContext } from "react";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import InputField from "./components/InputField/InputField";
 import { Actions, Todo, TodoListsType, SortingStatusType, tabSearchInputsType } from "./models/model";
 import TodoList from "./components/TodosList/TodoList";
 import Footer from "./layouts/Footer";
 import Navbar from "./layouts/Navbar";
+import PageLayout from "./layouts/PageLayout";
+import Project from "./pages/Project/Project";
+import Home from "./pages/Home/Home";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import "./App.scss";
 
 // Local Storage Keys
@@ -390,152 +395,168 @@ const App: React.FC = () => {
     // Make main state variable an array of more (possibly) more than 2 tabs. Add button to add new tab.
 
     return (
-        <div className="App">
-            <Navbar />
-            <InputField
-                inputRef={inputRef}
-                inputTodo={inputTodo}
-                setInputTodo={setInputTodo}
-                handleSubmitTodoWithReducer={handleSubmitTodoWithReducer}
-            />
-            <DragDropContext onDragEnd={onDragEnd}>
-                <div className="main_content">
-                    <Droppable droppableId="active_todos">
-                        {(provided, snapshot) => (
-                            <div
-                                className={snapshot.isDraggingOver ? "active_tab dragging_over" : "active_tab"}
-                                ref={provided.innerRef}
-                                {...provided.droppableProps}
-                            >
-                                <div className="tab_top_row">
-                                    <h3>Active Tasks</h3>
-                                    <div className="tab_top_row_search_input_container">
-                                        <input
-                                            type="text"
-                                            placeholder="Search for todo..."
-                                            value={tabSearchInputs.activeTodosSearchInput}
-                                            onChange={(e) => handleChangeTabSearchInputs(e, "active")}
-                                        />
-                                    </div>
-                                    <div className="tab_top_row_sort_buttons">
-                                        <div
-                                            className="sort_button_container"
-                                            onClick={() => handleSortAlphabetically("active")}
-                                        >
-                                            {sortingStatus.activeTab.isAscending ? (
-                                                sortingStatus.activeTab.sortCondition === "alphabetical" ? (
-                                                    <i className="fa-solid fa-arrow-down-a-z"></i>
+        <BrowserRouter>
+        <Routes>
+            <Route path='/' element={ <PageLayout /> }>
+                <Route index element={ <Home/>} />
+                <Route path='/project/:id' element={ <Project/> } />
+                <Route path='*' element={<ErrorPage />} />
+            
+            <div className="App">
+                <Navbar />
+                <InputField
+                    inputRef={inputRef}
+                    inputTodo={inputTodo}
+                    setInputTodo={setInputTodo}
+                    handleSubmitTodoWithReducer={handleSubmitTodoWithReducer}
+                />
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <div className="main_content">
+                        <Droppable droppableId="active_todos">
+                            {(provided, snapshot) => (
+                                <div
+                                    className={snapshot.isDraggingOver ? "active_tab dragging_over" : "active_tab"}
+                                    ref={provided.innerRef}
+                                    {...provided.droppableProps}
+                                >
+                                    <div className="tab_top_row">
+                                        <h3>Active Tasks</h3>
+                                        <div className="tab_top_row_search_input_container">
+                                            <input
+                                                type="text"
+                                                placeholder="Search for todo..."
+                                                value={tabSearchInputs.activeTodosSearchInput}
+                                                onChange={(e) => handleChangeTabSearchInputs(e, "active")}
+                                            />
+                                        </div>
+                                        <div className="tab_top_row_sort_buttons">
+                                            <div
+                                                className="sort_button_container"
+                                                onClick={() => handleSortAlphabetically("active")}
+                                            >
+                                                {sortingStatus.activeTab.isAscending ? (
+                                                    sortingStatus.activeTab.sortCondition === "alphabetical" ? (
+                                                        <i className="fa-solid fa-arrow-down-a-z"></i>
+                                                    ) : (
+                                                        <i className="fa-solid fa-arrow-down-z-a"></i>
+                                                    )
                                                 ) : (
                                                     <i className="fa-solid fa-arrow-down-z-a"></i>
-                                                )
-                                            ) : (
-                                                <i className="fa-solid fa-arrow-down-z-a"></i>
-                                            )}
-                                        </div>
-                                        <div
-                                            className="sort_button_container"
-                                            onClick={() => handleSortByPriority("active")}
-                                        >
-                                            {sortingStatus.activeTab.isAscending ? (
-                                                sortingStatus.activeTab.sortCondition === "priority" ? (
-                                                    <i className="fa-solid fa-arrow-down-1-9"></i>
+                                                )}
+                                            </div>
+                                            <div
+                                                className="sort_button_container"
+                                                onClick={() => handleSortByPriority("active")}
+                                            >
+                                                {sortingStatus.activeTab.isAscending ? (
+                                                    sortingStatus.activeTab.sortCondition === "priority" ? (
+                                                        <i className="fa-solid fa-arrow-down-1-9"></i>
+                                                    ) : (
+                                                        <i className="fa-solid fa-arrow-down-9-1"></i>
+                                                    )
                                                 ) : (
                                                     <i className="fa-solid fa-arrow-down-9-1"></i>
-                                                )
-                                            ) : (
-                                                <i className="fa-solid fa-arrow-down-9-1"></i>
-                                            )}
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <TodoListsDispatchContext.Provider value={todoListsDispatch}>
-                                    {tabSearchInputs.activeTodosSearchInput ? (
-                                        <TodoList
-                                            todos={todoLists.activeTodos.filter((todoItem: Todo) =>
-                                                todoItem.todo
-                                                    .toLowerCase()
-                                                    .includes(tabSearchInputs.activeTodosSearchInput)
-                                            )}
-                                        />
-                                    ) : (
-                                        <TodoList todos={todoLists.activeTodos} />
-                                    )}
-                                </TodoListsDispatchContext.Provider>
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                    <Droppable droppableId="completed_todos">
-                        {(provided, snapshot) => (
-                            <div
-                                className={snapshot.isDraggingOver ? "completed_tab dragging_over" : "completed_tab"}
-                                ref={provided.innerRef}
-                                {...provided.droppableProps}
-                            >
-                                <div className="tab_top_row">
-                                    <h3>Completed Tasks</h3>
-                                    <div className="tab_top_row_search_input_container">
-                                        <input
-                                            type="text"
-                                            placeholder="Search for todo..."
-                                            value={tabSearchInputs.completedTodosSearchInput}
-                                            onChange={(e) => handleChangeTabSearchInputs(e, "completed")}
-                                        />
-                                    </div>
-                                    <div className="tab_top_row_sort_buttons">
-                                        <div
-                                            className="sort_button_container"
-                                            onClick={() => handleSortAlphabetically("completed")}
-                                        >
-                                            {sortingStatus.completedTab.isAscending ? (
-                                                sortingStatus.completedTab.sortCondition === "alphabetical" ? (
-                                                    <i className="fa-solid fa-arrow-down-a-z"></i>
+                                    <TodoListsDispatchContext.Provider value={todoListsDispatch}>
+                                        {tabSearchInputs.activeTodosSearchInput ? (
+                                            <TodoList
+                                                todos={todoLists.activeTodos.filter((todoItem: Todo) =>
+                                                    todoItem.todo
+                                                        .toLowerCase()
+                                                        .includes(tabSearchInputs.activeTodosSearchInput)
+                                                )}
+                                            />
+                                        ) : (
+                                            <TodoList todos={todoLists.activeTodos} />
+                                        )}
+                                    </TodoListsDispatchContext.Provider>
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                        <Droppable droppableId="completed_todos">
+                            {(provided, snapshot) => (
+                                <div
+                                    className={
+                                        snapshot.isDraggingOver ? "completed_tab dragging_over" : "completed_tab"
+                                    }
+                                    ref={provided.innerRef}
+                                    {...provided.droppableProps}
+                                >
+                                    <div className="tab_top_row">
+                                        <h3>Completed Tasks</h3>
+                                        <div className="tab_top_row_search_input_container">
+                                            <input
+                                                type="text"
+                                                placeholder="Search for todo..."
+                                                value={tabSearchInputs.completedTodosSearchInput}
+                                                onChange={(e) => handleChangeTabSearchInputs(e, "completed")}
+                                            />
+                                        </div>
+                                        <div className="tab_top_row_sort_buttons">
+                                            <div
+                                                className="sort_button_container"
+                                                onClick={() => handleSortAlphabetically("completed")}
+                                            >
+                                                {sortingStatus.completedTab.isAscending ? (
+                                                    sortingStatus.completedTab.sortCondition === "alphabetical" ? (
+                                                        <i className="fa-solid fa-arrow-down-a-z"></i>
+                                                    ) : (
+                                                        <i className="fa-solid fa-arrow-down-z-a"></i>
+                                                    )
                                                 ) : (
                                                     <i className="fa-solid fa-arrow-down-z-a"></i>
-                                                )
-                                            ) : (
-                                                <i className="fa-solid fa-arrow-down-z-a"></i>
-                                            )}
-                                        </div>
-                                        <div
-                                            className="sort_button_container"
-                                            onClick={() => handleSortByPriority("completed")}
-                                        >
-                                            {sortingStatus.completedTab.isAscending ? (
-                                                sortingStatus.completedTab.sortCondition === "priority" ? (
-                                                    <i className="fa-solid fa-arrow-down-1-9"></i>
+                                                )}
+                                            </div>
+                                            <div
+                                                className="sort_button_container"
+                                                onClick={() => handleSortByPriority("completed")}
+                                            >
+                                                {sortingStatus.completedTab.isAscending ? (
+                                                    sortingStatus.completedTab.sortCondition === "priority" ? (
+                                                        <i className="fa-solid fa-arrow-down-1-9"></i>
+                                                    ) : (
+                                                        <i className="fa-solid fa-arrow-down-9-1"></i>
+                                                    )
                                                 ) : (
                                                     <i className="fa-solid fa-arrow-down-9-1"></i>
-                                                )
-                                            ) : (
-                                                <i className="fa-solid fa-arrow-down-9-1"></i>
-                                            )}
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
+                                    <TodoListsDispatchContext.Provider value={todoListsDispatch}>
+                                        {tabSearchInputs.completedTodosSearchInput ? (
+                                            <TodoList
+                                                todos={todoLists.completedTodos.filter((todoItem: Todo) =>
+                                                    todoItem.todo
+                                                        .toLowerCase()
+                                                        .includes(tabSearchInputs.completedTodosSearchInput)
+                                                )}
+                                            />
+                                        ) : (
+                                            <TodoList todos={todoLists.completedTodos} />
+                                        )}
+                                    </TodoListsDispatchContext.Provider>
+                                    {provided.placeholder}
                                 </div>
-                                <TodoListsDispatchContext.Provider value={todoListsDispatch}>
-                                    {tabSearchInputs.completedTodosSearchInput ? (
-                                        <TodoList
-                                            todos={todoLists.completedTodos.filter((todoItem: Todo) =>
-                                                todoItem.todo
-                                                    .toLowerCase()
-                                                    .includes(tabSearchInputs.completedTodosSearchInput)
-                                            )}
-                                        />
-                                    ) : (
-                                        <TodoList todos={todoLists.completedTodos} />
-                                    )}
-                                </TodoListsDispatchContext.Provider>
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                </div>
-            </DragDropContext>
+                            )}
+                        </Droppable>
+                    </div>
+                </DragDropContext>
 
-            <Footer />
-        </div>
+                <Footer />
+            </div>
+
+
+
+            </Route>
+
+            </Routes>
+        </BrowserRouter>
     );
 };
 export default App;
