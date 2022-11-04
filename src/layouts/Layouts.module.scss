@@ -1,3 +1,16 @@
+// App content
+.app_container {
+    //width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2f74c0;
+    gap: 2rem;
+}
+
+
 // Navbar content
 .heading {
     text-transform: uppercase;
@@ -75,3 +88,5 @@
         }
     }
 }
+
+@import './media';

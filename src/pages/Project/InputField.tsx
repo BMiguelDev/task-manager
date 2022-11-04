@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./InputField.module.scss";
+import styles from "./Project.module.scss";
 
 // Interface that defines the types of the props
 interface Props {
