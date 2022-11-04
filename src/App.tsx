@@ -5,6 +5,7 @@ import InputField from "./components/InputField/InputField";
 import { Actions, Todo, TodoListsType, SortingStatusType, tabSearchInputsType } from "./models/model";
 import TodoList from "./components/TodosList/TodoList";
 import Footer from "./layouts/Footer";
+import Navbar from "./layouts/Navbar";
 import "./App.scss";
 
 // Local Storage Keys
@@ -387,12 +388,10 @@ const App: React.FC = () => {
 
     // TODO:
     // Make main state variable an array of more (possibly) more than 2 tabs. Add button to add new tab.
-    // Make tabs draggable also
-    // Add projects entity. Each project has its own set of tasks.
 
     return (
         <div className="App">
-            <span className="heading">Taskify</span>
+            <Navbar />
             <InputField
                 inputRef={inputRef}
                 inputTodo={inputTodo}
@@ -534,6 +533,7 @@ const App: React.FC = () => {
                     </Droppable>
                 </div>
             </DragDropContext>
+
             <Footer />
         </div>
     );
