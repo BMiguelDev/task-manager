@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import InputField from "./components/InputField/InputField";
 import { Actions, Todo, TodoListsType, SortingStatusType, tabSearchInputsType } from "./models/model";
 import TodoList from "./components/TodosList/TodoList";
-import Footer from "./components/Footer/Footer";
+import Footer from "./layouts/Footer";
 import "./App.scss";
 
 // Local Storage Keys
