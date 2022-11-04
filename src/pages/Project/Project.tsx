@@ -392,7 +392,7 @@ export default function Project() {
 
     return (
         <div className={styles.project_container}>
-            <h1>{projectId}</h1>
+            {/* <h1>{projectId}</h1> */}
             <InputField
                 inputRef={inputRef}
                 inputTodo={inputTodo}
