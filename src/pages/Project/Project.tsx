@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 import { Actions, Todo, TodoListsType, SortingStatusType, tabSearchInputsType } from "../../models/model";
-import TodoList from "../../components/TodosList/TodoList";
+import TodoList from "./TodoList";
 import InputField from "./InputField";
 import styles from './Project.module.scss';
 

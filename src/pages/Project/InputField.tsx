@@ -22,7 +22,7 @@ const InputField = ({ inputTodo, setInputTodo, handleSubmitTodoWithReducer, inpu
                 ref={inputRef}
             />
             <button type="submit" className={styles.input_submit}>
-                Go
+                Add
             </button>
         </form>
     );
