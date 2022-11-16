@@ -1,0 +1,12 @@
+// Home content
+.home_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    .home_project_container {
+        text-decoration: none;
+        color: white;
+    }
+}

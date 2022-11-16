@@ -24,6 +24,11 @@
         color: white;
         text-decoration: none;
         width: fit-content;
+        transition: all .15s ease-in-out;
+
+        &:hover {
+            color: black;
+        }
     }
 
     .heading {

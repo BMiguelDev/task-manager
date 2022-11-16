@@ -12,6 +12,12 @@ export interface TodoListsType {
     completedTodos: Todo[];
 }
 
+export interface Project {
+    projectId: number;
+    projectTitle: string;
+    todoTabs: TodoListsType;
+}
+
 // <Actions> defines the several types that the reducer's action can take (from useReducer hook)
 export type Actions =
     | { type: "set"; payload: { newTodoList: Todo[]; isActive: boolean } }
