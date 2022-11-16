@@ -12,13 +12,37 @@
 
 
 // Navbar content
-.heading {
-    text-transform: uppercase;
-    font-size: 40px;
-    margin-top: 30px;
-    color: white;
-    z-index: 1;
-    text-align: center;
+.navbar_container {
+    background-color: rgb(0, 128, 109);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    padding: .5rem 1rem;
+    align-items: center;
+
+    .navbar_link {
+        color: white;
+        text-decoration: none;
+        width: fit-content;
+    }
+
+    .heading {
+        text-transform: uppercase;
+        font-size: 40px;
+        color: white;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .support_buttons_container {
+        width: fit-content;
+        font-size: 1.5rem;
+        justify-self: right;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+    }
 }
 
 
