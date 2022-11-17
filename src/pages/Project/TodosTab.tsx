@@ -6,10 +6,9 @@ import styles from "./Project.module.scss";
 import TodoList from "./TodoList";
 
 interface PropTypes {
+    projectId: number;
     tabName: string;
-    TodoListsDispatchContext: React.Context<React.Dispatch<Actions>>;
     tabTodoList: Todo[];
-    todoListsDispatch: React.Dispatch<Actions>;
     tabSearchInput: string;
     handleChangeTabSearchInputs: (event: React.ChangeEvent<HTMLInputElement>, tabChanged: string) => void;
     tabSortingStatus: { sortCondition: string; isAscending: boolean };
@@ -18,17 +17,15 @@ interface PropTypes {
 }
 
 export default function TodosTab({
+    projectId,
     tabName,
-    TodoListsDispatchContext,
     tabTodoList,
-    todoListsDispatch,
     tabSearchInput,
     handleChangeTabSearchInputs,
     tabSortingStatus,
     handleSortAlphabetically,
     handleSortByPriority,
 }: PropTypes) {
-    
     return (
         <Droppable droppableId={`${tabName}_todos`}>
             {(provided, snapshot) => (
@@ -80,17 +77,15 @@ export default function TodosTab({
                         </div>
                     </div>
 
-                    <TodoListsDispatchContext.Provider value={todoListsDispatch}>
-                        {tabSearchInput ? (
-                            <TodoList
-                                todos={tabTodoList.filter((todoItem: Todo) =>
-                                    todoItem.todo.toLowerCase().includes(tabSearchInput)
-                                )}
-                            />
-                        ) : (
-                            <TodoList todos={tabTodoList} />
-                        )}
-                    </TodoListsDispatchContext.Provider>
+                    {tabSearchInput ? (
+                        <TodoList
+                            todos={tabTodoList.filter((todoItem: Todo) =>
+                                todoItem.todo.toLowerCase().includes(tabSearchInput)
+                            )}
+                        />
+                    ) : (
+                        <TodoList todos={tabTodoList} />
+                    )}
                     {provided.placeholder}
                 </div>
             )}

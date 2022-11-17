@@ -1,33 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Project } from "../../models/model";
 
+import { Actions, ProjectType } from "../../models/model";
+import { ProjectsDispatchContext } from "../../App";
 import styles from "./Home.module.scss";
 
-const LOCAL_STORAGE_PROJECTS_KEY = "TaskManagerApp.Projects";
+interface PropTypes {
+    projects: ProjectType[];
+}
 
-export default function Home() {
-    const [projects, setProjects] = useState<Project[]>(() => {
-        const localStorageItem = localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY);
-        if (localStorageItem) return JSON.parse(localStorageItem);
-        else return [];
-    });
+export default function Home({ projects }: PropTypes) {
+    const projectsDispatch = useContext(ProjectsDispatchContext);
 
-    useEffect(() => {
-        localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
-    }, [projects]);
-
-
-    function handleAddProject() {
-        const newProject: Project = {
-          projectId: projects.length>0 ? (projects[projects.length-1].projectId+1) : 1,
-          projectTitle:"Example",
-          todoTabs: {
-            activeTodos: [],
-            completedTodos: []
-          }
-        }
-        setProjects(prevProjects => [...prevProjects, newProject]);
+    // TODO: remove projectTitle as having a value by default and pass the desired one
+    function handleAddProject(projectTitle: string = "hey") {
+        console.log("here");
+        projectsDispatch({ type: "addProject", payload: { projectTitle: projectTitle } });
     }
 
     return (
@@ -37,11 +25,12 @@ export default function Home() {
                     key={projectItem.projectId}
                     className={styles.home_project_container}
                     to={`/task-manager/project/${projectItem.projectId}`}
+                    state={{ project: projectItem }}
                 >
                     {projectItem.projectTitle}
                 </Link>
             ))}
-            <button onClick={handleAddProject}>Create project</button>
+            <button onClick={() => handleAddProject("hey")}>Create project</button>
         </div>
     );
 }
