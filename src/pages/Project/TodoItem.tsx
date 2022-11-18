@@ -16,8 +16,10 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
     const [isEditMode, setIsEditMode] = useState<boolean>(false); // State variable to handle if the todo is being edited or not
     const [editedText, setEditedText] = useState<string>(todo.todo); // State variable to store the edited todo text
 
+    // Over-engeneering and getting projectId from router's location instead of props
     const location = useLocation();
     const project: ProjectType = location.state?.project;
+    const projId = project.projectId;
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,26 +37,27 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
 
     function handleCompleteTodoWithReducer(): any {
         if (!isEditMode) {
-            // TODO: fix/check if projectId here is good or if it should come from props instead
-            projectsDispatchWithContext({ type: "prioritizeTodo", payload: { projectId: project.projectId, id: todo.id, isActive: todo.isActive } });
+            projectsDispatchWithContext({ type: "prioritizeTodo", payload: { projectId: projId, id: todo.id, isActive: todo.isActive } });
         }
     }
 
     function handleDeleteTodoWithReducer(): any {
-        // TODO: fix/check if projectId here is good or if it should come from props instead
-        projectsDispatchWithContext({ type: "removeTodo", payload: {  projectId: project.projectId, id: todo.id, isActive: todo.isActive } });
+        projectsDispatchWithContext({ type: "removeTodo", payload: {  projectId: projId, id: todo.id, isActive: todo.isActive } });
     }
 
     function handleEditTodoAndToggle(e: React.FormEvent): void {
         e.preventDefault();
         if (editedText) {
-            // TODO: fix/check if projectId here is good or if it should come from props instead
             projectsDispatchWithContext({
                 type: "editTodo",
-                payload: { projectId: project.projectId, id: todo.id, newText: editedText, isActive: todo.isActive },
+                payload: { projectId: projId, id: todo.id, newText: editedText, isActive: todo.isActive },
             });
             handleToggleEditMode();
         }
+    }
+
+    function handleMoveTodoWithReducer() {
+        projectsDispatchWithContext({ type: "moveTodo", payload: { projectId: projId, id: todo.id, destinationIndex: 0,  isActive: todo.isActive } });
     }
 
     function getTodoItemClassName(snapshot: DraggableStateSnapshot): string {
@@ -106,18 +109,25 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
                         </p>
                     )}
                     <div className={styles.todo_item_btn_container}>
-                        <div className={styles.todo_item_edit_btn_container} onClick={handleToggleEditMode}>
-                            <i className="fa-solid fa-pen"></i>
-                        </div>
-                        <div className={styles.todo_item_delete_btn_container} onClick={handleDeleteTodoWithReducer}>
-                            <i className="fa-solid fa-trash"></i>
-                        </div>
                         <div className={styles.todo_item_done_btn_container} onClick={handleCompleteTodoWithReducer}>
                             {todo.isPriority ? (
                                 <i className="fa-solid fa-xmark"></i>
                             ) : (
                                 <i className="fa-solid fa-check"></i>
                             )}
+                        </div>
+                        <div className={styles.todo_item_done_btn_container} onClick={handleMoveTodoWithReducer}>
+                            {todo.isActive ? (
+                                <i className="fa-solid fa-arrow-right-long"></i>
+                            ) : (
+                                <i className="fa-solid fa-arrow-left-long"></i>
+                            )}
+                        </div>
+                        <div className={styles.todo_item_edit_btn_container} onClick={handleToggleEditMode}>
+                            <i className="fa-solid fa-pen"></i>
+                        </div>
+                        <div className={styles.todo_item_delete_btn_container} onClick={handleDeleteTodoWithReducer}>
+                            <i className="fa-solid fa-trash"></i>
                         </div>
                     </div>
                 </li>

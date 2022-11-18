@@ -23,7 +23,7 @@ export const projectArray = [
                     id: 3,
                     todo: "Eat breakfast",
                     isPriority: true,
-                    isActive: true
+                    isActive: false
                 }
             ],
         }
