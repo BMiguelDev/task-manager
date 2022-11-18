@@ -47,6 +47,16 @@
         align-items: center;
         justify-content: center;
         gap: 1.5rem;
+
+        .support_button_icon_container {
+            cursor: pointer;
+            width: 1.5rem;
+            height: 1.5rem;
+
+            i {
+                font-size: 1.5rem;
+            }
+        }
     }
 }
 
@@ -117,5 +127,105 @@
         }
     }
 }
+
+
+// Help Pop Up content
+.help_popup_container {
+    position: absolute;
+    top: 19.3%;
+    left: 33.75%;
+    width: 32.5%;
+    height: 70%;
+    //height: fit-content;
+    border: 1px solid var(--popup-border-color);
+    background-color: var(--popup-bg-color);
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-shadow: 0 0 10px 1000px var(--popup-box-shadow-color);
+    border-radius: .5rem;
+    padding: 2rem;
+    
+    @keyframes slideIn {
+        0% {
+            translate: 0 7.5%;
+            opacity: 0;
+        }   
+        100% {
+            translate: 0 0;
+            opacity: 1;
+        }
+    }
+    animation: slideIn .2s ease 0s;
+
+    .help_popup_title {
+        color: var(--keyboard-letter-text-color);
+        text-transform: capitalize;
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bolder;
+        font-family: 'Volkhov', serif;
+        letter-spacing: -.05rem;
+        word-spacing: .05rem;
+    }
+
+    .help_popup_description_list {
+        color: var(--keyboard-letter-text-color);
+        margin: 0;
+        padding: 1rem 0 1rem 1rem;
+
+        li {
+            font-size: .9rem;
+            line-height: 1.5rem;
+            font-weight: 200;
+        }
+    }
+
+    .help_popup_exit_button {
+        position: absolute;
+        top: 3.15%;
+        right: 3%;
+        font-size: 1.3rem;
+        background-color: var(--settings-popup-bg-color);
+        color: var(--keyboard-letter-text-color);
+        border: none;
+        cursor: pointer;
+    }
+
+    &.help_popup_container_hide { 
+        
+        @keyframes slideOut {
+            0% {
+                translate: 0 0;
+                opacity: 1;
+            }   
+            100% {
+                translate: 0 7.5%;
+                opacity: 0;
+            }
+        }
+        animation: slideOut .2s ease 0s;
+        animation-fill-mode: forwards;
+    }
+}
+
+
+// Wrapper element to prevent user from clicking outside the settings box
+.help_pop_up_wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 4;
+}
+
+
+.help_pop_up_hidden {
+    display: none;
+}
+
 
 @import './media';
