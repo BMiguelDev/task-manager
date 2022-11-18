@@ -27,7 +27,9 @@
             padding: .15rem 22% .15rem 1rem;
             border-radius: .375rem;
             border: .05rem solid var(--app-secondary-color);
-            font-size: 1rem;
+            font-family: 'Neucha', cursive;
+            font-size: 1.1rem;
+            letter-spacing: .035rem;
 
             &:focus {
                 outline: .025rem solid var(--app-secondary-color);
@@ -45,11 +47,18 @@
             border: none;
             width: 20%;
             height: 80%;
+            box-shadow: 0 0 .5rem .3rem var(--task-input-box-shadow-focus-color);
             cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: bold;
             transition: all .1s ease-in-out;
 
             &:active {
                 scale: .9;
+            }
+
+            &:hover {
+                background-color: var(--app-primary-support-color);
             }
         }
     }
