@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { Actions, ProjectType } from "../../models/model";
+import { ProjectType } from "../../models/model";
 import { ProjectsDispatchContext } from "../../App";
 import styles from "./Home.module.scss";
 

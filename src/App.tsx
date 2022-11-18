@@ -15,6 +15,9 @@ const LOCAL_STORAGE_PROJECTS_KEY = "TaskManagerApp.Projects";
 export const ProjectsDispatchContext = createContext<React.Dispatch<Actions>>(() => {});
 
 const App: React.FC = () => {
+    // const [todos, setTodos] = useState<Todo[]>([]);  // replaced by useReducer
+    // const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
+
     /* Instead of using useState for the todos (todo list), we can use useReducer.
       useReducer allows us to have a state variable, just like useState, but also
       several different functions to modify the state, based on parameters. */
@@ -31,15 +34,14 @@ const App: React.FC = () => {
     // Reducer function that conditionally changes <todoList> variable based on the parameters received
     function projectsReducer(projects: ProjectType[], action: Actions): ProjectType[] {
         switch (action.type) {
-            case "addProject":
-            {
+            case "addProject": {
                 const todayDate = new Date();
                 const todayYear = todayDate.getFullYear();
                 let todayMonth: number | string = todayDate.getMonth() + 1;
                 let todayDay: number | string = todayDate.getDate();
-                if (todayDay < 10) todayDay = '0' + todayDay;
-                if (todayMonth < 10) todayMonth = '0' + todayMonth;
-                const formattedTodayDate = todayDay + '/' + todayMonth + '/' + todayYear;
+                if (todayDay < 10) todayDay = "0" + todayDay;
+                if (todayMonth < 10) todayMonth = "0" + todayMonth;
+                const formattedTodayDate = todayDay + "/" + todayMonth + "/" + todayYear;
 
                 const newProject: ProjectType = {
                     projectId: Date.now(),
@@ -53,18 +55,16 @@ const App: React.FC = () => {
                 return [...projects, newProject];
             }
 
-            case "editProject":
-            {
+            case "editProject": {
                 const targetProjectIndex = projects.findIndex(
                     (project) => project.projectId === action.payload.projectId
                 );
                 let newProjects = [...projects];
-                newProjects[targetProjectIndex].projectTitle=action.payload.newProjectTitle;
+                newProjects[targetProjectIndex].projectTitle = action.payload.newProjectTitle;
                 return newProjects;
             }
 
-            case "removeProject":
-            {
+            case "removeProject": {
                 let newProjects = [...projects];
                 return newProjects.filter((project) => project.projectId !== action.payload.projectId);
             }
@@ -85,13 +85,6 @@ const App: React.FC = () => {
                 });
                 console.log(newProjects);
                 return newProjects;
-            // return {
-            //     ...todoLists,
-            //     activeTodos: [
-            //         ...todoLists.activeTodos,
-            //         { id: Date.now(), todo: action.payload.todo, isDone: false, isActive: true },
-            //     ],
-            // };
 
             case "removeTodo":
                 if (action.payload.isActive) {
@@ -113,15 +106,6 @@ const App: React.FC = () => {
                     ].todoTabs.completedTodos.filter((todo) => todo.id !== action.payload.id);
                     return newProjects;
                 }
-            // return action.payload.isActive
-            //     ? {
-            //           ...todoLists,
-            //           activeTodos: todoLists.activeTodos.filter((todo) => todo.id !== action.payload.id),
-            //       }
-            //     : {
-            //           ...todoLists,
-            //           completedTodos: todoLists.completedTodos.filter((todo) => todo.id !== action.payload.id),
-            //       };
 
             case "prioritizeTodo":
                 if (action.payload.isActive) {
@@ -135,13 +119,6 @@ const App: React.FC = () => {
                         return todo.id === action.payload.id ? { ...todo, isPriority: !todo.isPriority } : todo;
                     });
                     return newProjects;
-
-                    // return {
-                    //     ...todoLists,
-                    //     activeTodos: todoLists.activeTodos.map((todo) => {
-                    //         return todo.id === action.payload.id ? { ...todo, isPriority: !todo.isPriority } : todo;
-                    //     }),
-                    // };
                 } else {
                     const targetProjectIndex = projects.findIndex(
                         (project) => project.projectId === action.payload.projectId
@@ -153,13 +130,6 @@ const App: React.FC = () => {
                         return todo.id === action.payload.id ? { ...todo, isPriority: !todo.isPriority } : todo;
                     });
                     return newProjects;
-
-                    // return {
-                    //     ...todoLists,
-                    //     completedTodos: todoLists.completedTodos.map((todo) => {
-                    //         return todo.id === action.payload.id ? { ...todo, isPriority: !todo.isPriority } : todo;
-                    //     }),
-                    // };
                 }
             case "editTodo":
                 if (action.payload.isActive) {
@@ -173,13 +143,6 @@ const App: React.FC = () => {
                         todo.id === action.payload.id ? { ...todo, todo: action.payload.newText } : todo
                     );
                     return newProjects;
-
-                    // return {
-                    //     ...todoLists,
-                    //     activeTodos: todoLists.activeTodos.map((todo) =>
-                    //         todo.id === action.payload.id ? { ...todo, todo: action.payload.newText } : todo
-                    //     ),
-                    // };
                 } else {
                     const targetProjectIndex = projects.findIndex(
                         (project) => project.projectId === action.payload.projectId
@@ -191,13 +154,6 @@ const App: React.FC = () => {
                         todo.id === action.payload.id ? { ...todo, todo: action.payload.newText } : todo
                     );
                     return newProjects;
-
-                    // return {
-                    //     ...todoLists,
-                    //     completedTodos: todoLists.completedTodos.map((todo) =>
-                    //         todo.id === action.payload.id ? { ...todo, todo: action.payload.newText } : todo
-                    //     ),
-                    // };
                 }
 
             case "moveTodo":
@@ -219,16 +175,6 @@ const App: React.FC = () => {
                     ].todoTabs.activeTodos.filter((todo) => todo.id !== action.payload.id);
                     newProjects[targetProjectIndex].todoTabs.completedTodos = newCompletedTodos;
                     return newProjects;
-
-                    // const [todoToMove] = todoLists.activeTodos.filter((todo) => todo.id === action.payload.id);
-                    // todoToMove.isActive = !todoToMove.isActive;
-                    // let newCompletedTodos = todoLists.completedTodos.slice();
-                    // newCompletedTodos.splice(action.payload.destinationIndex, 0, todoToMove);
-
-                    // return {
-                    //     activeTodos: todoLists.activeTodos.filter((todo) => todo.id !== action.payload.id),
-                    //     completedTodos: newCompletedTodos,
-                    // };
                 } else {
                     const targetProjectIndex = projects.findIndex(
                         (project) => project.projectId === action.payload.projectId
@@ -246,15 +192,6 @@ const App: React.FC = () => {
                     ].todoTabs.completedTodos.filter((todo) => todo.id !== action.payload.id);
                     newProjects[targetProjectIndex].todoTabs.activeTodos = newActiveTodos;
                     return newProjects;
-
-                    // const [todoToMove] = todoLists.completedTodos.filter((todo) => todo.id === action.payload.id);
-                    // todoToMove.isActive = !todoToMove.isActive;
-                    // let newActiveTodos = todoLists.activeTodos.slice();
-                    // newActiveTodos.splice(action.payload.destinationIndex, 0, todoToMove);
-                    // return {
-                    //     activeTodos: newActiveTodos,
-                    //     completedTodos: todoLists.completedTodos.filter((todo) => todo.id !== action.payload.id),
-                    // };
                 }
 
             case "moveTodoInsideTab":
@@ -270,13 +207,6 @@ const App: React.FC = () => {
 
                     newProjects[targetProjectIndex].todoTabs.activeTodos = newActiveTodos;
                     return newProjects;
-
-                    // let newActiveTodos = todoLists.activeTodos.slice();
-                    // newActiveTodos.splice(destinationIndex, 0, newActiveTodos.splice(sourceIndex, 1)[0]);
-                    // return {
-                    //     ...todoLists,
-                    //     activeTodos: newActiveTodos,
-                    // };
                 } else {
                     const targetProjectIndex = projects.findIndex(
                         (project) => project.projectId === action.payload.projectId
@@ -287,13 +217,6 @@ const App: React.FC = () => {
 
                     newProjects[targetProjectIndex].todoTabs.completedTodos = newCompletedTodos;
                     return newProjects;
-
-                    // let newCompletedTodos = todoLists.completedTodos.slice();
-                    // newCompletedTodos.splice(destinationIndex, 0, newCompletedTodos.splice(sourceIndex, 1)[0]);
-                    // return {
-                    //     ...todoLists,
-                    //     completedTodos: newCompletedTodos,
-                    // };
                 }
 
             case "sortTodosAlphabetical":
@@ -314,15 +237,6 @@ const App: React.FC = () => {
 
                     newProjects[targetProjectIndex].todoTabs.activeTodos = newActiveTodos;
                     return newProjects;
-
-                    // let newActiveTodos = todoLists.activeTodos.slice();
-                    // newActiveTodos.sort((a, b) =>
-                    //     sortAlphabetical(a.todo.toLowerCase(), b.todo.toLowerCase(), action.payload.direction)
-                    // );
-                    // return {
-                    //     ...todoLists,
-                    //     activeTodos: newActiveTodos,
-                    // };
                 } else {
                     const targetProjectIndex = projects.findIndex(
                         (project) => project.projectId === action.payload.projectId
@@ -335,15 +249,6 @@ const App: React.FC = () => {
 
                     newProjects[targetProjectIndex].todoTabs.completedTodos = newCompletedTodos;
                     return newProjects;
-
-                    // let newCompletedTodos = todoLists.completedTodos.slice();
-                    // newCompletedTodos.sort((a, b) =>
-                    //     sortAlphabetical(a.todo.toLowerCase(), b.todo.toLowerCase(), action.payload.direction)
-                    // );
-                    // return {
-                    //     ...todoLists,
-                    //     completedTodos: newCompletedTodos,
-                    // };
                 }
 
             case "sortTodosByPriority":
@@ -363,21 +268,6 @@ const App: React.FC = () => {
                         newProjects[targetProjectIndex].todoTabs.activeTodos = newActiveTodos;
                         return newProjects;
                     }
-
-                    // let newActiveTodos = todoLists.activeTodos.slice();
-                    // if (action.payload.direction === "ascending") {
-                    //     newActiveTodos.sort((a, b) => (a.isPriority ? -1 : b.isPriority ? 1 : 0));
-                    //     return {
-                    //         ...todoLists,
-                    //         activeTodos: newActiveTodos,
-                    //     };
-                    // } else {
-                    //     newActiveTodos.sort((a, b) => (a.isPriority ? 1 : b.isPriority ? -1 : 0));
-                    //     return {
-                    //         ...todoLists,
-                    //         activeTodos: newActiveTodos,
-                    //     };
-                    // }
                 } else {
                     const targetProjectIndex = projects.findIndex(
                         (project) => project.projectId === action.payload.projectId
@@ -394,21 +284,6 @@ const App: React.FC = () => {
                         newProjects[targetProjectIndex].todoTabs.completedTodos = newCompletedTodos;
                         return newProjects;
                     }
-
-                    // let newCompletedTodos = todoLists.completedTodos.slice();
-                    // if (action.payload.direction === "ascending") {
-                    //     newCompletedTodos.sort((a, b) => (a.isPriority ? -1 : b.isPriority ? 1 : 0));
-                    //     return {
-                    //         ...todoLists,
-                    //         completedTodos: newCompletedTodos,
-                    //     };
-                    // } else {
-                    //     newCompletedTodos.sort((a, b) => (a.isPriority ? 1 : b.isPriority ? -1 : 0));
-                    //     return {
-                    //         ...todoLists,
-                    //         completedTodos: newCompletedTodos,
-                    //     };
-                    // }
                 }
 
             case "setTodoTab":
@@ -427,9 +302,6 @@ const App: React.FC = () => {
                     newProjects[targetProjectIndex].todoTabs.completedTodos = action.payload.newTodoList;
                     return newProjects;
                 }
-            // return action.payload.isActive
-            //     ? { ...todoLists, activeTodos: action.payload.newTodoList }
-            //     : { ...todoLists, completedTodos: action.payload.newTodoList };
 
             default:
                 throw new Error();
@@ -441,7 +313,7 @@ const App: React.FC = () => {
     }, [projects]);
 
     console.log("App projects", projects);
-    
+
     return (
         <BrowserRouter>
             <ProjectsDispatchContext.Provider value={projectsDispatch}>

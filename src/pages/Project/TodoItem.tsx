@@ -21,8 +21,7 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    // Get dispatch functions from grandparent using useContext
-    //const todoListsDispatchWithContext = useContext(TodoListsDispatchContext);
+    // Get dispatch functions from great-great-grandparent (App) using useContext
     const projectsDispatchWithContext = useContext(ProjectsDispatchContext);
 
     function handleToggleEditMode() {
@@ -36,14 +35,12 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
 
     function handleCompleteTodoWithReducer(): any {
         if (!isEditMode) {
-            // todoListsDispatchWithContext({ type: "prioritize", payload: { id: todo.id, isActive: todo.isActive } });
             // TODO: fix/check if projectId here is good or if it should come from props instead
             projectsDispatchWithContext({ type: "prioritizeTodo", payload: { projectId: project.projectId, id: todo.id, isActive: todo.isActive } });
         }
     }
 
     function handleDeleteTodoWithReducer(): any {
-        // todoListsDispatchWithContext({ type: "remove", payload: { id: todo.id, isActive: todo.isActive } });
         // TODO: fix/check if projectId here is good or if it should come from props instead
         projectsDispatchWithContext({ type: "removeTodo", payload: {  projectId: project.projectId, id: todo.id, isActive: todo.isActive } });
     }
@@ -51,10 +48,6 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
     function handleEditTodoAndToggle(e: React.FormEvent): void {
         e.preventDefault();
         if (editedText) {
-            // todoListsDispatchWithContext({
-            //     type: "edit",
-            //     payload: { id: todo.id, newText: editedText, isActive: todo.isActive },
-            // });
             // TODO: fix/check if projectId here is good or if it should come from props instead
             projectsDispatchWithContext({
                 type: "editTodo",

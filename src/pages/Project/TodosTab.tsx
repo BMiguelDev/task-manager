@@ -1,7 +1,7 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 
-import { Actions, Todo } from "../../models/model";
+import { Todo } from "../../models/model";
 import styles from "./Project.module.scss";
 import TodoList from "./TodoList";
 
