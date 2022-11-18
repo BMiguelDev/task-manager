@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Draggable, DraggableStateSnapshot } from "react-beautiful-dnd";
 
-import { Todo } from "../../model";
-import { TodoListsDispatchContext } from "../../App";
-import styles from "./TodoList.module.scss";
+import { ProjectType, Todo } from "../../models/model";
+import { ProjectsDispatchContext } from "../../App";
+import styles from "./Project.module.scss";
+
 
 type Props = {
     todo: Todo;
@@ -14,10 +16,13 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
     const [isEditMode, setIsEditMode] = useState<boolean>(false); // State variable to handle if the todo is being edited or not
     const [editedText, setEditedText] = useState<string>(todo.todo); // State variable to store the edited todo text
 
+    const location = useLocation();
+    const project: ProjectType = location.state?.project;
+
     const inputRef = useRef<HTMLInputElement>(null);
 
-    // Get dispatch functions from grandparent using useContext
-    const todoListsDispatchWithContext = useContext(TodoListsDispatchContext);
+    // Get dispatch functions from great-great-grandparent (App) using useContext
+    const projectsDispatchWithContext = useContext(ProjectsDispatchContext);
 
     function handleToggleEditMode() {
         setIsEditMode((prevIsEditMode) => !prevIsEditMode);
@@ -30,20 +35,23 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
 
     function handleCompleteTodoWithReducer(): any {
         if (!isEditMode) {
-            todoListsDispatchWithContext({ type: "prioritize", payload: { id: todo.id, isActive: todo.isActive } });
+            // TODO: fix/check if projectId here is good or if it should come from props instead
+            projectsDispatchWithContext({ type: "prioritizeTodo", payload: { projectId: project.projectId, id: todo.id, isActive: todo.isActive } });
         }
     }
 
     function handleDeleteTodoWithReducer(): any {
-        todoListsDispatchWithContext({ type: "remove", payload: { id: todo.id, isActive: todo.isActive } });
+        // TODO: fix/check if projectId here is good or if it should come from props instead
+        projectsDispatchWithContext({ type: "removeTodo", payload: {  projectId: project.projectId, id: todo.id, isActive: todo.isActive } });
     }
 
     function handleEditTodoAndToggle(e: React.FormEvent): void {
         e.preventDefault();
         if (editedText) {
-            todoListsDispatchWithContext({
-                type: "edit",
-                payload: { id: todo.id, newText: editedText, isActive: todo.isActive },
+            // TODO: fix/check if projectId here is good or if it should come from props instead
+            projectsDispatchWithContext({
+                type: "editTodo",
+                payload: { projectId: project.projectId, id: todo.id, newText: editedText, isActive: todo.isActive },
             });
             handleToggleEditMode();
         }

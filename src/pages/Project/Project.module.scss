@@ -1,0 +1,263 @@
+// InputField content
+.input {
+    display: flex;
+    width: 90%;
+    position: relative;
+    align-items: center;
+
+    .input_box {
+        width: 100%;
+        border-radius: 50px;
+        padding: 20px 30px;
+        font-size: 25px;
+        border: none;
+        box-shadow: inset 0 0 5px var(--task-input-box-shadow-color);
+        transition: all .2s ease;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 10px 1000px var(--task-input-box-shadow-focus-color);
+        }
+    }
+
+    .input_submit {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+        padding: 1rem;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 50px;
+        border: none;
+        background-color: var(--app-bg-color);
+        color: var(--button-color);
+        font-size: 15px;
+        width: 50px;
+        height: 50px;
+        margin: 12px;
+        cursor: pointer;
+        box-shadow: 0 0 10px var(--task-input-box-shadow-color);
+        transition: background-color .2s ease-in-out, scale .2s ease;
+
+        &:hover {
+            background-color: var(--task-input-button--hover-bg-color);
+        }
+
+        &:active {
+            scale: .8;
+            box-shadow: 0 0 5px var(--task-input-box-shadow-color);
+        }
+    }
+}
+
+
+.project_container {
+    //width: 100vw;
+    //height: 100vh;
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--tasks-bg-color);
+    gap: 2rem;
+}
+
+
+// Main content
+.main_content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 80%;
+    padding: 0 5%;
+    gap: 2rem;
+}
+
+
+.active_tab {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 0 0 48%;
+    height: fit-content;
+    max-height: 100%;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--app-primary-color);
+
+    .tab_top_row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            margin: 0;
+            text-transform: capitalize;
+        }
+
+        .tab_top_row_search_input_container {
+
+            input {
+               border-radius: .25rem;
+               padding: .2rem .5rem;
+            }
+       }
+
+        .tab_top_row_sort_buttons {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: .75rem;
+
+            .sort_button_container {
+                background-color: var(--button-bg-color);
+                i {
+                    color: var(--button-color);
+                    cursor:pointer;
+                }
+            }  
+        }
+    }
+
+    overflow-y: auto;
+
+    &.dragging_over {
+        background-color: var(--app-primary-support-color);
+    }
+}
+
+.completed_tab {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 0 0 48%;
+    height: fit-content;
+    max-height: 100%;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--app-secondary-color);
+    transition: all .9s ease-in-out;
+
+    .tab_top_row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            margin: 0;
+            text-transform: capitalize;
+        }
+
+        .tab_top_row_search_input_container {
+
+             input {
+                border-radius: .25rem;
+                padding: .2rem .5rem;
+             }
+        }
+
+        .tab_top_row_sort_buttons {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: .75rem;
+
+            .sort_button_container {
+                background-color: var(--button-bg-color);
+                i {
+                    color: var(--button-color);
+                    cursor:pointer;
+                }
+            }  
+        }
+    }
+
+    overflow-y: auto;
+
+    &.dragging_over {
+        background-color: var(--app-secondary-support-color);
+    }
+}
+
+
+// TodoList content
+.todolist_container {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
+    gap: .75rem;
+    margin: 0;
+    padding: 0;
+    //padding: .25rem;
+    //overflow-y: auto;
+
+    .todo_item {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--app-intermediate-color);
+        border-radius: .5rem;
+        padding: .25rem 1rem;
+        cursor: grab;
+        transition: all .2s ease-in-out;
+
+        &.todo_item_priority {
+            background-color: var(--app-intermediate-support-color);
+            box-shadow: 0 0 1rem .25rem var(--app-intermediate-support-color);
+            scale: 1.01;
+
+            &:hover {
+                box-shadow: 0 0 1.25rem var(--todo-item-hover-bg-color);
+            }
+        }
+
+        &:hover {
+            scale: 1.05;
+            box-shadow: 0 0 .35rem var(--todo-item-hover-box-shadow-color);
+        }
+
+        &.dragging {
+            box-shadow: 0 0 2rem .35rem var(--todo-item-dragging-hover-box-shadow-color);
+        }
+
+        &.drop_animating {
+            transition: all 1s ease-in-out;
+            opacity: .5;
+        }
+
+        .todo_item_edit_form {
+            width: 75%;
+            display: flex;
+            justify-content: flex-start;
+            gap: .25rem;
+
+            .todo_item_edit_input {
+                width: 75%;
+            }
+
+            button {
+                width: 15%;
+            }
+        }
+
+        .todo_item_text {
+            color: var(--todo-item-text-color);
+        }
+
+        .todo_item_btn_container {
+            display: flex;
+            gap: .75rem;
+
+            div {
+                cursor: pointer;
+            }
+        }
+    }
+}
