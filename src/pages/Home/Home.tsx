@@ -1,24 +1,40 @@
-import React, { /* useEffect,*/ useContext } from "react";
+import React, { /* useEffect,*/ useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { ProjectType } from "../../models/model";
 import { ProjectsDispatchContext } from "../../App";
 import styles from "./Home.module.scss";
 
+const LOCAL_STORAGE_PROJECT_TITLE_INPUT_KEY = "TaskManagerApp.projectTitleInput";
 interface PropTypes {
     projects: ProjectType[];
 }
 
 export default function Home({ projects }: PropTypes) {
+    const [projectTitleInput, setProjectTitleInput] = useState(() => {
+        const localStorageItem = localStorage.getItem(LOCAL_STORAGE_PROJECT_TITLE_INPUT_KEY);
+        if (localStorageItem) return JSON.parse(localStorageItem);
+        else return "";
+    });
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_PROJECT_TITLE_INPUT_KEY, JSON.stringify(projectTitleInput));
+    }, [projectTitleInput]);
+
+    const projectTitleInputRef = useRef<HTMLInputElement>(null);
+
     const projectsDispatch = useContext(ProjectsDispatchContext);
 
-    // TODO: remove projectTitle as having a value by default and pass the desired one
-    function handleAddProject(projectTitle: string) {
-        console.log("here");
-        projectsDispatch({ type: "addProject", payload: { projectTitle: projectTitle } });
+    function handleAddProject(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        if (projectTitleInput) {
+            projectsDispatch({ type: "addProject", payload: { projectTitle: projectTitleInput } });
+            projectTitleInputRef.current?.blur();
+            setProjectTitleInput("");
+        }
     }
 
-    function handleEditProject(projectId: number,  newProjectTitle: string) {
+    function handleEditProject(projectId: number, newProjectTitle: string) {
         projectsDispatch({ type: "editProject", payload: { projectId: projectId, newProjectTitle: newProjectTitle } });
     }
 
@@ -28,7 +44,20 @@ export default function Home({ projects }: PropTypes) {
 
     return (
         <div className={styles.home_container}>
-            <button className={styles.home_add_button} onClick={() => handleAddProject("heya")}>Create project</button>
+            <form className={styles.home_project_input_form} onSubmit={(e) => handleAddProject(e)}>
+                <input
+                    type="input"
+                    value={projectTitleInput}
+                    onChange={(e) => setProjectTitleInput(e.target.value)}
+                    placeholder="Enter a project title"
+                    className={styles.home_project_input_field}
+                    ref={projectTitleInputRef}
+                />
+                <button type="submit" className={styles.home_project_input_button}>
+                    Add
+                </button>
+            </form>
+
             <div className={styles.home_projects_container}>
                 {projects.map((projectItem) => (
                     <div key={projectItem.projectId} className={styles.home_single_project_container}>

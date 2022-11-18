@@ -16,7 +16,7 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
     const [isEditMode, setIsEditMode] = useState<boolean>(false); // State variable to handle if the todo is being edited or not
     const [editedText, setEditedText] = useState<string>(todo.todo); // State variable to store the edited todo text
 
-    // Over-engeneering and getting projectId from router's location instead of props
+    // Over-engineering and getting projectId from router's location instead of props
     const location = useLocation();
     const project: ProjectType = location.state?.project;
     const projId = project.projectId;

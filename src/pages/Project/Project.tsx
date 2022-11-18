@@ -204,10 +204,8 @@ export default function Project({ projects }: PropTypes) {
     }
 
     // TODO:
-    // Make button in each todo to move to other tab
     // Make app responsive
-    // Improve styling
-    // Improve adding project with a desired title
+    // Improve styling (Improve Help Pop up style)
     // Add editing input to project item
 
     return (
