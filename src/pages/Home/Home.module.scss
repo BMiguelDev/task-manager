@@ -14,8 +14,8 @@
     }
 
     .home_add_button {
-        background-color: grey;
-        color: white;
+        background-color: var(--button-bg-color);
+        color: var(button-color);
         border-radius: .25rem;
         border: none;
         width: 20%;
@@ -43,7 +43,7 @@
             justify-content: center;
             gap: .75rem;
             padding: .5rem;
-            background-color: navajowhite;
+            background-color: var(--project-bg-color);
             border-radius: .25rem;
             opacity: 0;
 
@@ -66,14 +66,14 @@
                 font-size: 1.2rem;
                 font-weight: bold;
                 letter-spacing: .035rem;
-                color: black;
+                color: var(--project-title-color);
             }
 
             .project_date_text {
                 margin: 0;
                 font-size: .75rem;
                 font-weight: lighter;
-                color: grey;
+                color: var(--project-secondary-color);
                 //align-self: flex-start;
             }
 
@@ -90,6 +90,7 @@
                     justify-content: center;
                     width: 2rem;
                     height: 2rem;
+                    color: var(--project-button-color);
                     cursor: pointer;
                 }
             }
