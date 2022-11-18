@@ -26,7 +26,7 @@ interface PropTypes {
 export default function Project({ projects }: PropTypes) {
     const { projId } = useParams();
     const projectId: number = Number(projId);
-    let project: ProjectType = projects.find(project => project.projectId===projectId) || {projectId: 0, projectTitle: "placeholder", todoTabs: {activeTodos:[], completedTodos:[]}};
+    let project: ProjectType = projects.find(project => project.projectId===projectId) || {projectId: 0, projectTitle: "placeholder", projectCreationDate: "01/01/1970", todoTabs: {activeTodos:[], completedTodos:[]}};
 
     // Get dispatch functions from grandparent using useContext
     //const todoListsDispatchWithContext = useContext(TodoListsDispatchContext);

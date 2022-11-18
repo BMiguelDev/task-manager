@@ -15,12 +15,15 @@ export interface TodoListsType {
 export interface ProjectType {
     projectId: number;
     projectTitle: string;
+    projectCreationDate: string;
     todoTabs: TodoListsType;
 }
 
 // <Actions> defines the several types that the reducer's action can take (from useReducer hook)
 export type Actions =
     | { type: "addProject"; payload: { projectTitle: string } }
+    | { type: "editProject"; payload: { projectId: number, newProjectTitle: string } }
+    | { type: "removeProject"; payload: { projectId: number } }
     | { type: "setTodoTab"; payload: { projectId: number, newTodoList: Todo[]; isActive: boolean } }
     | { type: "addTodo"; payload: { projectId: number, todo: string } }
     | { type: "removeTodo"; payload: { projectId: number, id: number; isActive: boolean } }

@@ -6,6 +6,7 @@ import PageLayout from "./layouts/PageLayout";
 import Project from "./pages/Project/Project";
 import Home from "./pages/Home/Home";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import { projectArray } from "./data/Projects";
 import "./App.scss";
 
 const LOCAL_STORAGE_PROJECTS_KEY = "TaskManagerApp.Projects";
@@ -24,33 +25,49 @@ const App: React.FC = () => {
         // return JSON.parse(localStorage.getItem("LOCAL_STORAGE_TODOLIST_KEY") || "{[]}");
         const localStorageItem = localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY);
         if (localStorageItem) return JSON.parse(localStorageItem);
-        else
-            return [
-                {
-                    projectId: Date.now(),
-                    projectTitle: "Project1",
-                    todoTabs: {
-                        activeTodos: [],
-                        completedTodos: [],
-                    },
-                },
-            ];
+        else return projectArray;
     }
 
     // Reducer function that conditionally changes <todoList> variable based on the parameters received
     function projectsReducer(projects: ProjectType[], action: Actions): ProjectType[] {
-        console.log("Im in projectsReducer");
         switch (action.type) {
             case "addProject":
+            {
+                const todayDate = new Date();
+                const todayYear = todayDate.getFullYear();
+                let todayMonth: number | string = todayDate.getMonth() + 1;
+                let todayDay: number | string = todayDate.getDate();
+                if (todayDay < 10) todayDay = '0' + todayDay;
+                if (todayMonth < 10) todayMonth = '0' + todayMonth;
+                const formattedTodayDate = todayDay + '/' + todayMonth + '/' + todayYear;
+
                 const newProject: ProjectType = {
                     projectId: Date.now(),
                     projectTitle: action.payload.projectTitle,
+                    projectCreationDate: formattedTodayDate,
                     todoTabs: {
                         activeTodos: [],
                         completedTodos: [],
                     },
                 };
                 return [...projects, newProject];
+            }
+
+            case "editProject":
+            {
+                const targetProjectIndex = projects.findIndex(
+                    (project) => project.projectId === action.payload.projectId
+                );
+                let newProjects = [...projects];
+                newProjects[targetProjectIndex].projectTitle=action.payload.newProjectTitle;
+                return newProjects;
+            }
+
+            case "removeProject":
+            {
+                let newProjects = [...projects];
+                return newProjects.filter((project) => project.projectId !== action.payload.projectId);
+            }
 
             case "addTodo":
                 console.log("IM IN addTodo function");
@@ -424,7 +441,7 @@ const App: React.FC = () => {
     }, [projects]);
 
     console.log("App projects", projects);
-
+    
     return (
         <BrowserRouter>
             <ProjectsDispatchContext.Provider value={projectsDispatch}>
