@@ -10,18 +10,50 @@
 
     outline: .01rem solid red;
     * {
-        outline: .01rem solid red;
+        //outline: .01rem solid red;
     }
 
-    .home_add_button {
-        background-color: var(--button-bg-color);
-        color: var(button-color);
-        border-radius: .25rem;
-        border: none;
-        width: 20%;
-        height: 10%;
-        cursor: pointer;
+    .home_project_input_form {
+        height: 8%;
+        width: 45%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        position: relative;
+
+        .home_project_input_field {
+            height: 100%;
+            width: 100%;
+            padding: .15rem 22% .15rem 1rem;
+            border-radius: .375rem;
+            border: .05rem solid var(--app-secondary-color);
+            font-size: 1rem;
+
+            &:focus {
+                outline: .025rem solid var(--app-secondary-color);
+                box-shadow: 0 0 .7rem 50rem var(--task-input-box-shadow-focus-color);
+            }
+        }
+
+        .home_project_input_button {
+            position: absolute;
+            top: 10%;
+            right: 1%;
+            background-color: var(--app-primary-color);
+            color: var(button-color);
+            border-radius: .75rem;
+            border: none;
+            width: 20%;
+            height: 80%;
+            cursor: pointer;
+            transition: all .1s ease-in-out;
+
+            &:active {
+                scale: .9;
+            }
+        }
     }
+    
 
     .home_projects_container {
         display: flex;
@@ -30,7 +62,7 @@
         flex-wrap: wrap;
         gap: 1rem;
         padding: .5rem;
-        height: 80%;
+        height: 85%;
         width: 100%;
         overflow-y: auto;
 

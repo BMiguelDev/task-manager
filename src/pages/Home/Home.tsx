@@ -54,7 +54,7 @@ export default function Home({ projects }: PropTypes) {
                     ref={projectTitleInputRef}
                 />
                 <button type="submit" className={styles.home_project_input_button}>
-                    Create project
+                    Add
                 </button>
             </form>
 
