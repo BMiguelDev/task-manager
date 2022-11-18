@@ -39,6 +39,7 @@ export default function Home({ projects }: PropTypes) {
                         >
                             {projectItem.projectTitle}
                         </Link>
+                        <p className={styles.project_date_text}>{projectItem.projectCreationDate}</p>
                         <div className={styles.project_buttons_container}>
                             <div
                                 className={styles.project_button_container}
