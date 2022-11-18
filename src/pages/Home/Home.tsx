@@ -1,11 +1,13 @@
-import React, { /* useEffect,*/ useContext, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import { ProjectType } from "../../models/model";
 import { ProjectsDispatchContext } from "../../App";
+import ProjectItem from "./ProjectItem";
+
 import styles from "./Home.module.scss";
 
 const LOCAL_STORAGE_PROJECT_TITLE_INPUT_KEY = "TaskManagerApp.projectTitleInput";
+
 interface PropTypes {
     projects: ProjectType[];
 }
@@ -34,14 +36,6 @@ export default function Home({ projects }: PropTypes) {
         }
     }
 
-    function handleEditProject(projectId: number, newProjectTitle: string) {
-        projectsDispatch({ type: "editProject", payload: { projectId: projectId, newProjectTitle: newProjectTitle } });
-    }
-
-    function handleDeleteProject(projectId: number) {
-        projectsDispatch({ type: "removeProject", payload: { projectId: projectId } });
-    }
-
     return (
         <div className={styles.home_container}>
             <form className={styles.home_project_input_form} onSubmit={(e) => handleAddProject(e)}>
@@ -60,30 +54,7 @@ export default function Home({ projects }: PropTypes) {
 
             <div className={styles.home_projects_container}>
                 {projects.map((projectItem) => (
-                    <div key={projectItem.projectId} className={styles.home_single_project_container}>
-                        <Link
-                            className={styles.home_single_project_link}
-                            to={`/task-manager/project/${projectItem.projectId}`}
-                            state={{ project: projectItem }}
-                        >
-                            {projectItem.projectTitle}
-                        </Link>
-                        <p className={styles.project_date_text}>{projectItem.projectCreationDate}</p>
-                        <div className={styles.project_buttons_container}>
-                            <div
-                                className={styles.project_button_container}
-                                onClick={() => handleEditProject(projectItem.projectId, "hey2")}
-                            >
-                                <i className="fa-solid fa-pen"></i>
-                            </div>
-                            <div
-                                className={styles.project_button_container}
-                                onClick={() => handleDeleteProject(projectItem.projectId)}
-                            >
-                                <i className="fa-solid fa-trash"></i>
-                            </div>
-                        </div>
-                    </div>
+                    <ProjectItem key={projectItem.projectId} projectItem={projectItem} />
                 ))}
             </div>
         </div>
