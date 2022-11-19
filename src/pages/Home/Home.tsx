@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { ProjectType } from "../../models/model";
 import { ProjectsDispatchContext } from "../../App";
 import ProjectItem from "./ProjectItem";
+import InputField from "../../components/InputField/InputField";
 
 import styles from "./Home.module.scss";
 
@@ -28,9 +29,9 @@ export default function Home({ projects }: PropTypes) {
     const projectsDispatch = useContext(ProjectsDispatchContext);
 
     function handleChangeProjectTitleInput(event: React.ChangeEvent<HTMLInputElement>) {
-        projectTitleInput.length < 56 ? 
-        setProjectTitleInput(event.target.value) :
-        setProjectTitleInput(event.target.value.slice(0, 56));
+        projectTitleInput.length < 56
+            ? setProjectTitleInput(event.target.value)
+            : setProjectTitleInput(event.target.value.slice(0, 56));
     }
 
     function handleAddProject(event: React.FormEvent<HTMLFormElement>) {
@@ -44,20 +45,8 @@ export default function Home({ projects }: PropTypes) {
 
     return (
         <div className={styles.home_container}>
-            <form className={styles.home_project_input_form} onSubmit={(e) => handleAddProject(e)}>
-                <input
-                    type="input"
-                    value={projectTitleInput}
-                    onChange={(e) => handleChangeProjectTitleInput(e)}
-                    placeholder="Enter a project title"
-                    className={styles.home_project_input_field}
-                    ref={projectTitleInputRef}
-                />
-                <button type="submit" className={styles.home_project_input_button}>
-                    Add
-                </button>
-            </form>
-
+            <h2 className={styles.home_projects_main_title}>My Projects</h2>
+            <InputField inputText={projectTitleInput} inputRef={projectTitleInputRef} handleSubmitForm={handleAddProject} handleChangeInputText={handleChangeProjectTitleInput}/>
             <div className={styles.home_projects_container}>
                 {projects.map((projectItem) => (
                     <ProjectItem key={projectItem.projectId} projectItem={projectItem} />

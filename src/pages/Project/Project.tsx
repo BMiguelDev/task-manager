@@ -4,7 +4,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 
 import { SortingStatusType, tabSearchInputsType, ProjectType } from "../../models/model";
 import { ProjectsDispatchContext } from "../../App";
-import InputField from "./InputField";
+import InputField from "../../components/InputField/InputField";
 import TodosTab from "./TodosTab";
 
 import styles from "./Project.module.scss";
@@ -203,19 +203,24 @@ export default function Project({ projects }: PropTypes) {
         } else return;
     }
 
+    function handleChangeTodoInput(event: React.ChangeEvent<HTMLInputElement>) {
+        inputTodo.length < 112
+            ? setInputTodo(event.target.value)
+            : setInputTodo(event.target.value.slice(0, 112));
+    }
+
     // TODO:
     // Make app responsive
     // Improve styling (Improve Help Pop up style)
-    // Add editing input to project item
 
     return (
         <div className={styles.project_container}>
             <p>{project.projectId}</p>
             <InputField
                 inputRef={inputRef}
-                inputTodo={inputTodo}
-                setInputTodo={setInputTodo}
-                handleSubmitTodoWithReducer={handleSubmitTodoWithReducer}
+                inputText={inputTodo}
+                handleChangeInputText={handleChangeTodoInput}
+                handleSubmitForm={handleSubmitTodoWithReducer}
             />
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className={styles.main_content}>
