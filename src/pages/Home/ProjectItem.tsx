@@ -64,11 +64,10 @@ export default function ProjectItem({ projectItem }: PropTypes) {
                         project: projectItem,
                     }}
                 >
-                    {projectItem.projectTitle}
+                    <h4 className={styles.project_title_text}>{projectItem.projectTitle}</h4>
+                    <p className={styles.project_date_text}>{projectItem.projectCreationDate}</p>
                 </Link>
             )}
-
-            <p className={styles.project_date_text}>{projectItem.projectCreationDate}</p>
             <div className={styles.project_buttons_container}>
                 <div className={styles.project_button_container} onClick={handleToggleEditMode}>
                     <i className="fa-solid fa-pen"></i>

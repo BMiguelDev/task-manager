@@ -77,8 +77,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: .5rem;
+            justify-content: space-around;
+            //gap: .5rem;
             padding: .5rem;
             margin: 1rem 0;
             background-color: var(--project-bg-color);
@@ -100,31 +100,42 @@
             animation-fill-mode: forwards;
 
             .home_single_project_link {
-                text-decoration: none;
-                font-size: 1.2rem;
-                font-weight: bold;
-                letter-spacing: .035rem;
-                color: var(--project-title-color);
-                width: 80%;
+                width: 100%;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
+                gap: .35rem;
                 text-align: center;
-            }
+                text-decoration: none;
 
-            .project_date_text {
-                margin: 0;
-                font-size: .75rem;
-                font-weight: lighter;
-                color: var(--project-secondary-color);
-                //align-self: flex-start;
+                .project_title_text {
+                    margin: 0;
+                    text-decoration: none;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    letter-spacing: .035rem;
+                    color: var(--project-title-color);
+                    width: 80%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                }
+
+                .project_date_text {
+                    margin: 0;
+                    font-size: .75rem;
+                    font-weight: lighter;
+                    color: var(--project-subtitle-color);
+                }
             }
 
             .project_buttons_container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                margin-top: .45rem;
+                margin-top: .15rem;
                 gap: 1rem;
 
                 .project_button_container {

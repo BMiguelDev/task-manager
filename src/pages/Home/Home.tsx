@@ -5,7 +5,6 @@ import { ProjectsDispatchContext } from "../../App";
 import ProjectItem from "./ProjectItem";
 
 import styles from "./Home.module.scss";
-import { eventNames } from "process";
 
 const LOCAL_STORAGE_PROJECT_TITLE_INPUT_KEY = "TaskManagerApp.projectTitleInput";
 
