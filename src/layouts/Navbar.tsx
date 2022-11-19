@@ -23,7 +23,7 @@ export default function Navbar({ isDarkMode, setIsDarkMode, setIsHelpPopupOpen }
                 <i className="fa-solid fa-left-long"></i>
                 <p>Back to Projects</p>
             </Link>
-            <span className={styles.heading}>Taskify</span>
+            <span className={styles.heading}>Task Manager</span>
             <div className={styles.support_buttons_container}>
                 <div
                     className={styles.support_button_icon_container}

@@ -1,6 +1,7 @@
 // Style variables
 :root {
     --app-bg-color: #97c2f0;
+    --app-bg-support-color: #5e95cf;
     --navbar-color: #000000;
     --navbar-hover-color: #000000;
     --button-bg-color: rgb(128, 128, 128);
@@ -15,7 +16,7 @@
     --todo-item-hover-bg-color: rgb(124, 29, 0);
     --todo-item-hover-box-shadow-color: #000000;
     --todo-item-dragging-hover-box-shadow-color: rgb(44, 44, 44);
-    --todo-item-text-color: rgb(17, 75, 95);
+    --todo-item-text-color: #001521;
 
     --todo-item-text-priority-color: rgb(255, 198, 188);
 
@@ -37,6 +38,7 @@
 
 .dark_mode {
     --app-bg-color: #07213e;
+    --app-bg-support-color: #030f1c;
     --navbar-color: #ffffff;
     --navbar-hover-color: #000000;
     --button-bg-color: rgb(128, 128, 128);
@@ -53,7 +55,7 @@
     --todo-item-dragging-hover-box-shadow-color: rgb(44, 44, 44);
     --todo-item-text-color: rgb(0, 128, 0);
 
-    --todo-item-text-priority-color: rgb(255, 90, 35);
+    --todo-item-text-priority-color: rgb(255, 198, 188);
 
     --app-primary-color: rgb(77, 199, 221);
     --app-primary-support-color: rgb(54, 146, 162);
@@ -127,6 +129,7 @@
         text-transform: uppercase;
         font-size: 2.25rem;
         letter-spacing: .1rem;
+        word-spacing: .5rem;
         color: var(--navbar-color);
         z-index: 1;
         text-align: center;
