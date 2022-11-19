@@ -1,65 +1,11 @@
-// InputField content
-.input {
-    display: flex;
-    width: 90%;
-    position: relative;
-    align-items: center;
-
-    .input_box {
-        width: 100%;
-        border-radius: 50px;
-        padding: 20px 30px;
-        font-size: 25px;
-        border: none;
-        box-shadow: inset 0 0 5px var(--task-input-box-shadow-color);
-        transition: all .2s ease;
-
-        &:focus {
-            outline: none;
-            box-shadow: 0 0 10px 1000px var(--task-input-box-shadow-focus-color);
-        }
-    }
-
-    .input_submit {
-        position: absolute;
-        top: 0%;
-        right: 0%;
-        padding: 1rem;
-        width: fit-content;
-        height: fit-content;
-        border-radius: 50px;
-        border: none;
-        background-color: var(--app-bg-color);
-        color: var(--button-color);
-        font-size: 15px;
-        width: 50px;
-        height: 50px;
-        margin: 12px;
-        cursor: pointer;
-        box-shadow: 0 0 10px var(--task-input-box-shadow-color);
-        transition: background-color .2s ease-in-out, scale .2s ease;
-
-        &:hover {
-            background-color: var(--task-input-button--hover-bg-color);
-        }
-
-        &:active {
-            scale: .8;
-            box-shadow: 0 0 5px var(--task-input-box-shadow-color);
-        }
-    }
-}
-
-
+// Project content
 .project_container {
-    //width: 100vw;
-    //height: 100vh;
     height: 75%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     background-color: var(--tasks-bg-color);
     gap: 2rem;
 
@@ -67,17 +13,15 @@
         font-size: 1.75rem;
         margin: 0;
     }
-}
 
-
-// Projet main content
-.project_main_content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 80%;
-    padding: 0 5%;
-    gap: 2rem;
+    .project_main_content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 80%;
+        padding: 0 5%;
+        gap: 2rem;
+    }
 }
 
 
@@ -91,9 +35,9 @@
     max-height: 100%;
     gap: 1.25rem;
     padding: 1rem;
-    //background-color: var(--app-primary-color);
     transition: all .9s ease-in-out;
     border-radius: .25rem;
+    overflow-y: auto;
 
     .tab_top_row {
         display: flex;
@@ -116,7 +60,8 @@
 
                 input {
                     border-radius: .25rem;
-                    padding: .2rem .5rem;
+                    padding: .3rem .5rem;
+                    font-size: 1rem;
                 }
             }
 
@@ -128,18 +73,15 @@
 
                 .sort_button_container {
                     padding: .075rem;
-                    
+
                     i {
-                        font-size: 1.1rem;
-                        //color: var(--button-color);
+                        font-size: 1.2rem;
                         cursor: pointer;
                     }
                 }
             }
         }
     }
-
-    overflow-y: auto;
 
     &.dragging_over {
         background-color: var(--app-primary-support-color);
@@ -152,15 +94,13 @@
     .tab_top_row {
         border-bottom: .01rem solid var(--app-primary-support-color);
 
-        h3 {
-        }
+        h3 {}
 
         .tab_top_row_utils_container {
 
             .tab_top_row_search_input_container {
 
-                input {
-                }
+                input {}
             }
 
             .tab_top_row_sort_buttons {
@@ -175,7 +115,7 @@
             }
         }
     }
-    
+
     &.dragging_over {
         background-color: var(--app-secondary-support-color);
     }
@@ -187,15 +127,13 @@
     .tab_top_row {
         border-bottom: .01rem solid var(--app-secondary-support-color);
 
-        h3 {
-        }
+        h3 {}
 
         .tab_top_row_utils_container {
 
             .tab_top_row_search_input_container {
 
-                input {
-                }
+                input {}
             }
 
             .tab_top_row_sort_buttons {
@@ -243,6 +181,20 @@
         cursor: grab;
         transition: all .2s ease-in-out;
 
+        @keyframes todoItemAppear {
+            0% {
+                opacity: 0;
+                translate: -25% 0;
+            }
+
+            100% {
+                opacity: 1;
+                translate: 0 0;
+            }
+        }
+        animation: todoItemAppear .4s ease-in-out;
+        animation-fill-mode: forwards;
+
         &.todo_item_priority {
             background-color: var(--app-intermediate-support-color);
             box-shadow: 0 0 1rem .25rem var(--app-intermediate-support-color);
@@ -250,6 +202,10 @@
 
             &:hover {
                 box-shadow: 0 0 1.25rem var(--todo-item-hover-bg-color);
+            }
+
+            .todo_item_text {
+                color: var(--todo-item-text-priority-color);
             }
         }
 

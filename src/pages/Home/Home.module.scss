@@ -1,12 +1,12 @@
 // Home content
 .home_container {
     width: 90%;
-    height: 100%;
+    height: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    //gap: 1rem;
+    gap: 2rem;
 
     .home_projects_main_title {
         font-size: 1.75rem;
