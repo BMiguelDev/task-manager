@@ -40,39 +40,44 @@ export default function TodosTab({
                 >
                     <div className={styles.tab_top_row}>
                         <h3>{tabName} Tasks</h3>
-                        <div className={styles.tab_top_row_search_input_container}>
-                            <input
-                                type="text"
-                                placeholder="Search for todo..."
-                                value={tabSearchInput}
-                                onChange={(e) => handleChangeTabSearchInputs(e, tabName)}
-                            />
-                        </div>
-                        <div className={styles.tab_top_row_sort_buttons}>
-                            <div
-                                className={styles.sort_button_container}
-                                onClick={() => handleSortAlphabetically(tabName)}
-                            >
-                                {tabSortingStatus.isAscending ? (
-                                    tabSortingStatus.sortCondition === "alphabetical" ? (
-                                        <i className="fa-solid fa-arrow-down-a-z"></i>
+                        <div className={styles.tab_top_row_utils_container}>
+                            <div className={styles.tab_top_row_search_input_container}>
+                                <input
+                                    type="text"
+                                    placeholder="Search for todo..."
+                                    value={tabSearchInput}
+                                    onChange={(e) => handleChangeTabSearchInputs(e, tabName)}
+                                />
+                            </div>
+                            <div className={styles.tab_top_row_sort_buttons}>
+                                <div
+                                    className={styles.sort_button_container}
+                                    onClick={() => handleSortAlphabetically(tabName)}
+                                >
+                                    {tabSortingStatus.isAscending ? (
+                                        tabSortingStatus.sortCondition === "alphabetical" ? (
+                                            <i className="fa-solid fa-arrow-down-a-z"></i>
+                                        ) : (
+                                            <i className="fa-solid fa-arrow-down-z-a"></i>
+                                        )
                                     ) : (
                                         <i className="fa-solid fa-arrow-down-z-a"></i>
-                                    )
-                                ) : (
-                                    <i className="fa-solid fa-arrow-down-z-a"></i>
-                                )}
-                            </div>
-                            <div className={styles.sort_button_container} onClick={() => handleSortByPriority(tabName)}>
-                                {tabSortingStatus.isAscending ? (
-                                    tabSortingStatus.sortCondition === "priority" ? (
-                                        <i className="fa-solid fa-arrow-down-1-9"></i>
+                                    )}
+                                </div>
+                                <div
+                                    className={styles.sort_button_container}
+                                    onClick={() => handleSortByPriority(tabName)}
+                                >
+                                    {tabSortingStatus.isAscending ? (
+                                        tabSortingStatus.sortCondition === "priority" ? (
+                                            <i className="fa-solid fa-arrow-down-1-9"></i>
+                                        ) : (
+                                            <i className="fa-solid fa-arrow-down-9-1"></i>
+                                        )
                                     ) : (
                                         <i className="fa-solid fa-arrow-down-9-1"></i>
-                                    )
-                                ) : (
-                                    <i className="fa-solid fa-arrow-down-9-1"></i>
-                                )}
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>

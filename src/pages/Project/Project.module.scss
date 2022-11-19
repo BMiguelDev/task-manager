@@ -97,27 +97,35 @@
             text-transform: capitalize;
         }
 
-        .tab_top_row_search_input_container {
-
-            input {
-               border-radius: .25rem;
-               padding: .2rem .5rem;
-            }
-       }
-
-        .tab_top_row_sort_buttons {
+        .tab_top_row_utils_container {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            gap: .75rem;
+            justify-content: center;
+            gap: 2rem;
 
-            .sort_button_container {
-                background-color: var(--button-bg-color);
-                i {
-                    color: var(--button-color);
-                    cursor:pointer;
+            .tab_top_row_search_input_container {
+
+                input {
+                    border-radius: .25rem;
+                    padding: .2rem .5rem;
                 }
-            }  
+            }
+
+            .tab_top_row_sort_buttons {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: .75rem;
+
+                .sort_button_container {
+                    background-color: var(--button-bg-color);
+
+                    i {
+                        color: var(--button-color);
+                        cursor: pointer;
+                    }
+                }
+            }
         }
     }
 
@@ -150,27 +158,35 @@
             text-transform: capitalize;
         }
 
-        .tab_top_row_search_input_container {
-
-             input {
-                border-radius: .25rem;
-                padding: .2rem .5rem;
-             }
-        }
-
-        .tab_top_row_sort_buttons {
+        .tab_top_row_utils_container {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            gap: .75rem;
+            justify-content: center;
+            gap: 2rem;
 
-            .sort_button_container {
-                background-color: var(--button-bg-color);
-                i {
-                    color: var(--button-color);
-                    cursor:pointer;
+            .tab_top_row_search_input_container {
+
+                input {
+                    border-radius: .25rem;
+                    padding: .2rem .5rem;
                 }
-            }  
+            }
+
+            .tab_top_row_sort_buttons {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: .75rem;
+
+                .sort_button_container {
+                    background-color: var(--button-bg-color);
+
+                    i {
+                        color: var(--button-color);
+                        cursor: pointer;
+                    }
+                }
+            }
         }
     }
 
