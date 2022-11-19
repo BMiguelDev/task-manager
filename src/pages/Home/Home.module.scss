@@ -10,6 +10,7 @@
 
     .home_projects_main_title {
         font-size: 1.75rem;
+        margin: 0;
     }
     
     .home_projects_container {
@@ -67,7 +68,7 @@
                 .project_title_text {
                     margin: 0;
                     text-decoration: none;
-                    font-size: 1.2rem;
+                    font-size: 1.5rem;
                     font-weight: bold;
                     letter-spacing: .035rem;
                     color: var(--project-title-color);

@@ -62,6 +62,11 @@
     justify-content: space-between;
     background-color: var(--tasks-bg-color);
     gap: 2rem;
+
+    .project_main_title {
+        font-size: 1.75rem;
+        margin: 0;
+    }
 }
 
 
@@ -265,11 +270,15 @@
 
         .todo_item_text {
             color: var(--todo-item-text-color);
+            word-wrap: break-word;
+            width: 65%;
+            //font-weight: bold;
         }
 
         .todo_item_btn_container {
             display: flex;
             gap: .75rem;
+            width: 30%;
 
             div {
                 cursor: pointer;

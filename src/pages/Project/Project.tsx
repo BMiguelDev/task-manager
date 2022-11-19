@@ -215,7 +215,7 @@ export default function Project({ projects }: PropTypes) {
 
     return (
         <div className={styles.project_container}>
-            <p>{project.projectId}</p>
+            <p className={styles.project_main_title}>{project.projectTitle}</p>
             <InputField
                 inputRef={inputRef}
                 inputText={inputTodo}
