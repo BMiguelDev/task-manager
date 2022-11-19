@@ -98,9 +98,26 @@
         text-decoration: none;
         width: fit-content;
         transition: all .15s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
 
         &:hover {
             color: var(--navbar-hover-color);
+        }
+
+        &.navbar_link_hidden {
+            visibility: hidden;
+        }
+
+        &>i {
+            font-size: 1.1rem;
+        }
+
+        &>p {
+            margin: 0;
+            font-size: 1.25rem;
         }
     }
 
