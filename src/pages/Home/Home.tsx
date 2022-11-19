@@ -5,6 +5,7 @@ import { ProjectsDispatchContext } from "../../App";
 import ProjectItem from "./ProjectItem";
 
 import styles from "./Home.module.scss";
+import { eventNames } from "process";
 
 const LOCAL_STORAGE_PROJECT_TITLE_INPUT_KEY = "TaskManagerApp.projectTitleInput";
 
@@ -27,6 +28,12 @@ export default function Home({ projects }: PropTypes) {
 
     const projectsDispatch = useContext(ProjectsDispatchContext);
 
+    function handleChangeProjectTitleInput(event: React.ChangeEvent<HTMLInputElement>) {
+        projectTitleInput.length < 56 ? 
+        setProjectTitleInput(event.target.value) :
+        setProjectTitleInput(event.target.value.slice(0, 56));
+    }
+
     function handleAddProject(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         if (projectTitleInput) {
@@ -42,7 +49,7 @@ export default function Home({ projects }: PropTypes) {
                 <input
                     type="input"
                     value={projectTitleInput}
-                    onChange={(e) => setProjectTitleInput(e.target.value)}
+                    onChange={(e) => handleChangeProjectTitleInput(e)}
                     placeholder="Enter a project title"
                     className={styles.home_project_input_field}
                     ref={projectTitleInputRef}
