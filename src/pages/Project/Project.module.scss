@@ -70,8 +70,8 @@
 }
 
 
-// Main content
-.main_content {
+// Projet main content
+.project_main_content {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -81,7 +81,8 @@
 }
 
 
-.active_tab {
+// Todo tab content
+.todo_tab {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -90,14 +91,15 @@
     max-height: 100%;
     gap: 1.25rem;
     padding: 1rem;
-    background-color: var(--app-primary-color);
+    //background-color: var(--app-primary-color);
+    transition: all .9s ease-in-out;
+    border-radius: .25rem;
 
     .tab_top_row {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0 1rem 1rem 1rem;
-        border-bottom: .01rem solid var(--app-primary-support-color);
 
         h3 {
             margin: 0;
@@ -122,13 +124,14 @@
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
-                gap: .75rem;
+                gap: 1rem;
 
                 .sort_button_container {
-                    background-color: var(--button-bg-color);
-
+                    padding: .075rem;
+                    
                     i {
-                        color: var(--button-color);
+                        font-size: 1.1rem;
+                        //color: var(--button-color);
                         cursor: pointer;
                     }
                 }
@@ -143,63 +146,70 @@
     }
 }
 
-.completed_tab {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex: 0 0 48%;
-    height: fit-content;
-    max-height: 100%;
-    gap: 1.25rem;
-    padding: 1rem;
-    background-color: var(--app-secondary-color);
-    transition: all .9s ease-in-out;
+.active_tab {
+    background-color: var(--app-primary-color);
 
     .tab_top_row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 1rem 1rem 1rem;
-        border-bottom: .01rem solid var(--app-secondary-support-color);
+        border-bottom: .01rem solid var(--app-primary-support-color);
 
         h3 {
-            margin: 0;
-            text-transform: capitalize;
         }
 
         .tab_top_row_utils_container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
 
             .tab_top_row_search_input_container {
 
                 input {
-                    border-radius: .25rem;
-                    padding: .2rem .5rem;
                 }
             }
 
             .tab_top_row_sort_buttons {
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-                gap: .75rem;
 
                 .sort_button_container {
-                    background-color: var(--button-bg-color);
+                    border: .1rem solid var(--app-primary-support-color);
 
                     i {
-                        color: var(--button-color);
-                        cursor: pointer;
+                        color: var(--app-primary-support-color);
                     }
                 }
             }
         }
     }
+    
+    &.dragging_over {
+        background-color: var(--app-secondary-support-color);
+    }
+}
 
-    overflow-y: auto;
+.completed_tab {
+    background-color: var(--app-secondary-color);
+
+    .tab_top_row {
+        border-bottom: .01rem solid var(--app-secondary-support-color);
+
+        h3 {
+        }
+
+        .tab_top_row_utils_container {
+
+            .tab_top_row_search_input_container {
+
+                input {
+                }
+            }
+
+            .tab_top_row_sort_buttons {
+
+                .sort_button_container {
+                    border: .1rem solid var(--app-secondary-support-color);
+
+                    i {
+                        color: var(--app-secondary-support-color);
+                    }
+                }
+            }
+        }
+    }
 
     &.dragging_over {
         background-color: var(--app-secondary-support-color);

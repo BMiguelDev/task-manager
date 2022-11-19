@@ -32,8 +32,8 @@ export default function TodosTab({
                 <div
                     className={
                         snapshot.isDraggingOver
-                            ? `${styles[`${tabName}_tab`]} ${styles.dragging_over}`
-                            : styles[`${tabName}_tab`]
+                            ? `${styles.todo_tab} ${styles[`${tabName}_tab`]} ${styles.dragging_over}`
+                            : `${styles.todo_tab} ${styles[`${tabName}_tab`]}`
                     }
                     ref={provided.innerRef}
                     {...provided.droppableProps}

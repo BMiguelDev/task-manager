@@ -223,7 +223,7 @@ export default function Project({ projects }: PropTypes) {
                 handleSubmitForm={handleSubmitTodoWithReducer}
             />
             <DragDropContext onDragEnd={onDragEnd}>
-                <div className={styles.main_content}>
+                <div className={styles.project_main_content}>
                     <TodosTab
                         projectId={project.projectId}
                         tabName={"active"}
