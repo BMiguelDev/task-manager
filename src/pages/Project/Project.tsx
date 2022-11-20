@@ -193,12 +193,12 @@ export default function Project({ projects }: PropTypes) {
         if (tabChanged === "active") {
             setTabSearchInputs((prevTabSearchInputs) => ({
                 ...prevTabSearchInputs,
-                activeTodosSearchInput: event.target.value,
+                activeTodosSearchInput: event.target.value.length<112 ? event.target.value : event.target.value.slice(0, 112)
             }));
         } else if (tabChanged === "completed") {
             setTabSearchInputs((prevTabSearchInputs) => ({
                 ...prevTabSearchInputs,
-                completedTodosSearchInput: event.target.value,
+                completedTodosSearchInput: event.target.value.length<112 ? event.target.value : event.target.value.slice(0, 112)
             }));
         } else return;
     }

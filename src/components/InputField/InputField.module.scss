@@ -17,9 +17,10 @@
         font-family: 'Roboto', sans-serif;
         font-size: 1.1rem;
         letter-spacing: .035rem;
+        z-index: 1;
 
         &:focus {
-            outline: .1rem solid var(--app-bg-support-color);
+            outline: .05rem solid var(--app-primary-support-color);
             box-shadow: 0 0 .7rem 100rem var(--task-input-box-shadow-focus-color);
         }
     }
@@ -39,6 +40,7 @@
         font-size: 1.05rem;
         font-weight: bold;
         transition: all .1s ease-in-out;
+        z-index: 1;
 
         &:active {
             scale: .9;
