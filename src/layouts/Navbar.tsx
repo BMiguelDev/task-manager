@@ -12,8 +12,10 @@ interface PropTypes {
 export default function Navbar({ isDarkMode, setIsDarkMode, setIsHelpPopupOpen }: PropTypes) {
     const location = useLocation();
 
+    console.log(location);
+
     return (
-        <div className={styles.navbar_container}>
+        <header className={styles.navbar_container}>
             <span className={styles.heading}>Task Manager</span>
             <div className={styles.support_buttons_container}>
                 <div
@@ -32,12 +34,12 @@ export default function Navbar({ isDarkMode, setIsDarkMode, setIsHelpPopupOpen }
             <Link
                 to={"/task-manager"}
                 className={`${styles.navbar_link} ${
-                    location.pathname === "/task-manager" ? styles.navbar_link_hidden : ""
+                    RegExp('/task-manager/project/[0-9]+').test(location.pathname) ? "" : styles.navbar_link_hidden
                 }`}
             >
                 <i className="fa-solid fa-left-long"></i>
                 <p>Back to Projects</p>
             </Link>
-        </div>
+        </header>
     );
 }

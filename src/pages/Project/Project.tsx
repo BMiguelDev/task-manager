@@ -216,7 +216,7 @@ export default function Project({ projects }: PropTypes) {
     // Fix Home page overflow cutting projects out of frame
 
     return (
-        <div className={styles.project_container}>
+        <main className={styles.project_container}>
             <p className={styles.project_main_title}>{project.projectTitle}</p>
             <InputField
                 inputRef={inputRef}
@@ -248,6 +248,6 @@ export default function Project({ projects }: PropTypes) {
                     />
                 </div>
             </DragDropContext>
-        </div>
+        </main>
     );
 }

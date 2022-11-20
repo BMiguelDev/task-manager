@@ -44,7 +44,7 @@ export default function Home({ projects }: PropTypes) {
     }
 
     return (
-        <div className={styles.home_container}>
+        <main className={styles.home_container}>
             <h2 className={styles.home_projects_main_title}>My Projects</h2>
             <InputField inputText={projectTitleInput} inputRef={projectTitleInputRef} handleSubmitForm={handleAddProject} handleChangeInputText={handleChangeProjectTitleInput}/>
             <div className={styles.home_projects_container}>
@@ -52,6 +52,6 @@ export default function Home({ projects }: PropTypes) {
                     <ProjectItem key={projectItem.projectId} projectItem={projectItem} />
                 ))}
             </div>
-        </div>
+        </main>
     );
 }
