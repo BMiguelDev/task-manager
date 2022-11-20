@@ -26,14 +26,14 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
     // Get dispatch functions from great-great-grandparent (App) using useContext
     const projectsDispatchWithContext = useContext(ProjectsDispatchContext);
 
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, [isEditMode]);
+
     function handleToggleEditMode() {
         setIsEditMode((prevIsEditMode) => !prevIsEditMode);
         setEditedText(todo.todo);
     }
-
-    useEffect(() => {
-        inputRef.current?.focus();
-    }, [isEditMode]);
 
     function handleCompleteTodoWithReducer(): any {
         if (!isEditMode) {
@@ -43,6 +43,12 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
 
     function handleDeleteTodoWithReducer(): any {
         projectsDispatchWithContext({ type: "removeTodo", payload: {  projectId: projId, id: todo.id, isActive: todo.isActive } });
+    }
+
+    function handleChangeEditedText(event: React.ChangeEvent<HTMLInputElement>) {
+        event.target.value.length < 112
+        ? setEditedText(event.target.value)
+        : setEditedText(event.target.value.slice(0, 112));
     }
 
     function handleEditTodoAndToggle(e: React.FormEvent): void {
@@ -91,7 +97,7 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
                                 type="input"
                                 placeholder="Enter new todo title"
                                 value={editedText}
-                                onChange={(e) => setEditedText(e.target.value)}
+                                onChange={handleChangeEditedText}
                                 className={styles.todo_item_edit_input}
                                 ref={inputRef}
                             />
