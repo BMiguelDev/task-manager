@@ -18,7 +18,6 @@
     --todo-item-dragging-hover-box-shadow-color: rgb(44, 44, 44);
     --todo-item-text-color: #001521;
 
-    --todo-item-text-priority-color: rgb(255, 198, 188);
 
     --app-primary-color: rgb(71, 185, 205);
     --app-primary-support-color: rgb(38, 96, 107);
@@ -30,7 +29,6 @@
     --app-intermediate-support-extra-2-color: rgb(233, 117, 34);
     --app-special-color: rgb(255, 222, 173);
     --app-special-support-color: rgb(167, 132, 79);
-
     --app-general-box-shadow-color: rgba(0, 0, 0, .5);
 
 
@@ -57,7 +55,6 @@
     --todo-item-dragging-hover-box-shadow-color: rgb(44, 44, 44);
     --todo-item-text-color: rgb(0, 128, 0);
 
-    --todo-item-text-priority-color: rgb(255, 198, 188);
 
     --app-primary-color: rgb(77, 199, 221);
     --app-primary-support-color: rgb(54, 146, 162);
@@ -135,9 +132,9 @@
     }
 
     .heading {
-        text-transform: uppercase;
+        text-transform: capitalize;
         font-size: 2.25rem;
-        letter-spacing: .1rem;
+        letter-spacing: .05rem;
         word-spacing: .5rem;
         color: var(--navbar-color);
         z-index: 1;
