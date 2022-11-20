@@ -212,6 +212,7 @@ export default function Project({ projects }: PropTypes) {
     // TODO:
     // Make app responsive
     // Improve styling (Improve Help Pop up style)
+    // Make error page
 
     return (
         <div className={styles.project_container}>

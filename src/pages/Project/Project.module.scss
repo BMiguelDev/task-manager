@@ -11,6 +11,7 @@
 
     .project_main_title {
         font-size: 1.75rem;
+        font-weight: bold;
         margin: 0;
     }
 
@@ -225,6 +226,13 @@
             .todo_item_text {
                 color: var(--todo-item-text-priority-color);
             }
+
+            .todo_item_btn_container {
+    
+                .todo_item_icon_container {
+                    border: .01rem solid var(--app-secondary-support-color);
+                }
+            }
         }
 
         &:hover {
@@ -268,17 +276,27 @@
 
         .todo_item_btn_container {
             display: flex;
-            gap: 1rem;
+            gap: .9rem;
             width: 30%;
             align-items: center;
             justify-content: flex-end;
 
             .todo_item_icon_container {
+                border: .01rem solid var(--app-special-support-color);
+                box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
+                border-radius: .25rem;
+                padding: .8rem;
+                width: 1.5rem;
+                height: 1.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 cursor: pointer;
 
                 i {
                     font-size: 1.05rem;
+                    color: var(--todo-item-text-color);
                 }
 
                 &:nth-of-type(1),

@@ -109,18 +109,18 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
                         </p>
                     )}
                     <div className={styles.todo_item_btn_container}>
-                        <div className={styles.todo_item_icon_container} onClick={handleCompleteTodoWithReducer}>
-                            {todo.isPriority ? (
-                                <i className="fa-solid fa-xmark"></i>
-                            ) : (
-                                <i className="fa-solid fa-check"></i>
-                            )}
-                        </div>
                         <div className={styles.todo_item_icon_container} onClick={handleMoveTodoWithReducer}>
                             {todo.isActive ? (
                                 <i className="fa-solid fa-arrow-right-long"></i>
                             ) : (
                                 <i className="fa-solid fa-arrow-left-long"></i>
+                            )}
+                        </div>
+                        <div className={styles.todo_item_icon_container} onClick={handleCompleteTodoWithReducer}>
+                            {todo.isPriority ? (
+                                <i className="fa-solid fa-hourglass-end"></i>
+                            ) : (
+                                <i className="fa-solid fa-hourglass-start"></i>
                             )}
                         </div>
                         <div className={styles.todo_item_icon_container} onClick={handleToggleEditMode}>

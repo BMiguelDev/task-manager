@@ -14,15 +14,6 @@ export default function Navbar({ isDarkMode, setIsDarkMode, setIsHelpPopupOpen }
 
     return (
         <div className={styles.navbar_container}>
-            <Link
-                to={"/task-manager"}
-                className={`${styles.navbar_link} ${
-                    location.pathname === "/task-manager" ? styles.navbar_link_hidden : ""
-                }`}
-            >
-                <i className="fa-solid fa-left-long"></i>
-                <p>Back to Projects</p>
-            </Link>
             <span className={styles.heading}>Task Manager</span>
             <div className={styles.support_buttons_container}>
                 <div
@@ -38,6 +29,15 @@ export default function Navbar({ isDarkMode, setIsDarkMode, setIsHelpPopupOpen }
                     {isDarkMode ? <i className="fa-solid fa-moon"></i> : <i className="fa-solid fa-sun"></i>}
                 </div>
             </div>
+            <Link
+                to={"/task-manager"}
+                className={`${styles.navbar_link} ${
+                    location.pathname === "/task-manager" ? styles.navbar_link_hidden : ""
+                }`}
+            >
+                <i className="fa-solid fa-left-long"></i>
+                <p>Back to Projects</p>
+            </Link>
         </div>
     );
 }
