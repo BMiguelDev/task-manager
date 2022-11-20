@@ -34,7 +34,7 @@ export default function Navbar({ isDarkMode, setIsDarkMode, setIsHelpPopupOpen }
             <Link
                 to={"/task-manager"}
                 className={`${styles.navbar_link} ${
-                    RegExp('/task-manager/project/[0-9]+').test(location.pathname) ? "" : styles.navbar_link_hidden
+                    RegExp("/task-manager/project/[0-9]+").test(location.pathname) ? "" : styles.navbar_link_hidden
                 }`}
             >
                 <i className="fa-solid fa-left-long"></i>

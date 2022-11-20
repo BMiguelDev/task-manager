@@ -211,8 +211,6 @@ export default function Project({ projects }: PropTypes) {
 
     // TODO:
     // Make app responsive
-    // Improve styling (Improve Help Pop up style)
-    // Make error page
     // Fix Home page overflow cutting projects out of frame
 
     return (

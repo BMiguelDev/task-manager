@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import { ProjectType } from "../../models/model";
 import { ProjectsDispatchContext } from "../../App";
@@ -52,7 +53,10 @@ export default function ProjectItem({ projectItem }: PropTypes) {
     return (
         <div className={styles.home_single_project_container}>
             {isProjectTitleEditMode ? (
-                <form  className={styles.home_single_project_edit_container} onSubmit={(e) => handleEditTitleAndToggle(e)}>
+                <form
+                    className={styles.home_single_project_edit_container}
+                    onSubmit={(e) => handleEditTitleAndToggle(e)}
+                >
                     <input
                         type="text"
                         placeholder="Enter new project title"
@@ -61,7 +65,9 @@ export default function ProjectItem({ projectItem }: PropTypes) {
                         onChange={handleChangeProjectEditedTitle}
                         ref={editTnputRef}
                     />
-                    <button type="submit" className={styles.home_single_project_edit_button}>Go</button>
+                    <button type="submit" className={styles.home_single_project_edit_button}>
+                        Go
+                    </button>
                 </form>
             ) : (
                 <Link
@@ -76,12 +82,16 @@ export default function ProjectItem({ projectItem }: PropTypes) {
                 </Link>
             )}
             <div className={styles.project_buttons_container}>
-                <div className={styles.project_button_container} onClick={handleToggleEditMode}>
-                    <i className="fa-solid fa-pen"></i>
-                </div>
-                <div className={styles.project_button_container} onClick={handleDeleteProject}>
-                    <i className="fa-solid fa-trash"></i>
-                </div>
+                <Tooltip title="Edit" placement="left">
+                    <div className={styles.project_button_container} onClick={handleToggleEditMode}>
+                        <i className="fa-solid fa-pen"></i>
+                    </div>
+                </Tooltip>
+                <Tooltip title="Delete" placement="right">
+                    <div className={styles.project_button_container} onClick={handleDeleteProject}>
+                        <i className="fa-solid fa-trash"></i>
+                    </div>
+                </Tooltip>
             </div>
         </div>
     );

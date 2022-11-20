@@ -2,6 +2,9 @@
 :root {
     --app-bg-color: #97c2f0;
     --app-bg-support-color: #5e95cf;
+    --app-text-color: #000000;
+    --app-text-support-color: rgb(128, 128, 128);
+
     --navbar-color: #000000;
     --navbar-hover-color: #000000;
     --button-bg-color: rgb(128, 128, 128);
@@ -89,7 +92,7 @@
 
 // Navbar content
 .navbar_container {
-    background-color: var(--app-bg-color);
+    background-color: var(--app-bg-support-color);
     width: 100%;
     //height: 8%;
     display: flex;
@@ -229,24 +232,25 @@
 // Help Pop Up content
 .help_popup_container {
     position: absolute;
-    top: 19.3%;
-    left: 33.75%;
-    width: 32.5%;
-    height: 70%;
+    top: 10%;
+    right: 0%;
+    width: 25%;
+    height: fit-content;
     //height: fit-content;
-    border: 1px solid var(--popup-border-color);
-    background-color: var(--popup-bg-color);
+    border: 1px solid var(--app-primary-support-color);
+    background-color: var(--app-primary-color);
+    color: var(--app-text-color);
+    box-shadow: 0 0 10px 100rem var(--app-general-box-shadow-color);
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     justify-content: space-evenly;
-    box-shadow: 0 0 10px 1000px var(--popup-box-shadow-color);
     border-radius: .5rem;
     padding: 2rem;
     
     @keyframes slideIn {
         0% {
-            translate: 0 7.5%;
+            translate: 35% 0;
             opacity: 0;
         }   
         100% {
@@ -257,25 +261,28 @@
     animation: slideIn .2s ease 0s;
 
     .help_popup_title {
-        color: var(--keyboard-letter-text-color);
         text-transform: capitalize;
+        align-self: center;
         margin: 0;
-        font-size: 1.5rem;
-        font-weight: bolder;
-        font-family: 'Volkhov', serif;
-        letter-spacing: -.05rem;
-        word-spacing: .05rem;
+        font-size: 1.75rem;
+        letter-spacing: .025rem;
+    }
+
+    .help_popup_subtitle {
+        font-size: 1.15rem;
+        padding-top: .5rem;
+        color: var(--app-primary-support-color);
+        margin: 0;
     }
 
     .help_popup_description_list {
-        color: var(--keyboard-letter-text-color);
         margin: 0;
-        padding: 1rem 0 1rem 1rem;
+        padding: 1rem 0 0 1rem;
 
         li {
-            font-size: .9rem;
-            line-height: 1.5rem;
-            font-weight: 200;
+            font-size: 1rem;
+            line-height: 1.65rem;
+            font-weight: lighter;
         }
     }
 
@@ -284,8 +291,8 @@
         top: 3.15%;
         right: 3%;
         font-size: 1.3rem;
-        background-color: var(--settings-popup-bg-color);
-        color: var(--keyboard-letter-text-color);
+        background-color: var(--app-primary-color);
+        padding: .5rem;
         border: none;
         cursor: pointer;
     }
@@ -298,7 +305,7 @@
                 opacity: 1;
             }   
             100% {
-                translate: 0 7.5%;
+                translate: 35% 0;
                 opacity: 0;
             }
         }
@@ -307,8 +314,7 @@
     }
 }
 
-
-// Wrapper element to prevent user from clicking outside the settings box
+// Wrapper element to prevent user from clicking outside the help box
 .help_pop_up_wrapper {
     position: fixed;
     top: 0;

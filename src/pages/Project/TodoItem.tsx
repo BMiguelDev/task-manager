@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Draggable, DraggableStateSnapshot } from "react-beautiful-dnd";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import { ProjectType, Todo } from "../../models/model";
 import { ProjectsDispatchContext } from "../../App";
 import styles from "./Project.module.scss";
-
 
 type Props = {
     todo: Todo;
@@ -37,18 +37,24 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
 
     function handleCompleteTodoWithReducer(): any {
         if (!isEditMode) {
-            projectsDispatchWithContext({ type: "prioritizeTodo", payload: { projectId: projId, id: todo.id, isActive: todo.isActive } });
+            projectsDispatchWithContext({
+                type: "prioritizeTodo",
+                payload: { projectId: projId, id: todo.id, isActive: todo.isActive },
+            });
         }
     }
 
     function handleDeleteTodoWithReducer(): any {
-        projectsDispatchWithContext({ type: "removeTodo", payload: {  projectId: projId, id: todo.id, isActive: todo.isActive } });
+        projectsDispatchWithContext({
+            type: "removeTodo",
+            payload: { projectId: projId, id: todo.id, isActive: todo.isActive },
+        });
     }
 
     function handleChangeEditedText(event: React.ChangeEvent<HTMLInputElement>) {
         event.target.value.length < 112
-        ? setEditedText(event.target.value)
-        : setEditedText(event.target.value.slice(0, 112));
+            ? setEditedText(event.target.value)
+            : setEditedText(event.target.value.slice(0, 112));
     }
 
     function handleEditTodoAndToggle(e: React.FormEvent): void {
@@ -63,21 +69,30 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
     }
 
     function handleMoveTodoWithReducer() {
-        projectsDispatchWithContext({ type: "moveTodo", payload: { projectId: projId, id: todo.id, destinationIndex: 0,  isActive: todo.isActive } });
+        projectsDispatchWithContext({
+            type: "moveTodo",
+            payload: { projectId: projId, id: todo.id, destinationIndex: 0, isActive: todo.isActive },
+        });
     }
 
     function getTodoItemClassName(snapshot: DraggableStateSnapshot): string {
-        if(snapshot.isDragging) {
-            if(snapshot.isDropAnimating) {
-                return todo.isPriority ? `${styles.todo_item} ${styles.dragging} ${styles.drop_animating} ${styles.todo_item_priority}` : `${styles.todo_item} ${styles.dragging} ${styles.drop_animating}`
+        if (snapshot.isDragging) {
+            if (snapshot.isDropAnimating) {
+                return todo.isPriority
+                    ? `${styles.todo_item} ${styles.dragging} ${styles.drop_animating} ${styles.todo_item_priority}`
+                    : `${styles.todo_item} ${styles.dragging} ${styles.drop_animating}`;
             } else {
-                return todo.isPriority ? `${styles.todo_item} ${styles.dragging} ${styles.todo_item_priority}` : `${styles.todo_item} ${styles.dragging}`
+                return todo.isPriority
+                    ? `${styles.todo_item} ${styles.dragging} ${styles.todo_item_priority}`
+                    : `${styles.todo_item} ${styles.dragging}`;
             }
         } else {
-            if(snapshot.isDropAnimating) {
-                return todo.isPriority ? `${styles.todo_item} ${styles.drop_animating} ${styles.todo_item_priority}` : `${styles.todo_item} ${styles.drop_animating}`
+            if (snapshot.isDropAnimating) {
+                return todo.isPriority
+                    ? `${styles.todo_item} ${styles.drop_animating} ${styles.todo_item_priority}`
+                    : `${styles.todo_item} ${styles.drop_animating}`;
             } else {
-                return todo.isPriority ? `${styles.todo_item} ${styles.todo_item_priority}` : styles.todo_item
+                return todo.isPriority ? `${styles.todo_item} ${styles.todo_item_priority}` : styles.todo_item;
             }
         }
     }
@@ -115,26 +130,34 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
                         </p>
                     )}
                     <div className={styles.todo_item_btn_container}>
-                        <div className={styles.todo_item_icon_container} onClick={handleMoveTodoWithReducer}>
-                            {todo.isActive ? (
-                                <i className="fa-solid fa-arrow-right-long"></i>
-                            ) : (
-                                <i className="fa-solid fa-arrow-left-long"></i>
-                            )}
-                        </div>
-                        <div className={styles.todo_item_icon_container} onClick={handleCompleteTodoWithReducer}>
-                            {todo.isPriority ? (
-                                <i className="fa-solid fa-hourglass-end"></i>
-                            ) : (
-                                <i className="fa-solid fa-hourglass-start"></i>
-                            )}
-                        </div>
-                        <div className={styles.todo_item_icon_container} onClick={handleToggleEditMode}>
-                            <i className="fa-solid fa-pen"></i>
-                        </div>
-                        <div className={styles.todo_item_icon_container} onClick={handleDeleteTodoWithReducer}>
-                            <i className="fa-solid fa-trash"></i>
-                        </div>
+                        <Tooltip title="Move" placement="bottom">
+                            <div className={styles.todo_item_icon_container} onClick={handleMoveTodoWithReducer}>
+                                {todo.isActive ? (
+                                    <i className="fa-solid fa-arrow-right-long"></i>
+                                ) : (
+                                    <i className="fa-solid fa-arrow-left-long"></i>
+                                )}
+                            </div>
+                        </Tooltip>
+                        <Tooltip title="Prioritize" placement="bottom">
+                            <div className={styles.todo_item_icon_container} onClick={handleCompleteTodoWithReducer}>
+                                {todo.isPriority ? (
+                                    <i className="fa-solid fa-hourglass-end"></i>
+                                ) : (
+                                    <i className="fa-solid fa-hourglass-start"></i>
+                                )}
+                            </div>
+                        </Tooltip>
+                        <Tooltip title="Edit" placement="bottom">
+                            <div className={styles.todo_item_icon_container} onClick={handleToggleEditMode}>
+                                <i className="fa-solid fa-pen"></i>
+                            </div>
+                        </Tooltip>
+                        <Tooltip title="Delete" placement="bottom">
+                            <div className={styles.todo_item_icon_container} onClick={handleDeleteTodoWithReducer}>
+                                <i className="fa-solid fa-trash"></i>
+                            </div>
+                        </Tooltip>
                     </div>
                 </li>
             )}
