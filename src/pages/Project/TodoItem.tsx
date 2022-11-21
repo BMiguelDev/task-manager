@@ -19,7 +19,7 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
     // Over-engineering and getting projectId from router's location instead of props
     const location = useLocation();
     const project: ProjectType = location.state?.project;
-    const projId = project.projectId;
+    const projId = project?.projectId;
 
     const inputRef = useRef<HTMLInputElement>(null);
 

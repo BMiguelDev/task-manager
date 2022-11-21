@@ -6,6 +6,7 @@ import { SortingStatusType, tabSearchInputsType, ProjectType } from "../../model
 import { ProjectsDispatchContext } from "../../App";
 import InputField from "../../components/InputField/InputField";
 import TodosTab from "./TodosTab";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 import styles from "./Project.module.scss";
 
@@ -20,7 +21,12 @@ interface PropTypes {
 export default function Project({ projects }: PropTypes) {
     const { projId } = useParams();
     const projectId: number = Number(projId);
-    let project: ProjectType = projects.find(project => project.projectId===projectId) || {projectId: 0, projectTitle: "placeholder", projectCreationDate: "01/01/1970", todoTabs: {activeTodos:[], completedTodos:[]}};
+    let project: ProjectType = projects.find((project) => project.projectId === projectId) || {
+        projectId: 0,
+        projectTitle: "Placeholder",
+        projectCreationDate: "01/01/1970",
+        todoTabs: { activeTodos: [], completedTodos: [] },
+    };
 
     // Get dispatch functions from great-great-grandparent (App component) using useContext
     const projectsDispatch = useContext(ProjectsDispatchContext);
@@ -63,7 +69,7 @@ export default function Project({ projects }: PropTypes) {
         localStorage.setItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY, JSON.stringify(tabSearchInputs));
     }, [tabSearchInputs]);
 
-    // Function to add a <inputTodo> to the todo list 
+    // Function to add a <inputTodo> to the todo list
     function handleSubmitTodoWithReducer(e: React.FormEvent) {
         e.preventDefault();
         if (inputTodo) {
@@ -192,26 +198,28 @@ export default function Project({ projects }: PropTypes) {
         if (tabChanged === "active") {
             setTabSearchInputs((prevTabSearchInputs) => ({
                 ...prevTabSearchInputs,
-                activeTodosSearchInput: event.target.value.length<112 ? event.target.value : event.target.value.slice(0, 112)
+                activeTodosSearchInput:
+                    event.target.value.length < 112 ? event.target.value : event.target.value.slice(0, 112),
             }));
         } else if (tabChanged === "completed") {
             setTabSearchInputs((prevTabSearchInputs) => ({
                 ...prevTabSearchInputs,
-                completedTodosSearchInput: event.target.value.length<112 ? event.target.value : event.target.value.slice(0, 112)
+                completedTodosSearchInput:
+                    event.target.value.length < 112 ? event.target.value : event.target.value.slice(0, 112),
             }));
         } else return;
     }
 
     function handleChangeTodoInput(event: React.ChangeEvent<HTMLInputElement>) {
-        inputTodo.length < 112
-            ? setInputTodo(event.target.value)
-            : setInputTodo(event.target.value.slice(0, 112));
+        inputTodo.length < 112 ? setInputTodo(event.target.value) : setInputTodo(event.target.value.slice(0, 112));
     }
 
     // TODO:
     // Make app responsive
 
-    return (
+    return project.projectId === 0 ? (
+        <ErrorPage />
+    ) : (
         <main className={styles.project_container}>
             <p className={styles.project_main_title}>{project.projectTitle}</p>
             <InputField

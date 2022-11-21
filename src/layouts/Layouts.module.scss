@@ -131,6 +131,7 @@
         color: var(--app-text-color);
         z-index: 1;
         text-align: center;
+        transition: all .2s ease-in-out;
     }
 
     .support_buttons_container {
@@ -232,7 +233,6 @@
     right: 0%;
     width: 25%;
     height: fit-content;
-    //height: fit-content;
     border: 1px solid var(--app-primary-support-color);
     background-color: var(--app-primary-color);
     color: var(--app-text-color);

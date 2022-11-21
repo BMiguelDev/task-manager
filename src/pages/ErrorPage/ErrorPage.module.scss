@@ -16,6 +16,8 @@
         font-size: 1.25rem;
         word-spacing: .25rem;
         letter-spacing: .1rem;
+        color: var(--app-text-color);
+        transition: all .2s ease-in-out;
     }
 
     .error_page_link {
