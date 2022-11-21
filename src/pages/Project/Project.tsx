@@ -22,7 +22,7 @@ export default function Project({ projects }: PropTypes) {
     const projectId: number = Number(projId);
     let project: ProjectType = projects.find(project => project.projectId===projectId) || {projectId: 0, projectTitle: "placeholder", projectCreationDate: "01/01/1970", todoTabs: {activeTodos:[], completedTodos:[]}};
 
-    // Get dispatch functions from great-great-grandparent (App) using useContext
+    // Get dispatch functions from great-great-grandparent (App component) using useContext
     const projectsDispatch = useContext(ProjectsDispatchContext);
 
     const [inputTodo, setInputTodo] = useState<string>(() => {
@@ -35,7 +35,6 @@ export default function Project({ projects }: PropTypes) {
         localStorage.setItem(LOCAL_STORAGE_TODO_KEY, JSON.stringify(inputTodo));
     }, [inputTodo]);
 
-    // UseRef hook with typescript
     const inputRef = useRef<HTMLInputElement>(null);
 
     // State variable <sortingStatus> holds the data relative to the latest sorting status
@@ -64,7 +63,7 @@ export default function Project({ projects }: PropTypes) {
         localStorage.setItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY, JSON.stringify(tabSearchInputs));
     }, [tabSearchInputs]);
 
-    // Function to add a inputTodo to the <todoList>
+    // Function to add a <inputTodo> to the todo list 
     function handleSubmitTodoWithReducer(e: React.FormEvent) {
         e.preventDefault();
         if (inputTodo) {

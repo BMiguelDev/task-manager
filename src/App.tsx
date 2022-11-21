@@ -25,13 +25,12 @@ const App: React.FC = () => {
 
     // Initializer function to initialize the <todoList> variable of useReducer with localStorage data
     function reducerVariableInitializer(): ProjectType[] {
-        // return JSON.parse(localStorage.getItem("LOCAL_STORAGE_TODOLIST_KEY") || "{[]}");
         const localStorageItem = localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY);
         if (localStorageItem) return JSON.parse(localStorageItem);
         else return projectArray;
     }
 
-    // Reducer function that conditionally changes <todoList> variable based on the parameters received
+    // Reducer function that conditionally changes <projects> variable based on the parameters received
     function projectsReducer(projects: ProjectType[], action: Actions): ProjectType[] {
         switch (action.type) {
             case "addProject": {
@@ -311,8 +310,6 @@ const App: React.FC = () => {
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
     }, [projects]);
-
-    console.log("App projects", projects);
 
     return (
         <BrowserRouter>

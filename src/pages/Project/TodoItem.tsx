@@ -36,12 +36,10 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
     }
 
     function handleCompleteTodoWithReducer(): any {
-        if (!isEditMode) {
-            projectsDispatchWithContext({
-                type: "prioritizeTodo",
-                payload: { projectId: projId, id: todo.id, isActive: todo.isActive },
-            });
-        }
+        projectsDispatchWithContext({
+            type: "prioritizeTodo",
+            payload: { projectId: projId, id: todo.id, isActive: todo.isActive },
+        });
     }
 
     function handleDeleteTodoWithReducer(): any {

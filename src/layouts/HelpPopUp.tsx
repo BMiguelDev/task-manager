@@ -48,7 +48,7 @@ export default function HelpPopUp({ isHelpPopUpOpen, toggleIsHelpPopupOpen }: Pr
                 <ul className={styles.help_popup_description_list}>
                     <li>Create, edit and delete projects and tasks</li>
                     <li>Assign tasks with higher priority</li>
-                    <li>Move/drag your tasks between the active tab and the completed tab</li>
+                    <li>Drag your tasks to reorder them or to move them between tabs</li>
                     <li>Sort your tasks alphabetically or by priority</li>
                     <li>Search for tasks inside each tab</li>
                 </ul>
