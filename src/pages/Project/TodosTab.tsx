@@ -15,6 +15,7 @@ interface PropTypes {
     tabSortingStatus: { sortCondition: string; isAscending: boolean };
     handleSortAlphabetically: (todoTabText: string) => void;
     handleSortByPriority: (todoTabText: string) => void;
+    taskMaxCharacterLength: number;
 }
 
 export default function TodosTab({
@@ -26,6 +27,7 @@ export default function TodosTab({
     tabSortingStatus,
     handleSortAlphabetically,
     handleSortByPriority,
+    taskMaxCharacterLength
 }: PropTypes) {
     return (
         <Droppable droppableId={`${tabName}_todos`}>
@@ -92,9 +94,10 @@ export default function TodosTab({
                             todos={tabTodoList.filter((todoItem: Todo) =>
                                 todoItem.todo.toLowerCase().includes(tabSearchInput)
                             )}
+                            taskMaxCharacterLength={taskMaxCharacterLength}
                         />
                     ) : (
-                        <TodoList todos={tabTodoList} />
+                        <TodoList todos={tabTodoList} taskMaxCharacterLength={taskMaxCharacterLength} />
                     )}
                     {provided.placeholder}
                 </div>

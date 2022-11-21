@@ -10,9 +10,10 @@ import styles from "./Project.module.scss";
 type Props = {
     todo: Todo;
     index: number;
+    taskMaxCharacterLength: number;
 };
 
-const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
+const TodoItem: React.FC<Props> = ({ todo, index, taskMaxCharacterLength }: Props) => {
     const [isEditMode, setIsEditMode] = useState<boolean>(false); // State variable to handle if the todo is being edited or not
     const [editedText, setEditedText] = useState<string>(todo.todo); // State variable to store the edited todo text
 
@@ -50,9 +51,9 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
     }
 
     function handleChangeEditedText(event: React.ChangeEvent<HTMLInputElement>) {
-        event.target.value.length < 112
+        event.target.value.length < taskMaxCharacterLength
             ? setEditedText(event.target.value)
-            : setEditedText(event.target.value.slice(0, 112));
+            : setEditedText(event.target.value.slice(0, taskMaxCharacterLength));
     }
 
     function handleEditTodoAndToggle(e: React.FormEvent): void {
@@ -108,7 +109,7 @@ const TodoItem: React.FC<Props> = ({ todo, index }: Props) => {
                         <form className={styles.todo_item_edit_form} onSubmit={(e) => handleEditTodoAndToggle(e)}>
                             <input
                                 type="input"
-                                placeholder="Enter new todo title"
+                                placeholder="Enter new task title"
                                 value={editedText}
                                 onChange={handleChangeEditedText}
                                 className={styles.todo_item_edit_input}

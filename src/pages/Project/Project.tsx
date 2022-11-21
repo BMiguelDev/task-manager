@@ -10,6 +10,8 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 
 import styles from "./Project.module.scss";
 
+const TASK_MAX_CHARACTER_LENGTH = 90;
+
 // Local Storage Keys
 const LOCAL_STORAGE_TODO_KEY = "TaskManagerApp.Todo";
 const LOCAL_STORAGE_SORTING_STATUS_KEY = "TaskManagerApp.SortingStatus";
@@ -199,19 +201,19 @@ export default function Project({ projects }: PropTypes) {
             setTabSearchInputs((prevTabSearchInputs) => ({
                 ...prevTabSearchInputs,
                 activeTodosSearchInput:
-                    event.target.value.length < 112 ? event.target.value : event.target.value.slice(0, 112),
+                    event.target.value.length < TASK_MAX_CHARACTER_LENGTH ? event.target.value : event.target.value.slice(0, TASK_MAX_CHARACTER_LENGTH),
             }));
         } else if (tabChanged === "completed") {
             setTabSearchInputs((prevTabSearchInputs) => ({
                 ...prevTabSearchInputs,
                 completedTodosSearchInput:
-                    event.target.value.length < 112 ? event.target.value : event.target.value.slice(0, 112),
+                    event.target.value.length < TASK_MAX_CHARACTER_LENGTH ? event.target.value : event.target.value.slice(0, TASK_MAX_CHARACTER_LENGTH),
             }));
         } else return;
     }
 
     function handleChangeTodoInput(event: React.ChangeEvent<HTMLInputElement>) {
-        inputTodo.length < 112 ? setInputTodo(event.target.value) : setInputTodo(event.target.value.slice(0, 112));
+        inputTodo.length < TASK_MAX_CHARACTER_LENGTH ? setInputTodo(event.target.value) : setInputTodo(event.target.value.slice(0, TASK_MAX_CHARACTER_LENGTH));
     }
 
     // TODO:
@@ -239,6 +241,7 @@ export default function Project({ projects }: PropTypes) {
                         tabSortingStatus={sortingStatus.activeTab}
                         handleSortAlphabetically={handleSortAlphabetically}
                         handleSortByPriority={handleSortByPriority}
+                        taskMaxCharacterLength={TASK_MAX_CHARACTER_LENGTH}
                     />
                     <TodosTab
                         projectId={project.projectId}
@@ -249,6 +252,7 @@ export default function Project({ projects }: PropTypes) {
                         tabSortingStatus={sortingStatus.completedTab}
                         handleSortAlphabetically={handleSortAlphabetically}
                         handleSortByPriority={handleSortByPriority}
+                        taskMaxCharacterLength={TASK_MAX_CHARACTER_LENGTH}
                     />
                 </div>
             </DragDropContext>
