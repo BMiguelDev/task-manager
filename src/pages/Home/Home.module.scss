@@ -11,12 +11,12 @@
     .home_projects_main_title {
         font-size: 2rem;
         margin: 0;
+        color: var(--app-text-color);
     }
     
     .home_projects_container {
         display: flex;
         align-items: center;
-        align-content: center;
         justify-content: space-evenly;
         flex-wrap: wrap;
         gap: .5rem;
@@ -36,7 +36,7 @@
             gap: .5rem;
             padding: .5rem;
             margin: 1rem 0;
-            background-color: var(--project-bg-color);
+            background-color: var(--app-special-color);
             box-shadow: 0 0 .25rem var(--app-general-box-shadow-color);
             border-radius: .25rem;
             opacity: 0;
@@ -76,6 +76,7 @@
                     border-radius: .25rem;
                     border: .01rem solid var(--app-special-support-color);
                     box-shadow: 0 0 .1rem var(--app-general-box-shadow-color);
+                    background-color: var(--app-input-box-color);
 
                     &:focus {
                         box-shadow: 0 0 .25rem var(--app-general-box-shadow-color);
@@ -85,8 +86,10 @@
 
                 .home_single_project_edit_button{
                     background-color: var(--app-special-color);
+                    color: var(--app-text-color);
                     border: .01rem solid var(--app-special-support-color);
                     border-radius: .25rem;
+                    font-weight: bold;
                     padding: .2rem .5rem;
                     width: 25%;
                     cursor: pointer;
@@ -111,7 +114,7 @@
                     font-weight: bold;
                     letter-spacing: .035rem;
                     line-height: 1.75rem;
-                    color: var(--project-title-color);
+                    color: var(--app-text-color);
                     width: 95%;
                     text-align: center;
                     // overflow: hidden;
@@ -128,7 +131,7 @@
                     margin: 0;
                     font-size: .75rem;
                     font-weight: lighter;
-                    color: var(--project-subtitle-color);
+                    color: var(--app-text-support-color);
                 }
             }
 
@@ -149,7 +152,7 @@
                     box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
                     border-radius: .25rem;
                     padding: .75rem;
-                    color: var(--project-button-color);
+                    color: var(--app-text-color);
                     cursor: pointer;
                     transition: all .2s ease-in-out;
 

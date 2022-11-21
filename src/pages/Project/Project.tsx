@@ -211,7 +211,6 @@ export default function Project({ projects }: PropTypes) {
 
     // TODO:
     // Make app responsive
-    // Fix Home page overflow cutting projects out of frame
 
     return (
         <main className={styles.project_container}>

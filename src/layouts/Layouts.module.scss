@@ -4,73 +4,45 @@
     --app-bg-support-color: #5e95cf;
     --app-text-color: #000000;
     --app-text-support-color: rgb(128, 128, 128);
-
-    --navbar-color: #000000;
-    --navbar-hover-color: #000000;
-    --button-bg-color: rgb(128, 128, 128);
-    --button-color: #ffffff;
-    --project-bg-color: rgb(255, 222, 173);
-    --project-title-color: #000000;
-    --project-subtitle-color: rgb(128, 128, 128);
-    --project-button-color: #000000;
-    --task-input-box-shadow-color: #000000;
-    --task-input-box-shadow-focus-color: rgba(0, 0, 0, .25);
-    --task-input-button--hover-bg-color: #388ae2;
-    --todo-item-hover-bg-color: rgb(124, 29, 0);
-    --todo-item-hover-box-shadow-color: #000000;
-    --todo-item-dragging-hover-box-shadow-color: rgb(44, 44, 44);
-    --todo-item-text-color: #001521;
-
-
+    --app-todo-item-text-color: #001521;
+    --app-todo-item-priority-text-color: rgb(255, 222, 173);
+    --app-todo-item-icon-color: #001521;
+    --app-todo-item-priority-icon-border-color: rgb(150, 67, 7);
+    --app-input-box-color: rgb(245, 245, 245);
     --app-primary-color: rgb(71, 185, 205);
     --app-primary-support-color: rgb(38, 96, 107);
     --app-secondary-color: rgb(255, 172, 99);
     --app-secondary-support-color: rgb(150, 67, 7);
     --app-intermediate-color: rgb(255, 207, 119);
     --app-intermediate-support-color: rgb(231, 98, 10);
-    --app-intermediate-support-extra-1-color: rgb(231, 187, 105);
-    --app-intermediate-support-extra-2-color: rgb(233, 117, 34);
     --app-special-color: rgb(255, 222, 173);
     --app-special-support-color: rgb(167, 132, 79);
     --app-general-box-shadow-color: rgba(0, 0, 0, .5);
-
-
+    --app-box-shadow-focus-color: rgba(0, 0, 0, .25);
     --footer-bg-color: rgb(27, 27, 27);
     --footer-color: #ffffff;
 }
 
 .dark_mode {
-    --app-bg-color: #07213e;
-    --app-bg-support-color: #030f1c;
-    --navbar-color: #ffffff;
-    --navbar-hover-color: #000000;
-    --button-bg-color: rgb(128, 128, 128);
-    --button-color: #ffffff;
-    --project-bg-color: rgb(255, 222, 173);
-    --project-title-color: #000000;
-    --project-subtitle-color: rgb(128, 128, 128);
-    --project-button-color: #000000;
-    --task-input-box-shadow-color: #000000;
-    --task-input-box-shadow-focus-color: rgba(0, 0, 0, 0.25);
-    --task-input-button--hover-bg-color: #388ae2;
-    --todo-item-hover-bg-color: rgb(124, 29, 0);
-    --todo-item-hover-box-shadow-color: #000000;
-    --todo-item-dragging-hover-box-shadow-color: rgb(44, 44, 44);
-    --todo-item-text-color: rgb(0, 128, 0);
-
-
-    --app-primary-color: rgb(77, 199, 221);
-    --app-primary-support-color: rgb(54, 146, 162);
-    --app-secondary-color: rgb(255, 106, 0);
-    --app-secondary-support-color: rgb(174, 75, 5);
-    --app-intermediate-color: rgb(255, 165, 0);
-    --app-intermediate-support-color: rgb(255, 85, 0);
-    --app-intermediate-support-extra-1-color: rgb(231, 187, 105);
-    --app-intermediate-support-extra-2-color: rgb(233, 117, 34);
-    --app-special-color: rgb(255, 222, 173);
-    --app-special-support-color: rgb(167, 132, 79);
-
-
+    --app-bg-color: #0b1622;
+    --app-bg-support-color: #010d18;
+    --app-text-color: #eeeeee;
+    --app-text-support-color: rgb(209, 209, 209);
+    --app-todo-item-text-color: #f0f0f0;
+    --app-todo-item-priority-text-color: #ffe19a;
+    --app-todo-item-icon-color: #001521;
+    --app-todo-item-priority-icon-border-color: rgb(115, 86, 44);
+    --app-input-box-color: rgb(216, 216, 216);
+    --app-primary-color: rgb(44, 112, 124);
+    --app-primary-support-color: rgb(59, 190, 213);
+    --app-secondary-color: rgb(157, 65, 0);
+    --app-secondary-support-color: rgb(240, 123, 40);
+    --app-intermediate-color: rgb(211, 156, 53);
+    --app-intermediate-support-color: rgb(230, 111, 0);
+    --app-special-color: rgb(164, 128, 73);
+    --app-special-support-color: rgb(115, 86, 44);
+    --app-general-box-shadow-color: rgba(0, 0, 0, .5);
+    --app-box-shadow-focus-color: rgba(0, 0, 0, .25);
     --footer-bg-color: rgb(27, 27, 27);
     --footer-color: #ffffff;
 }
@@ -86,7 +58,7 @@
     justify-content: space-between;
     background-color: var(--app-bg-color);
     gap: 2rem;
-    transition: all .15s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
 
@@ -100,6 +72,7 @@
     justify-content: space-between;
     padding: .5rem 1.75rem;
     border-bottom: .01rem solid var(--app-primary-support-color);
+    transition: all .2s ease-in-out;
     position: relative;
 
     .navbar_link {
@@ -107,17 +80,31 @@
         top: 100%;
         left: 0;
         color: var(--app-primary-support-color);
+        border: .1rem solid var(--app-bg-support-color);
+        border-radius: .25rem;
         text-decoration: none;
         width: fit-content;
         transition: all .15s ease-in-out;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 1.5rem;
+        margin: 1rem;
+        padding: .5rem;
         gap: 1rem;
 
         &:hover {
-            color: var(--navbar-hover-color);
+
+            @keyframes rockBackAndForth {
+                0% {
+                    translate: -5% 0;
+                }
+                100% {
+                    translate: 0 0;
+                }
+            }
+            animation: rockBackAndForth .3s ease-in-out 0s infinite alternate-reverse;
+            background-color: var(--app-bg-support-color);
+            color: var(--app-todo-item-text-color);
         }
 
         &.navbar_link_hidden {
@@ -139,7 +126,7 @@
         font-size: 2.25rem;
         letter-spacing: .05rem;
         word-spacing: .5rem;
-        color: var(--navbar-color);
+        color: var(--app-text-color);
         z-index: 1;
         text-align: center;
     }
@@ -160,6 +147,7 @@
 
             i {
                 font-size: 1.5rem;
+                color: var(--app-text-color);
             }
         }
     }
