@@ -120,13 +120,11 @@
                     color: var(--app-text-color);
                     width: 95%;
                     text-align: center;
-                    // overflow: hidden;
-                    // text-overflow: ellipsis;
-                    // white-space: nowrap;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
                     -webkit-line-clamp: 2;
                     overflow: hidden;
+                    word-wrap: break-word;
                     transition: all .2s ease-in-out;
                 }
 
