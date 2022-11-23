@@ -110,8 +110,35 @@
 
 }
 
+
+// Media queries for small tablet content (square)
+@media screen and (min-height: 651px) and (min-width: 501px) and (max-width: 700px) {
+
+     // Error page content
+     .errorpage_container {
+
+        img {
+            height: 65%;
+        }
+
+        p {
+            word-spacing: .075rem;
+
+        }
+
+        .error_page_link {
+
+            &:hover {
+                animation: none;
+            }
+        }
+    }
+
+}
+
+
 // Media queries for tablet content (portrait)
-@media screen and (min-height: 651px) and (min-width: 700px) and (max-width: 1000px) {
+@media screen and (min-height: 651px) and (min-width: 701px) and (max-width: 1000px) {
 
 
     // Error page content
