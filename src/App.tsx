@@ -16,7 +16,7 @@ export const ProjectsDispatchContext = createContext<React.Dispatch<Actions>>(()
 
 const App: React.FC = () => {
     // const [todos, setTodos] = useState<Todo[]>([]);  // replaced by useReducer
-    // const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
+    // const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);  // replaced by useReducer
 
     /* Instead of using useState for the todos (todo list), we can use useReducer.
       useReducer allows us to have a state variable, just like useState, but also
@@ -69,20 +69,16 @@ const App: React.FC = () => {
             }
 
             case "addTodo":
-                console.log("IM IN addTodo function");
                 const targetProjectIndex = projects.findIndex(
                     (project) => project.projectId === action.payload.projectId
                 );
-                console.log(targetProjectIndex);
                 let newProjects = [...projects];
-                console.log(newProjects);
                 newProjects[targetProjectIndex].todoTabs.activeTodos.push({
                     id: Date.now(),
                     todo: action.payload.todo,
                     isPriority: false,
                     isActive: true,
                 });
-                console.log(newProjects);
                 return newProjects;
 
             case "removeTodo":

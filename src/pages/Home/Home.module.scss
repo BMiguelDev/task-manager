@@ -14,7 +14,7 @@
         color: var(--app-text-color);
         transition: all .2s ease-in-out;
     }
-    
+
     .home_projects_container {
         display: flex;
         align-items: center;
@@ -54,6 +54,7 @@
                     translate: 0 0;
                 }
             }
+
             animation: projectAppear .4s ease-in-out;
             animation-fill-mode: forwards;
 
@@ -70,7 +71,7 @@
                 flex: 2;
                 gap: .5rem;
                 text-align: center;
-              
+
                 .home_single_project_edit_input {
                     width: 75%;
                     padding: .5rem .75rem;
@@ -86,7 +87,7 @@
                     }
                 }
 
-                .home_single_project_edit_button{
+                .home_single_project_edit_button {
                     background-color: var(--app-special-color);
                     color: var(--app-text-color);
                     border: .01rem solid var(--app-special-support-color);
@@ -159,8 +160,8 @@
                     transition: all .2s ease-in-out;
 
                     i {
-                        font-size: 1.05rem;  
-                        
+                        font-size: 1.05rem;
+
                     }
 
                     &:hover {

@@ -100,10 +100,12 @@
                 0% {
                     translate: -5% 0;
                 }
+
                 100% {
                     translate: 0 0;
                 }
             }
+
             animation: rockBackAndForth .3s ease-in-out 0s infinite alternate-reverse;
             background-color: var(--app-link-border-color);
             color: var(--app-todo-item-text-color);
@@ -243,17 +245,19 @@
     justify-content: space-evenly;
     border-radius: .5rem;
     padding: 2rem;
-    
+
     @keyframes slideIn {
         0% {
             translate: 35% 0;
             opacity: 0;
-        }   
+        }
+
         100% {
             translate: 0 0;
             opacity: 1;
         }
     }
+
     animation: slideIn .2s ease 0s;
 
     .help_popup_title {
@@ -293,18 +297,20 @@
         cursor: pointer;
     }
 
-    &.help_popup_container_hide { 
-        
+    &.help_popup_container_hide {
+
         @keyframes slideOut {
             0% {
                 translate: 0 0;
                 opacity: 1;
-            }   
+            }
+
             100% {
                 translate: 35% 0;
                 opacity: 0;
             }
         }
+
         animation: slideOut .2s ease 0s;
         animation-fill-mode: forwards;
     }

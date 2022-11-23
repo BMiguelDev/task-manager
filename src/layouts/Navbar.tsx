@@ -12,8 +12,6 @@ interface PropTypes {
 export default function Navbar({ isDarkMode, setIsDarkMode, setIsHelpPopupOpen }: PropTypes) {
     const location = useLocation();
 
-    console.log(location);
-
     return (
         <header className={styles.navbar_container}>
             <span className={styles.heading}>Task Manager</span>

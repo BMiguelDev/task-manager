@@ -3,13 +3,8 @@
 
     // Project content
     .project_container {
-        height: 80%; // TODO
-        //background-color: grey;
+        height: 80%;
         width: 95%;
-        // display: flex;
-        // flex-direction: column;
-        // align-items: center;
-        // justify-content: space-evenly;
         padding-top: 1.25rem;
         gap: 1.25rem;
 
@@ -22,20 +17,10 @@
             -webkit-line-clamp: 1;
             overflow: hidden;
             word-break: break-all;
-
-            
-            // font-weight: bold;
-            // margin: 0;
-            // color: var(--app-text-color);
-            // transition: all .2s ease-in-out;
         }
 
         .project_main_content {
-            // display: flex;
             flex-direction: column;
-            // justify-content: space-between;
-            // width: 100%;
-            // height: 80%;
             padding: .25rem .25rem 0 .25rem;
             gap: 1rem;
         }
@@ -44,42 +29,24 @@
 
     // Todo tab content
     .todo_tab {
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: flex-start;
-        // flex: 0 0 48%;
-        // height: fit-content;
-        // max-height: 100%;
         gap: .75rem;
         padding: .5rem;
-        // transition: all .2s ease-in-out;
-        // border-radius: .25rem;
-        // overflow-y: auto;
 
         .tab_top_row {
-            // display: flex;
             justify-content: space-between;
-            // align-items: center;
             gap: .75rem;
             padding: 0 .5rem .5rem .5rem;
-            // transition: all .2s ease-in-out;
 
             h3 {
-                // margin: 0;
-                // text-transform: capitalize;
                 font-size: 1rem;
                 line-height: .95rem;
                 height: 1.8rem;
                 display: flex;
                 align-items: center;
-                // color: var(--app-text-color);
-                // transition: all .2s ease-in-out;
                 width: 30%;
             }
 
             .tab_top_row_utils_container {
-                // display: flex;
-                // align-items: center;
                 justify-content: flex-end;
                 gap: .75rem;
                 width: 65%;
@@ -88,36 +55,21 @@
                     width: 55%;
 
                     input {
-                        // border-radius: .25rem;
                         padding: .25rem .35rem;
                         font-size: .75rem;
                         width: 100%;
-                        // box-shadow: 0 0 .225rem var(--app-general-box-shadow-color);
-                        // font-family: 'Roboto', sans-serif;
-                        // background-color: var(--app-input-box-color);
-                        // transition: background-color .2s ease-in-out, border .2s ease-in-out;
-
-                        // &:focus {
-                        //     box-shadow: 0 0 .4rem var(--app-general-box-shadow-color);
-                        // }
                     }
                 }
 
                 .tab_top_row_sort_buttons {
-                    // display: flex;
-                    // align-items: center;
-                    // justify-content: flex-end;
                     gap: .75rem;
                     width: 35%;
 
                     .sort_button_container {
                         padding: 0rem;
-                        // transition: all .2s ease-in-out;
 
                         i {
                             font-size: 1rem;
-                            // cursor: pointer;
-                            // transition: all .2s ease-in-out;
                         }
                     }
                 }
@@ -125,185 +77,18 @@
         }
     }
 
-    // .active_tab {
-    //     background-color: var(--app-primary-color);
-
-    //     .tab_top_row {
-    //         border-bottom: .01rem solid var(--app-primary-support-color);
-
-    //         .tab_top_row_utils_container {
-
-    //             .tab_top_row_search_input_container {
-
-    //                 input {
-    //                     border: .09rem solid var(--app-primary-support-color);
-
-    //                     &:focus {
-    //                         outline: .025rem solid var(--app-primary-support-color);
-    //                     }
-    //                 }
-    //             }
-
-    //             .tab_top_row_sort_buttons {
-
-    //                 .sort_button_container {
-    //                     border: .1rem solid var(--app-primary-support-color);
-
-    //                     i {
-    //                         color: var(--app-primary-support-color);
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     &.dragging_over {
-    //         @keyframes changeToPrimarySupportColor {
-    //             0% {
-    //                 background-color: var(--app-primary-color);
-    //             }
-
-    //             100% {
-    //                 background-color: var(--app-primary-support-color);
-    //             }
-    //         }
-    //         animation: changeToPrimarySupportColor 1s ease-in-out 0s infinite alternate;
-    //     }
-    // }
-
-    // .completed_tab {
-    //     background-color: var(--app-secondary-color);
-
-    //     .tab_top_row {
-    //         border-bottom: .01rem solid var(--app-secondary-support-color);
-
-    //         .tab_top_row_utils_container {
-
-    //             .tab_top_row_search_input_container {
-
-    //                 input {
-    //                     border: .09rem solid var(--app-secondary-support-color);
-
-    //                     &:focus {
-    //                         outline: .025rem solid var(--app-secondary-support-color);
-    //                     }
-    //                 }
-    //             }
-
-    //             .tab_top_row_sort_buttons {
-
-    //                 .sort_button_container {
-    //                     border: .1rem solid var(--app-secondary-support-color);
-
-    //                     i {
-    //                         color: var(--app-secondary-support-color);
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     &.dragging_over {
-    //         @keyframes changeToSecondarySupportColor {
-    //             0% {
-    //                 background-color: var(--app-secondary-color);
-    //             }
-
-    //             100% {
-    //                 background-color: var(--app-secondary-support-color);
-    //             }
-    //         }
-    //         animation: changeToSecondarySupportColor 1s ease-in-out 0s infinite alternate;
-    //     }
-    // }
-
 
     // TodoList content
     .todolist_container {
-        // list-style: none;
-        // width: 100%;
-        // height: 100%;
-        // display: flex;
-        // flex-direction: column;
-        // align-items: center;
-        // align-self: flex-start;
         gap: .5rem;
-        // margin: 0;
-        // padding: 0;
-        //padding: .25rem;
-        //overflow-y: auto;
 
         .todo_item {
             width: 92.5%;
-            // display: flex;
-            // align-items: center;
-            // justify-content: space-between;
-            // background-color: var(--app-intermediate-color);
-            // box-shadow: 0 0 .15rem var(--app-general-box-shadow-color);
-            // border-radius: .5rem;
             padding: .85rem .7rem;
-            // cursor: grab;
-            // transition: all .2s ease-in-out;
-
-            // &.todo_item_priority {
-            //     border: .01rem solid var(--app-secondary-color);
-            //     background-color: var(--app-intermediate-support-color);
-            //     box-shadow: 0 0 .35rem .1rem var(--app-intermediate-support-color);
-            //     scale: 1.01;
-
-            //     &:hover {
-            //         box-shadow: 0 0 .8rem var(--app-secondary-support-color);
-            //     }
-
-            //     .todo_item_text {
-            //         color: var(--app-todo-item-priority-text-color);
-            //     }
-
-            //     .todo_item_btn_container {
-
-            //         .todo_item_icon_container {
-            //             border: .01rem solid var(--app-todo-item-priority-icon-border-color);
-            //         }
-            //     }
-
-            //     .todo_item_edit_form {
-
-            //         .todo_item_edit_input {
-            //             border: .01rem solid var(--app-intermediate-support-color);
-
-            //             &:focus {
-            //                 outline: .025rem solid var(--app-intermediate-support-color);
-            //             }
-            //         }
-
-            //         button {
-            //             background-color: var(--app-intermediate-support-color);
-            //             border: .01rem solid var(--app-secondary-support-color);
-            //             box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-            //         }
-            //     }
-            // }
-
-            // &:hover {
-            //     scale: 1.05;
-            //     box-shadow: 0 0 .35rem var(--app-general-box-shadow-color);
-            // }
-
-            // &.dragging {
-            //     box-shadow: 0 0 2rem .35rem var(--app-general-box-shadow-color);
-            // }
-
-            // &.drop_animating {
-            //     opacity: .5;
-            // }
 
             .todo_item_edit_form {
                 margin: .25rem 0;
-                //width: 65%;
                 width: 57.5%;
-                // display: flex;
-                // align-items: center;
-                // justify-content: flex-start;
                 gap: .5rem;
 
                 .todo_item_edit_input {
@@ -311,40 +96,21 @@
                     width: 100%;
                     padding: .375rem .5rem;
                     font-size: .7rem;
-                    // border-radius: .25rem;
-                    // border: .01rem solid var(--app-intermediate-color);
-                    // box-shadow: 0 0 .15rem var(--app-general-box-shadow-color);
-                    // background-color: var(--app-input-box-color);
-                    // transition: background-color .2s ease-in-out, border .2s ease-in-out;
-
-                    // &:focus {
-                    //     box-shadow: 0 0 .3rem var(--app-general-box-shadow-color);
-                    //     outline: .025rem solid var(--app-intermediate-color);
-                    // }
                 }
 
                 button {
                     flex: 1;
                     width: 100%;
-                    // background-color: var(--app-intermediate-color);
-                    // border: .01rem solid var(--app-special-support-color);
-                    // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-                    // border-radius: .25rem;
                     padding: .15rem .5rem;
                     font-size: .75rem;
-                    // cursor: pointer;
-                    // transition: all .2s ease-in-out;
                 }
             }
 
             .todo_item_text {
-                // color: var(--app-todo-item-text-color);
-                // word-wrap: break-word;
                 width: 57.5%;
                 font-size: .8rem;
                 letter-spacing: .01rem;
                 line-height: 1.1rem;
-                // transition: all .2s ease-in-out;
                 margin: 0;
 
                 &::first-letter {
@@ -353,24 +119,13 @@
             }
 
             .todo_item_btn_container {
-                // display: flex;
                 gap: .55rem;
                 width: 40%;
-                // align-items: center;
-                // justify-content: flex-end;
 
                 .todo_item_icon_container {
-                    // border: .01rem solid var(--app-special-support-color);
-                    // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-                    // border-radius: .25rem;
                     padding: .15rem;
                     width: 1.15rem;
                     height: 1.15rem;
-                    // display: flex;
-                    // align-items: center;
-                    // justify-content: center;
-                    // cursor: pointer;
-                    // transition: all .2s ease-in-out;
 
                     &:hover {
                         translate: 0 0;
@@ -378,7 +133,6 @@
 
                     i {
                         font-size: .7rem;
-                        // color: var(--app-todo-item-icon-color);
                     }
 
                     &:nth-of-type(1),
@@ -391,7 +145,6 @@
             }
         }
     }
-
 }
 
 
@@ -399,1273 +152,559 @@
 @media screen and (max-height: 650px) and (min-width: 501px) and (max-width: 1000px) {
 
     // Project content
-.project_container {
-    height: 80%;
-    width: 95%;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: space-evenly;
-    padding-top: 1.25rem;
-    gap: .5rem;
-
-    .project_main_title {
-        
-        // font-weight: bold;
-        // margin: 0;
-        // color: var(--app-text-color);
-        // transition: all .2s ease-in-out;
-
-        font-size: 1.4rem;
-        max-width: 72.5%;
-        text-align: center;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-        overflow: hidden;
-        word-break: break-all;
-    }
-
-    .project_main_content {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        height: 75%;
-        padding: .25rem 1% 0 1%;
+    .project_container {
+        height: 80%;
+        width: 95%;
+        padding-top: 1.25rem;
         gap: .5rem;
-    }
-}
 
-
-// Todo tab content
-.todo_tab {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
-    // flex: 0 0 48%;
-    // height: fit-content;
-    // max-height: 100%;
-    gap: .75rem;
-    padding: .25rem;
-    // transition: all .2s ease-in-out;
-    // border-radius: .25rem;
-    // overflow-y: auto;
-
-    .tab_top_row {
-        // display: flex;
-        // justify-content: space-between;
-        //align-items: center;
-        padding: 0 .5rem .5rem .5rem;
-        gap: .5rem;
-        // transition: all .2s ease-in-out;
-
-        h3 {
-            // margin: 0;
-            // text-transform: capitalize;
-            font-size: .9rem;
-            line-height: .95rem;
-            height: 1.8rem;
-            display: flex;
-            align-items: center;
-            // color: var(--app-text-color);
-            // transition: all .2s ease-in-out;
-            width: 30%;
+        .project_main_title {
+            font-size: 1.4rem;
+            max-width: 72.5%;
+            text-align: center;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+            word-break: break-all;
         }
 
-        .tab_top_row_utils_container {
-            // display: flex;
-            // align-items: center;
-            justify-content: flex-end;
-            gap: .75rem;
-            width: 65%;
+        .project_main_content {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 75%;
+            padding: .25rem 1% 0 1%;
+            gap: .5rem;
+        }
+    }
 
-            .tab_top_row_search_input_container {
-                width: 55%;
 
-                input {
-                        // border-radius: .25rem;
+    // Todo tab content
+    .todo_tab {
+        gap: .75rem;
+        padding: .25rem;
+
+        .tab_top_row {
+            padding: 0 .5rem .5rem .5rem;
+            gap: .5rem;
+
+            h3 {
+                font-size: .9rem;
+                line-height: .95rem;
+                height: 1.8rem;
+                display: flex;
+                align-items: center;
+                width: 30%;
+            }
+
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .75rem;
+                width: 65%;
+
+                .tab_top_row_search_input_container {
+                    width: 55%;
+
+                    input {
                         padding: .2rem .3rem;
                         font-size: .7rem;
                         width: 100%;
-                        // box-shadow: 0 0 .225rem var(--app-general-box-shadow-color);
-                        // font-family: 'Roboto', sans-serif;
-                        // background-color: var(--app-input-box-color);
-                        // transition: background-color .2s ease-in-out, border .2s ease-in-out;
-                
-                        // &:focus {
-                        //     box-shadow: 0 0 .4rem var(--app-general-box-shadow-color);
-                        // }
                     }
-            }
+                }
 
-            .tab_top_row_sort_buttons {
-                // display: flex;
-                // align-items: center;
-                // justify-content: flex-end;
-                gap: .75rem;
-                width: 35%;
+                .tab_top_row_sort_buttons {
+                    gap: .75rem;
+                    width: 35%;
 
-                .sort_button_container {
-                    padding: 0rem;
-                    // transition: all .2s ease-in-out;
+                    .sort_button_container {
+                        padding: 0rem;
 
-                    i {
-                        font-size: .95rem;
-                        // cursor: pointer;
-                        // transition: all .2s ease-in-out;
+                        i {
+                            font-size: .95rem;
+                        }
                     }
                 }
             }
         }
     }
-}
-
-// .active_tab {
-//     background-color: var(--app-primary-color);
-
-//     .tab_top_row {
-//         border-bottom: .01rem solid var(--app-primary-support-color);
-
-//         .tab_top_row_utils_container {
-
-//             .tab_top_row_search_input_container {
-
-//                 input {
-//                     border: .09rem solid var(--app-primary-support-color);
-
-//                     &:focus {
-//                         outline: .025rem solid var(--app-primary-support-color);
-//                     }
-//                 }
-//             }
-
-//             .tab_top_row_sort_buttons {
-
-//                 .sort_button_container {
-//                     border: .1rem solid var(--app-primary-support-color);
-
-//                     i {
-//                         color: var(--app-primary-support-color);
-//                     }
-//                 }
-//             }
-//         }
-//     }
-
-//     &.dragging_over {
-//         @keyframes changeToPrimarySupportColor {
-//             0% {
-//                 background-color: var(--app-primary-color);
-//             }
-
-//             100% {
-//                 background-color: var(--app-primary-support-color);
-//             }
-//         }
-//         animation: changeToPrimarySupportColor 1s ease-in-out 0s infinite alternate;
-//     }
-// }
-
-// .completed_tab {
-//     background-color: var(--app-secondary-color);
-
-//     .tab_top_row {
-//         border-bottom: .01rem solid var(--app-secondary-support-color);
-
-//         .tab_top_row_utils_container {
-
-//             .tab_top_row_search_input_container {
-
-//                 input {
-//                     border: .09rem solid var(--app-secondary-support-color);
-
-//                     &:focus {
-//                         outline: .025rem solid var(--app-secondary-support-color);
-//                     }
-//                 }
-//             }
-
-//             .tab_top_row_sort_buttons {
-
-//                 .sort_button_container {
-//                     border: .1rem solid var(--app-secondary-support-color);
-
-//                     i {
-//                         color: var(--app-secondary-support-color);
-//                     }
-//                 }
-//             }
-//         }
-//     }
-
-//     &.dragging_over {
-//         @keyframes changeToSecondarySupportColor {
-//             0% {
-//                 background-color: var(--app-secondary-color);
-//             }
-
-//             100% {
-//                 background-color: var(--app-secondary-support-color);
-//             }
-//         }
-//         animation: changeToSecondarySupportColor 1s ease-in-out 0s infinite alternate;
-//     }
-// }
 
 
-// TodoList content
-.todolist_container {
-    // list-style: none;
-    // width: 100%;
-    // height: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // align-self: flex-start;
-    gap: .5rem;
-    // margin: 0;
-    // padding: 0;
-    //padding: .25rem;
-    //overflow-y: auto;
+    // TodoList content
+    .todolist_container {
+        gap: .5rem;
 
-    .todo_item {
-        width: 95%;
-        // display: flex;
-        // align-items: center;
-        // justify-content: space-between;
-        // background-color: var(--app-intermediate-color);
-        // box-shadow: 0 0 .15rem var(--app-general-box-shadow-color);
-        // border-radius: .5rem;
-        padding: .5rem .55rem;
-        // cursor: grab;
-        // transition: all .2s ease-in-out;
+        .todo_item {
+            width: 95%;
+            padding: .5rem .55rem;
 
-        // &.todo_item_priority {
-        //     border: .01rem solid var(--app-secondary-color);
-        //     background-color: var(--app-intermediate-support-color);
-        //     box-shadow: 0 0 .35rem .1rem var(--app-intermediate-support-color);
-        //     scale: 1.01;
-
-        //     &:hover {
-        //         box-shadow: 0 0 .8rem var(--app-secondary-support-color);
-        //     }
-
-        //     .todo_item_text {
-        //         color: var(--app-todo-item-priority-text-color);
-        //     }
-
-        //     .todo_item_btn_container {
-    
-        //         .todo_item_icon_container {
-        //             border: .01rem solid var(--app-todo-item-priority-icon-border-color);
-        //         }
-        //     }
-
-        //     .todo_item_edit_form {
-
-        //         .todo_item_edit_input {
-        //             border: .01rem solid var(--app-intermediate-support-color);
-    
-        //             &:focus {
-        //                 outline: .025rem solid var(--app-intermediate-support-color);
-        //             }
-        //         }
-    
-        //         button {
-        //             background-color: var(--app-intermediate-support-color);
-        //             border: .01rem solid var(--app-secondary-support-color);
-        //             box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-        //         }
-        //     }
-        // }
-
-        &:hover {
-            scale: 1.035;
-            // box-shadow: 0 0 .35rem var(--app-general-box-shadow-color);
-        }
-
-        // &.dragging {
-        //     box-shadow: 0 0 2rem .35rem var(--app-general-box-shadow-color);
-        // }
-
-        // &.drop_animating {
-        //     opacity: .5;
-        // }
-
-        .todo_item_edit_form {
-            margin: .3rem 0;
-            width: 57.5%;
-            // display: flex;
-            // align-items: center;
-            // justify-content: flex-start;
-            gap: .5rem;
-
-            .todo_item_edit_input {
-                flex: 6;
-                width: 100%;
-                padding: .3rem .5rem;
-                font-size: .675rem;
-                // border-radius: .25rem;
-                // border: .01rem solid var(--app-intermediate-color);
-                // box-shadow: 0 0 .15rem var(--app-general-box-shadow-color);
-                // background-color: var(--app-input-box-color);
-                // transition: background-color .2s ease-in-out, border .2s ease-in-out;
-
-                // &:focus {
-                //     box-shadow: 0 0 .3rem var(--app-general-box-shadow-color);
-                //     outline: .025rem solid var(--app-intermediate-color);
-                // }
+            &:hover {
+                scale: 1.035;
             }
 
-            button {
-                flex: 1;
-                width: 100%;
-                // background-color: var(--app-intermediate-color);
-                // border: .01rem solid var(--app-special-support-color);
-                // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-                // border-radius: .25rem;
-                padding: .15rem .5rem;
-                font-size: .725rem;
-                // cursor: pointer;
-                // transition: all .2s ease-in-out;
-            }
-        }
+            .todo_item_edit_form {
+                margin: .3rem 0;
+                width: 57.5%;
+                gap: .5rem;
 
-        .todo_item_text {
-            // color: var(--app-todo-item-text-color);
-            // word-wrap: break-word;
-            width: 57.5%;
-            font-size: .775rem;
-            letter-spacing: .01rem;
-            line-height: .95rem;
-            // transition: all .2s ease-in-out;
-            margin: 0;
-
-            &::first-letter {
-                text-transform: uppercase;
-            }
-        }
-
-        .todo_item_btn_container {
-            // display: flex;
-            gap: .55rem;
-            width: 40%;
-            // align-items: center;
-            // justify-content: flex-end;
-
-            .todo_item_icon_container {
-                // border: .01rem solid var(--app-special-support-color);
-                // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-                // border-radius: .25rem;
-                padding: .15rem;
-                width: 1.1rem;
-                height: 1.1rem;
-                // display: flex;
-                // align-items: center;
-                // justify-content: center;
-                // cursor: pointer;
-                // transition: all .2s ease-in-out;
-
-                &:hover {
-                    translate: 0 0;
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                    padding: .3rem .5rem;
+                    font-size: .675rem;
                 }
 
-                i {
-                    font-size: .665rem;
-                    // color: var(--app-todo-item-icon-color);
+                button {
+                    flex: 1;
+                    width: 100%;
+                    padding: .15rem .5rem;
+                    font-size: .725rem;
                 }
+            }
 
-                &:nth-of-type(1),
-                &:nth-of-type(2) {
+            .todo_item_text {
+                width: 57.5%;
+                font-size: .775rem;
+                letter-spacing: .01rem;
+                line-height: .95rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .55rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .15rem;
+                    width: 1.1rem;
+                    height: 1.1rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
                     i {
-                        font-size: .765rem;
+                        font-size: .665rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .765rem;
+                        }
                     }
                 }
             }
         }
     }
-}
-
-
-
-    
 }
 
 
 // Media queries for small tablet content (square)
 @media screen and (min-height: 651px) and (min-width: 501px) and (max-width: 700px) {
 
+    // Project content
+    .project_container {
+        gap: 1.15rem;
 
-
-       // Project content
-.project_container {
-    // height: 75%;
-    // width: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: space-evenly;
-    // padding-top: 1rem;
-     gap: 1.15rem;
-
-    .project_main_title {
-        padding-top: 0rem;
-        font-size: 1.4rem;
-        max-width: 75%;
-        word-break: break-all;
-    }
-
-    .project_main_content {
-        // display: flex;
-        // justify-content: space-between;
-        // width: 100%;
-         height: 77.5%;
-        padding: .5rem 1.5% 0 1.5%;
-        gap: .25rem;
-    }
-}
-
-
-// Todo tab content
-.todo_tab {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
-    // flex: 0 0 48%;
-    // height: fit-content;
-    // max-height: 100%;
-    gap: .65rem;
-    padding: .25rem;
-    // transition: all .2s ease-in-out;
-    // border-radius: .25rem;
-    // overflow-y: auto;
-
-    .tab_top_row {
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
-        padding: 0 .45rem .4rem .45rem;
-        // transition: all .2s ease-in-out;
-
-        h3 {
-            // margin: 0;
-            // text-transform: capitalize;
-            font-size: .85rem;
-            line-height: 1rem;
-            // display: flex;
-            // align-items: center;
-            // color: var(--app-text-color);
-            // transition: all .2s ease-in-out;
-            width: 30%;
+        .project_main_title {
+            padding-top: 0rem;
+            font-size: 1.4rem;
+            max-width: 75%;
+            word-break: break-all;
         }
 
-        .tab_top_row_utils_container {
-            // display: flex;
-            // align-items: center;
-            justify-content: flex-end;
+        .project_main_content {
+            height: 77.5%;
+            padding: .5rem 1.5% 0 1.5%;
             gap: .25rem;
-            width: 65%;
-
-            .tab_top_row_search_input_container {
-                width: 45%;
-
-                input {
-                    width: 100%;
-                    // border-radius: .25rem;
-                    padding: .2rem .25rem;
-                    font-size: .775rem;
-                    // box-shadow: 0 0 .225rem var(--app-general-box-shadow-color);
-                    // font-family: 'Roboto', sans-serif;
-                    // background-color: var(--app-input-box-color);
-                    // transition: background-color .2s ease-in-out, border .2s ease-in-out;
-            
-                    // &:focus {
-                    //     box-shadow: 0 0 .4rem var(--app-general-box-shadow-color);
-                    // }
-                }
-            }
-
-            .tab_top_row_sort_buttons {
-                // display: flex;
-                // align-items: center;
-                // justify-content: flex-end;
-                gap: .5rem;
-                width: 45%;
-
-                .sort_button_container {
-                    padding: 0rem;
-                    // transition: all .2s ease-in-out;
-
-                    i {
-                        font-size: .95rem;
-                        // cursor: pointer;
-                        // transition: all .2s ease-in-out;
-                    }
-                }
-            }
         }
     }
-}
 
 
-// TodoList content
-.todolist_container {
-    // list-style: none;
-    // width: 100%;
-    // height: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // align-self: flex-start;
-    gap: .625rem;
-    // margin: 0;
-    // padding: 0;
-    //padding: .25rem;
-    //overflow-y: auto;
+    // Todo tab content
+    .todo_tab {
+        gap: .65rem;
+        padding: .25rem;
 
-    .todo_item {
-        width: 93.5%;
-        // display: flex;
-        // align-items: center;
-        // justify-content: space-between;
-        // background-color: var(--app-intermediate-color);
-        // box-shadow: 0 0 .15rem var(--app-general-box-shadow-color);
-        // border-radius: .5rem;
-        padding: .8rem .35rem .8rem .45rem;
-        // cursor: grab;
-        // transition: all .2s ease-in-out;
+        .tab_top_row {
+            padding: 0 .45rem .4rem .45rem;
 
-        // &.todo_item_priority {
-        //     border: .01rem solid var(--app-secondary-color);
-        //     background-color: var(--app-intermediate-support-color);
-        //     box-shadow: 0 0 .35rem .1rem var(--app-intermediate-support-color);
-        //     scale: 1.01;
-
-        //     &:hover {
-        //         box-shadow: 0 0 .8rem var(--app-secondary-support-color);
-        //     }
-
-        //     .todo_item_text {
-        //         color: var(--app-todo-item-priority-text-color);
-        //     }
-
-        //     .todo_item_btn_container {
-    
-        //         .todo_item_icon_container {
-        //             border: .01rem solid var(--app-todo-item-priority-icon-border-color);
-        //         }
-        //     }
-
-        //     .todo_item_edit_form {
-
-        //         .todo_item_edit_input {
-        //             border: .01rem solid var(--app-intermediate-support-color);
-    
-        //             &:focus {
-        //                 outline: .025rem solid var(--app-intermediate-support-color);
-        //             }
-        //         }
-    
-        //         button {
-        //             background-color: var(--app-intermediate-support-color);
-        //             border: .01rem solid var(--app-secondary-support-color);
-        //             box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-        //         }
-        //     }
-        // }
-
-        // &:hover {
-        //     scale: 1.05;
-        //     box-shadow: 0 0 .35rem var(--app-general-box-shadow-color);
-        // }
-
-        // &.dragging {
-        //     box-shadow: 0 0 2rem .35rem var(--app-general-box-shadow-color);
-        // }
-
-        // &.drop_animating {
-        //     opacity: .5;
-        // }
-
-        .todo_item_edit_form {
-            margin: .35rem 0;
-            width: 55%;
-            // display: flex;
-            // align-items: center;
-            // justify-content: flex-start;
-            gap: .5rem;
-
-            .todo_item_edit_input {
-                flex: 6;
-                width: 100%;
+            h3 {
                 font-size: .85rem;
-                letter-spacing: .015rem;
-                // padding: .375rem .5rem;
-                // border-radius: .25rem;
-                // border: .01rem solid var(--app-intermediate-color);
-                // box-shadow: 0 0 .15rem var(--app-general-box-shadow-color);
-                // background-color: var(--app-input-box-color);
-                // transition: background-color .2s ease-in-out, border .2s ease-in-out;
-
-                // &:focus {
-                //     box-shadow: 0 0 .3rem var(--app-general-box-shadow-color);
-                //     outline: .025rem solid var(--app-intermediate-color);
-                // }
+                line-height: 1rem;
+                width: 30%;
             }
 
-            button {
-                flex: 1;
-                width: 100%;
-                // background-color: var(--app-intermediate-color);
-                // border: .01rem solid var(--app-special-support-color);
-                // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-                // border-radius: .25rem;
-                // padding: .2rem .5rem;
-                // cursor: pointer;
-                // transition: all .2s ease-in-out;
-            }
-        }
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .25rem;
+                width: 65%;
 
-        .todo_item_text {
-            // color: var(--app-todo-item-text-color);
-            // word-wrap: break-word;
-            width: 55.5%;
-             font-size: .85rem;
-            // letter-spacing: .015rem;
-            line-height: 1.1rem;
-            // transition: all .2s ease-in-out;
-            margin: 0;
+                .tab_top_row_search_input_container {
+                    width: 45%;
 
-            &::first-letter {
-                text-transform: uppercase;
-            }
-        }
-
-        .todo_item_btn_container {
-            // display: flex;
-            gap: .35rem;
-            width: 40%;
-            // align-items: center;
-            // justify-content: flex-end;
-
-            .todo_item_icon_container {
-                // border: .01rem solid var(--app-special-support-color);
-                // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-                // border-radius: .25rem;
-                padding: .25rem;
-                width: 1rem;
-                height: 1rem;
-                // display: flex;
-                // align-items: center;
-                // justify-content: center;
-                // cursor: pointer;
-                // transition: all .2s ease-in-out;
-
-                &:hover {
-                    translate: 0 0;
+                    input {
+                        width: 100%;
+                        padding: .2rem .25rem;
+                        font-size: .775rem;
+                    }
                 }
 
-                i {
-                    font-size: .6rem;
-                    //color: var(--app-todo-item-icon-color);
-                }
+                .tab_top_row_sort_buttons {
+                    gap: .5rem;
+                    width: 45%;
 
-                &:nth-of-type(1),
-                &:nth-of-type(2) {
-                    i {
-                        font-size: .7rem;
+                    .sort_button_container {
+                        padding: 0rem;
+
+                        i {
+                            font-size: .95rem;
+                        }
                     }
                 }
             }
         }
     }
-}
 
 
+    // TodoList content
+    .todolist_container {
+        gap: .625rem;
 
-    
+        .todo_item {
+            width: 93.5%;
+            padding: .8rem .35rem .8rem .45rem;
+
+            .todo_item_edit_form {
+                margin: .35rem 0;
+                width: 55%;
+                gap: .5rem;
+
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                    font-size: .85rem;
+                    letter-spacing: .015rem;
+                }
+
+                button {
+                    flex: 1;
+                    width: 100%;
+                }
+            }
+
+            .todo_item_text {
+                width: 55.5%;
+                font-size: .85rem;
+                line-height: 1.1rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .35rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .25rem;
+                    width: 1rem;
+                    height: 1rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
+                    i {
+                        font-size: .6rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .7rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
 // Media queries for tablet content (portrait)
 @media screen and (min-height: 651px) and (min-width: 701px) and (max-width: 1000px) {
 
+    // Project content
+    .project_container {
+        gap: 1.25rem;
 
-   // Project content
-.project_container {
-    // height: 75%;
-    // width: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: space-evenly;
-    // padding-top: 1rem;
-     gap: 1.25rem;
+        .project_main_title {
+            padding-top: 1.35rem;
+            font-size: 1.7rem;
+            max-width: 62.5%;
+            word-break: break-all;
+        }
 
-    .project_main_title {
-        padding-top: 1.35rem;
-        font-size: 1.7rem;
-        max-width: 62.5%;
-        word-break: break-all;
+        .project_main_content {
+            height: 77.5%;
+            padding: .5rem 3% 0 3%;
+            gap: 1rem;
+        }
     }
 
-    .project_main_content {
-        // display: flex;
-        // justify-content: space-between;
-        // width: 100%;
-         height: 77.5%;
-        padding: .5rem 3% 0 3%;
+
+    // Todo tab content
+    .todo_tab {
         gap: 1rem;
-    }
-}
+        padding: .5rem;
 
+        .tab_top_row {
+            padding: 0 .65rem .65rem .65rem;
 
-// Todo tab content
-.todo_tab {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
-    // flex: 0 0 48%;
-    // height: fit-content;
-    // max-height: 100%;
-    gap: 1rem;
-    padding: .5rem;
-    // transition: all .2s ease-in-out;
-    // border-radius: .25rem;
-    // overflow-y: auto;
-
-    .tab_top_row {
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
-        padding: 0 .65rem .65rem .65rem;
-        // transition: all .2s ease-in-out;
-
-        h3 {
-            // margin: 0;
-            // text-transform: capitalize;
-            font-size: 1.15rem;
-            line-height: 1.25rem;
-            display: flex;
-            align-items: center;
-            // color: var(--app-text-color);
-            // transition: all .2s ease-in-out;
-            width: 30%;
-        }
-
-        .tab_top_row_utils_container {
-            // display: flex;
-            // align-items: center;
-            justify-content: flex-end;
-            gap: .75rem;
-            width: 65%;
-
-            .tab_top_row_search_input_container {
-                width: 55%;
-
-                input {
-                    width: 100%;
-                    // border-radius: .25rem;
-                    padding: .3rem .5rem;
-                    font-size: .9rem;
-                    // box-shadow: 0 0 .225rem var(--app-general-box-shadow-color);
-                    // font-family: 'Roboto', sans-serif;
-                    // background-color: var(--app-input-box-color);
-                    // transition: background-color .2s ease-in-out, border .2s ease-in-out;
-            
-                    // &:focus {
-                    //     box-shadow: 0 0 .4rem var(--app-general-box-shadow-color);
-                    // }
-                }
+            h3 {
+                font-size: 1.15rem;
+                line-height: 1.25rem;
+                display: flex;
+                align-items: center;
+                width: 30%;
             }
 
-            .tab_top_row_sort_buttons {
-                // display: flex;
-                // align-items: center;
-                // justify-content: flex-end;
-                gap: 1rem;
-                width: 35%;
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .75rem;
+                width: 65%;
 
-                .sort_button_container {
-                    padding: .05rem;
-                    // transition: all .2s ease-in-out;
+                .tab_top_row_search_input_container {
+                    width: 55%;
 
-                    i {
-                        font-size: 1.1rem;
-                        // cursor: pointer;
-                        // transition: all .2s ease-in-out;
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-// TodoList content
-.todolist_container {
-    // list-style: none;
-    // width: 100%;
-    // height: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // align-self: flex-start;
-    gap: .75rem;
-    // margin: 0;
-    // padding: 0;
-    //padding: .25rem;
-    //overflow-y: auto;
-
-    .todo_item {
-        width: 92.5%;
-        // display: flex;
-        // align-items: center;
-        // justify-content: space-between;
-        // background-color: var(--app-intermediate-color);
-        // box-shadow: 0 0 .15rem var(--app-general-box-shadow-color);
-        // border-radius: .5rem;
-        padding: .9rem .75rem;
-        // cursor: grab;
-        // transition: all .2s ease-in-out;
-
-        // &.todo_item_priority {
-        //     border: .01rem solid var(--app-secondary-color);
-        //     background-color: var(--app-intermediate-support-color);
-        //     box-shadow: 0 0 .35rem .1rem var(--app-intermediate-support-color);
-        //     scale: 1.01;
-
-        //     &:hover {
-        //         box-shadow: 0 0 .8rem var(--app-secondary-support-color);
-        //     }
-
-        //     .todo_item_text {
-        //         color: var(--app-todo-item-priority-text-color);
-        //     }
-
-        //     .todo_item_btn_container {
-    
-        //         .todo_item_icon_container {
-        //             border: .01rem solid var(--app-todo-item-priority-icon-border-color);
-        //         }
-        //     }
-
-        //     .todo_item_edit_form {
-
-        //         .todo_item_edit_input {
-        //             border: .01rem solid var(--app-intermediate-support-color);
-    
-        //             &:focus {
-        //                 outline: .025rem solid var(--app-intermediate-support-color);
-        //             }
-        //         }
-    
-        //         button {
-        //             background-color: var(--app-intermediate-support-color);
-        //             border: .01rem solid var(--app-secondary-support-color);
-        //             box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-        //         }
-        //     }
-        // }
-
-        // &:hover {
-        //     scale: 1.05;
-        //     box-shadow: 0 0 .35rem var(--app-general-box-shadow-color);
-        // }
-
-        // &.dragging {
-        //     box-shadow: 0 0 2rem .35rem var(--app-general-box-shadow-color);
-        // }
-
-        // &.drop_animating {
-        //     opacity: .5;
-        // }
-
-        .todo_item_edit_form {
-            margin: .4rem 0;
-            width: 57.5%;
-            // display: flex;
-            // align-items: center;
-            // justify-content: flex-start;
-            gap: .5rem;
-
-            .todo_item_edit_input {
-                flex: 6;
-                width: 100%;
-                // padding: .375rem .5rem;
-                // border-radius: .25rem;
-                // border: .01rem solid var(--app-intermediate-color);
-                // box-shadow: 0 0 .15rem var(--app-general-box-shadow-color);
-                // background-color: var(--app-input-box-color);
-                // transition: background-color .2s ease-in-out, border .2s ease-in-out;
-
-                // &:focus {
-                //     box-shadow: 0 0 .3rem var(--app-general-box-shadow-color);
-                //     outline: .025rem solid var(--app-intermediate-color);
-                // }
-            }
-
-            button {
-                flex: 1;
-                width: 100%;
-                // background-color: var(--app-intermediate-color);
-                // border: .01rem solid var(--app-special-support-color);
-                // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-                // border-radius: .25rem;
-                // padding: .2rem .5rem;
-                // cursor: pointer;
-                // transition: all .2s ease-in-out;
-            }
-        }
-
-        .todo_item_text {
-            // color: var(--app-todo-item-text-color);
-            // word-wrap: break-word;
-            width: 57.5%;
-            // font-size: 1.05rem;
-            // letter-spacing: .015rem;
-            line-height: 1.1rem;
-            // transition: all .2s ease-in-out;
-            margin: 0;
-
-            &::first-letter {
-                text-transform: uppercase;
-            }
-        }
-
-        .todo_item_btn_container {
-            // display: flex;
-            gap: .75rem;
-            width: 40%;
-            // align-items: center;
-            // justify-content: flex-end;
-
-            .todo_item_icon_container {
-                // border: .01rem solid var(--app-special-support-color);
-                // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-                // border-radius: .25rem;
-                padding: .35rem;
-                width: 1.2rem;
-                height: 1.2rem;
-                // display: flex;
-                // align-items: center;
-                // justify-content: center;
-                // cursor: pointer;
-                // transition: all .2s ease-in-out;
-
-                &:hover {
-                    translate: 0 0;
-                }
-
-                i {
-                    font-size: .8rem;
-                    //color: var(--app-todo-item-icon-color);
-                }
-
-                &:nth-of-type(1),
-                &:nth-of-type(2) {
-                    i {
+                    input {
+                        width: 100%;
+                        padding: .3rem .5rem;
                         font-size: .9rem;
                     }
                 }
+
+                .tab_top_row_sort_buttons {
+                    gap: 1rem;
+                    width: 35%;
+
+                    .sort_button_container {
+                        padding: .05rem;
+
+                        i {
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
             }
         }
     }
-}
 
 
-    
+    // TodoList content
+    .todolist_container {
+        gap: .75rem;
+
+        .todo_item {
+            width: 92.5%;
+            padding: .9rem .75rem;
+
+            .todo_item_edit_form {
+                margin: .4rem 0;
+                width: 57.5%;
+                gap: .5rem;
+
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                }
+
+                button {
+                    flex: 1;
+                    width: 100%;
+                }
+            }
+
+            .todo_item_text {
+                width: 57.5%;
+                line-height: 1.1rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .75rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .35rem;
+                    width: 1.2rem;
+                    height: 1.2rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
+                    i {
+                        font-size: .8rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .9rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
 // Media queries for very wide screens content
 @media screen and (max-height: 750px) and (min-width: 1001px) {
 
-
-
-       // Project content
-.project_container {
-     height: 70%;
-    // width: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: space-evenly;
-    padding-top: 0rem;
-    gap: .5rem;
-
-    .project_main_title {
+    // Project content
+    .project_container {
+        height: 70%;
         padding-top: 0rem;
-        font-size: 1.75rem;
-        line-height: 1.75rem;
-        max-width: 60%;
-        word-break: break-all;
-    }
+        gap: .5rem;
 
-    .project_main_content {
-        // display: flex;
-        // justify-content: space-between;
-        // width: 100%;
-         height: 70%;
-        padding: .25rem 3% 0 3%;
-        gap: .25rem;
-    }
-}
-
-
-// Todo tab content
-.todo_tab {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
-    // flex: 0 0 48%;
-    // height: fit-content;
-    // max-height: 100%;
-    gap: .45rem;
-    padding: .375rem;
-    // transition: all .2s ease-in-out;
-    // border-radius: .25rem;
-    // overflow-y: auto;
-
-    .tab_top_row {
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
-        padding: 0 .65rem .45rem .65rem;
-        // transition: all .2s ease-in-out;
-
-        h3 {
-            // margin: 0;
-            // text-transform: capitalize;
-            font-size: 1.075rem;
-            line-height: 1.15rem;
-            display: flex;
-            align-items: center;
-            // color: var(--app-text-color);
-            // transition: all .2s ease-in-out;
-            width: 30%;
+        .project_main_title {
+            padding-top: 0rem;
+            font-size: 1.75rem;
+            line-height: 1.75rem;
+            max-width: 60%;
+            word-break: break-all;
         }
 
-        .tab_top_row_utils_container {
-            // display: flex;
-            // align-items: center;
-            justify-content: flex-end;
-            gap: .75rem;
-            width: 65%;
-
-            .tab_top_row_search_input_container {
-                width: 55%;
-
-                input {
-                    width: 100%;
-                    // border-radius: .25rem;
-                    padding: .3rem .5rem;
-                    font-size: .9rem;
-                    // box-shadow: 0 0 .225rem var(--app-general-box-shadow-color);
-                    // font-family: 'Roboto', sans-serif;
-                    // background-color: var(--app-input-box-color);
-                    // transition: background-color .2s ease-in-out, border .2s ease-in-out;
-            
-                    // &:focus {
-                    //     box-shadow: 0 0 .4rem var(--app-general-box-shadow-color);
-                    // }
-                }
-            }
-
-            .tab_top_row_sort_buttons {
-                // display: flex;
-                // align-items: center;
-                // justify-content: flex-end;
-                gap: 1rem;
-                width: 35%;
-
-                .sort_button_container {
-                    padding: .05rem;
-                    // transition: all .2s ease-in-out;
-
-                    i {
-                        font-size: 1.1rem;
-                        // cursor: pointer;
-                        // transition: all .2s ease-in-out;
-                    }
-                }
-            }
+        .project_main_content {
+            height: 70%;
+            padding: .25rem 3% 0 3%;
+            gap: .25rem;
         }
     }
-}
 
 
-// TodoList content
-.todolist_container {
-    // list-style: none;
-    // width: 100%;
-    // height: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // align-self: flex-start;
-    gap: .5rem;
-    // margin: 0;
-    // padding: 0;
-    //padding: .25rem;
-    //overflow-y: auto;
+    // Todo tab content
+    .todo_tab {
+        gap: .45rem;
+        padding: .375rem;
 
-    .todo_item {
-        width: 92.5%;
-        // display: flex;
-        // align-items: center;
-        // justify-content: space-between;
-        // background-color: var(--app-intermediate-color);
-        // box-shadow: 0 0 .15rem var(--app-general-box-shadow-color);
-        // border-radius: .5rem;
-        padding: .8rem .75rem;
-        // cursor: grab;
-        // transition: all .2s ease-in-out;
+        .tab_top_row {
+            padding: 0 .65rem .45rem .65rem;
 
-        // &.todo_item_priority {
-        //     border: .01rem solid var(--app-secondary-color);
-        //     background-color: var(--app-intermediate-support-color);
-        //     box-shadow: 0 0 .35rem .1rem var(--app-intermediate-support-color);
-        //     scale: 1.01;
-
-        //     &:hover {
-        //         box-shadow: 0 0 .8rem var(--app-secondary-support-color);
-        //     }
-
-        //     .todo_item_text {
-        //         color: var(--app-todo-item-priority-text-color);
-        //     }
-
-        //     .todo_item_btn_container {
-    
-        //         .todo_item_icon_container {
-        //             border: .01rem solid var(--app-todo-item-priority-icon-border-color);
-        //         }
-        //     }
-
-        //     .todo_item_edit_form {
-
-        //         .todo_item_edit_input {
-        //             border: .01rem solid var(--app-intermediate-support-color);
-    
-        //             &:focus {
-        //                 outline: .025rem solid var(--app-intermediate-support-color);
-        //             }
-        //         }
-    
-        //         button {
-        //             background-color: var(--app-intermediate-support-color);
-        //             border: .01rem solid var(--app-secondary-support-color);
-        //             box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-        //         }
-        //     }
-        // }
-
-        // &:hover {
-        //     scale: 1.05;
-        //     box-shadow: 0 0 .35rem var(--app-general-box-shadow-color);
-        // }
-
-        // &.dragging {
-        //     box-shadow: 0 0 2rem .35rem var(--app-general-box-shadow-color);
-        // }
-
-        // &.drop_animating {
-        //     opacity: .5;
-        // }
-
-        .todo_item_edit_form {
-            margin: .2rem 0;
-            width: 57.5%;
-            // display: flex;
-            // align-items: center;
-            // justify-content: flex-start;
-            gap: .5rem;
-
-            .todo_item_edit_input {
-                flex: 6;
-                width: 100%;
-                // padding: .375rem .5rem;
-                // border-radius: .25rem;
-                // border: .01rem solid var(--app-intermediate-color);
-                // box-shadow: 0 0 .15rem var(--app-general-box-shadow-color);
-                // background-color: var(--app-input-box-color);
-                // transition: background-color .2s ease-in-out, border .2s ease-in-out;
-
-                // &:focus {
-                //     box-shadow: 0 0 .3rem var(--app-general-box-shadow-color);
-                //     outline: .025rem solid var(--app-intermediate-color);
-                // }
+            h3 {
+                font-size: 1.075rem;
+                line-height: 1.15rem;
+                display: flex;
+                align-items: center;
+                width: 30%;
             }
 
-            button {
-                flex: 1;
-                width: 100%;
-                // background-color: var(--app-intermediate-color);
-                // border: .01rem solid var(--app-special-support-color);
-                // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-                // border-radius: .25rem;
-                // padding: .2rem .5rem;
-                // cursor: pointer;
-                // transition: all .2s ease-in-out;
-            }
-        }
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .75rem;
+                width: 65%;
 
-        .todo_item_text {
-            // color: var(--app-todo-item-text-color);
-            // word-wrap: break-word;
-            width: 57.5%;
-            // font-size: 1.05rem;
-            // letter-spacing: .015rem;
-            line-height: 1.1rem;
-            // transition: all .2s ease-in-out;
-            margin: 0;
+                .tab_top_row_search_input_container {
+                    width: 55%;
 
-            &::first-letter {
-                text-transform: uppercase;
-            }
-        }
-
-        .todo_item_btn_container {
-            // display: flex;
-            gap: .75rem;
-            width: 40%;
-            // align-items: center;
-            // justify-content: flex-end;
-
-            .todo_item_icon_container {
-                // border: .01rem solid var(--app-special-support-color);
-                // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
-                // border-radius: .25rem;
-                padding: .35rem;
-                width: 1.2rem;
-                height: 1.2rem;
-                // display: flex;
-                // align-items: center;
-                // justify-content: center;
-                // cursor: pointer;
-                // transition: all .2s ease-in-out;
-
-                &:hover {
-                    translate: 0 0;
-                }
-
-                i {
-                    font-size: .8rem;
-                    //color: var(--app-todo-item-icon-color);
-                }
-
-                &:nth-of-type(1),
-                &:nth-of-type(2) {
-                    i {
+                    input {
+                        width: 100%;
+                        padding: .3rem .5rem;
                         font-size: .9rem;
                     }
                 }
+
+                .tab_top_row_sort_buttons {
+                    gap: 1rem;
+                    width: 35%;
+
+                    .sort_button_container {
+                        padding: .05rem;
+
+                        i {
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
             }
         }
     }
-}
 
 
+    // TodoList content
+    .todolist_container {
+        gap: .5rem;
 
+        .todo_item {
+            width: 92.5%;
+            padding: .8rem .75rem;
+
+            .todo_item_edit_form {
+                margin: .2rem 0;
+                width: 57.5%;
+                gap: .5rem;
+
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                }
+
+                button {
+                    flex: 1;
+                    width: 100%;
+                }
+            }
+
+            .todo_item_text {
+                width: 57.5%;
+                line-height: 1.1rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .75rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .35rem;
+                    width: 1.2rem;
+                    height: 1.2rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
+                    i {
+                        font-size: .8rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .9rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

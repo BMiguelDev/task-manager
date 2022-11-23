@@ -69,18 +69,18 @@
             .tab_top_row_search_input_container {
 
                 input {
-                        border-radius: .25rem;
-                        padding: .3rem .5rem;
-                        font-size: 1rem;
-                        box-shadow: 0 0 .225rem var(--app-general-box-shadow-color);
-                        font-family: 'Roboto', sans-serif;
-                        background-color: var(--app-input-box-color);
-                        transition: background-color .2s ease-in-out, border .2s ease-in-out;
-                
-                        &:focus {
-                            box-shadow: 0 0 .4rem var(--app-general-box-shadow-color);
-                        }
+                    border-radius: .25rem;
+                    padding: .3rem .5rem;
+                    font-size: 1rem;
+                    box-shadow: 0 0 .225rem var(--app-general-box-shadow-color);
+                    font-family: 'Roboto', sans-serif;
+                    background-color: var(--app-input-box-color);
+                    transition: background-color .2s ease-in-out, border .2s ease-in-out;
+
+                    &:focus {
+                        box-shadow: 0 0 .4rem var(--app-general-box-shadow-color);
                     }
+                }
             }
 
             .tab_top_row_sort_buttons {
@@ -146,6 +146,7 @@
                 background-color: var(--app-primary-support-color);
             }
         }
+
         animation: changeToPrimarySupportColor 1s ease-in-out 0s infinite alternate;
     }
 }
@@ -192,6 +193,7 @@
                 background-color: var(--app-secondary-support-color);
             }
         }
+
         animation: changeToSecondarySupportColor 1s ease-in-out 0s infinite alternate;
     }
 }
@@ -239,7 +241,7 @@
             }
 
             .todo_item_btn_container {
-    
+
                 .todo_item_icon_container {
                     border: .01rem solid var(--app-todo-item-priority-icon-border-color);
                 }
@@ -249,12 +251,12 @@
 
                 .todo_item_edit_input {
                     border: .01rem solid var(--app-intermediate-support-color);
-    
+
                     &:focus {
                         outline: .025rem solid var(--app-intermediate-support-color);
                     }
                 }
-    
+
                 button {
                     background-color: var(--app-intermediate-support-color);
                     border: .01rem solid var(--app-secondary-support-color);
