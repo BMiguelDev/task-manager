@@ -13,10 +13,7 @@ export default function PageLayout() {
     const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
         const localStorageItem = localStorage.getItem(LOCAL_STORAGE_IS_DARK_MODE_KEY);
         if (localStorageItem) return JSON.parse(localStorageItem);
-        else {
-            // Set isDarkMode based on browser's settings
-            return window.matchMedia("(prefers-color-scheme: dark)").matches ? true : false;
-        }
+        else return false;
     });
 
     const [isHelpPopupOpen, setIsHelpPopupOpen] = useState<boolean>(() => {

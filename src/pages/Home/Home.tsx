@@ -1,62 +1,57 @@
-import React, { /* useEffect,*/ useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import { ProjectType } from "../../models/model";
 import { ProjectsDispatchContext } from "../../App";
+import ProjectItem from "./ProjectItem";
+import InputField from "../../components/InputField/InputField";
+
 import styles from "./Home.module.scss";
+
+const LOCAL_STORAGE_PROJECT_TITLE_INPUT_KEY = "TaskManagerApp.projectTitleInput";
 
 interface PropTypes {
     projects: ProjectType[];
 }
 
 export default function Home({ projects }: PropTypes) {
+    const [projectTitleInput, setProjectTitleInput] = useState(() => {
+        const localStorageItem = localStorage.getItem(LOCAL_STORAGE_PROJECT_TITLE_INPUT_KEY);
+        if (localStorageItem) return JSON.parse(localStorageItem);
+        else return "";
+    });
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_PROJECT_TITLE_INPUT_KEY, JSON.stringify(projectTitleInput));
+    }, [projectTitleInput]);
+
+    const projectTitleInputRef = useRef<HTMLInputElement>(null);
+
     const projectsDispatch = useContext(ProjectsDispatchContext);
 
-    // TODO: remove projectTitle as having a value by default and pass the desired one
-    function handleAddProject(projectTitle: string) {
-        console.log("here");
-        projectsDispatch({ type: "addProject", payload: { projectTitle: projectTitle } });
+    function handleChangeProjectTitleInput(event: React.ChangeEvent<HTMLInputElement>) {
+        projectTitleInput.length < 56
+            ? setProjectTitleInput(event.target.value)
+            : setProjectTitleInput(event.target.value.slice(0, 56));
     }
 
-    function handleEditProject(projectId: number,  newProjectTitle: string) {
-        projectsDispatch({ type: "editProject", payload: { projectId: projectId, newProjectTitle: newProjectTitle } });
-    }
-
-    function handleDeleteProject(projectId: number) {
-        projectsDispatch({ type: "removeProject", payload: { projectId: projectId } });
+    function handleAddProject(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        if (projectTitleInput) {
+            projectsDispatch({ type: "addProject", payload: { projectTitle: projectTitleInput } });
+            projectTitleInputRef.current?.blur();
+            setProjectTitleInput("");
+        }
     }
 
     return (
-        <div className={styles.home_container}>
-            <button className={styles.home_add_button} onClick={() => handleAddProject("heya")}>Create project</button>
+        <main className={styles.home_container}>
+            <h2 className={styles.home_projects_main_title}>My Projects</h2>
+            <InputField inputText={projectTitleInput} inputRef={projectTitleInputRef} handleSubmitForm={handleAddProject} handleChangeInputText={handleChangeProjectTitleInput}/>
             <div className={styles.home_projects_container}>
                 {projects.map((projectItem) => (
-                    <div key={projectItem.projectId} className={styles.home_single_project_container}>
-                        <Link
-                            className={styles.home_single_project_link}
-                            to={`/task-manager/project/${projectItem.projectId}`}
-                            state={{ project: projectItem }}
-                        >
-                            {projectItem.projectTitle}
-                        </Link>
-                        <p className={styles.project_date_text}>{projectItem.projectCreationDate}</p>
-                        <div className={styles.project_buttons_container}>
-                            <div
-                                className={styles.project_button_container}
-                                onClick={() => handleEditProject(projectItem.projectId, "hey2")}
-                            >
-                                <i className="fa-solid fa-pen"></i>
-                            </div>
-                            <div
-                                className={styles.project_button_container}
-                                onClick={() => handleDeleteProject(projectItem.projectId)}
-                            >
-                                <i className="fa-solid fa-trash"></i>
-                            </div>
-                        </div>
-                    </div>
+                    <ProjectItem key={projectItem.projectId} projectItem={projectItem} />
                 ))}
             </div>
-        </div>
+        </main>
     );
 }
