@@ -1,5 +1,5 @@
 // Media query for mobile content (portrait)
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (min-height: 501px) {
 
     // Input field content
     .input_form {
@@ -16,6 +16,33 @@
             border-radius: .25rem;
             font-size: .9rem;
             padding-top: .1rem;
+
+            &:hover {
+                background-color: var(--app-primary-color);
+            }
+        }
+    }
+}
+
+
+// Media query for very small screens (mobile)
+@media screen and (max-width: 500px) and (max-height: 500px) {
+
+     // Input field content
+     .input_form {
+        height: 6%;
+        width: 75%;
+
+        .input_field {
+            padding: .35rem 22% .35rem .45rem;
+            font-size: .75rem;
+            letter-spacing: .015rem;
+        }
+
+        .input_button {
+            border-radius: .25rem;
+            font-size: .7rem;
+            padding-top: 0rem;
 
             &:hover {
                 background-color: var(--app-primary-color);

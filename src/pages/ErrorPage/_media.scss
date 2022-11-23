@@ -1,5 +1,5 @@
 // Media query for mobile content (portrait)
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (min-height: 501px) {
 
     // Error page content
     .errorpage_container {
@@ -21,6 +21,38 @@
             padding: .4rem 1rem;
             font-size: 1.3rem;
             word-spacing: .1rem;
+
+            &:hover {
+                animation: none;
+            }
+        }
+    }
+}
+
+
+// Media query for very small screens (mobile)
+@media screen and (max-width: 500px) and (max-height: 500px) {
+
+     // Error page content
+     .errorpage_container {
+        height: 75%;
+
+        img {
+            height: 65%;
+        }
+
+        p {
+            font-size: .9rem;
+            word-spacing: .15rem;
+            letter-spacing: .025rem;
+            text-transform: uppercase;
+        }
+
+        .error_page_link {
+            margin: 1rem 0rem;
+            padding: .3rem .75rem;
+            font-size: 1.1rem;
+            word-spacing: .075rem;
 
             &:hover {
                 animation: none;

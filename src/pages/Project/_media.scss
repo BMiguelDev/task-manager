@@ -1,5 +1,5 @@
 // Media query for mobile content (portrait)
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (min-height: 501px) {
 
     // Project content
     .project_container {
@@ -139,6 +139,161 @@
                     &:nth-of-type(2) {
                         i {
                             font-size: .8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Media query for very small screens (mobile)
+@media screen and (max-width: 500px) and (max-height: 500px) {
+
+    // Project content
+    .project_container {
+        height: 77.5%;
+        width: 97.5%;
+        padding-top: .5rem;
+        gap: .25rem;
+
+        .project_main_title {
+            font-size: 1.05rem;
+            max-width: 90%;
+            text-align: center;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+            word-break: break-all;
+        }
+
+        .project_main_content {
+            flex-direction: column;
+            padding: .15rem .15rem 0 .15rem;
+            gap: .25rem;
+        }
+    }
+
+
+    // Todo tab content
+    .todo_tab {
+        gap: .25rem;
+        padding: .2rem;
+
+        .tab_top_row {
+            justify-content: space-between;
+            gap: .25rem;
+            padding: 0 .25rem .15rem .25rem;
+
+            h3 {
+                font-size: .725rem;
+                line-height: .75rem;
+                height: 1.8rem;
+                display: flex;
+                align-items: center;
+                width: 30%;
+            }
+
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .25rem;
+                width: 65%;
+
+                .tab_top_row_search_input_container {
+                    width: 55%;
+
+                    input {
+                        padding: .15rem .25rem;
+                        font-size: .575rem;
+                        width: 100%;
+                    }
+                }
+
+                .tab_top_row_sort_buttons {
+                    gap: .55rem;
+                    width: 35%;
+
+                    .sort_button_container {
+                        padding: 0rem;
+                        width: 1.15rem;
+                        height: 1.15rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        i {
+                            font-size: .8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    // TodoList content
+    .todolist_container {
+        gap: .25rem;
+
+        .todo_item {
+            width: 92.5%;
+            padding: .55rem .6rem;
+
+            .todo_item_edit_form {
+                margin: .25rem 0;
+                width: 57.5%;
+                gap: .5rem;
+
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                    padding: .2rem .5rem;
+                    font-size: .65rem;
+                }
+
+                button {
+                    flex: 1;
+                    width: 100%;
+                    padding: .15rem .5rem;
+                    font-size: .75rem;
+                }
+            }
+
+            .todo_item_text {
+                width: 57.5%;
+                font-size: .685rem;
+                letter-spacing: .01rem;
+                line-height: .775rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .55rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .125rem;
+                    width: 1.05rem;
+                    height: 1.05rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
+                    i {
+                        font-size: .65rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .75rem;
                         }
                     }
                 }
