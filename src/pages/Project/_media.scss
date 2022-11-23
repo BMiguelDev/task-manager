@@ -1,6 +1,865 @@
 // Media query for mobile content (portrait)
-@media (max-width: 500px) {
-    .input {
-        width: 80%;
+@media screen and (max-width: 500px) and (min-height: 501px) {
+
+    // Project content
+    .project_container {
+        height: 80%;
+        width: 95%;
+        padding-top: 1.25rem;
+        gap: 1.25rem;
+
+        .project_main_title {
+            font-size: 1.35rem;
+            max-width: 90%;
+            text-align: center;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+            word-break: break-all;
+        }
+
+        .project_main_content {
+            flex-direction: column;
+            padding: .25rem .25rem 0 .25rem;
+            gap: 1rem;
+        }
+    }
+
+
+    // Todo tab content
+    .todo_tab {
+        gap: .75rem;
+        padding: .5rem;
+
+        .tab_top_row {
+            justify-content: space-between;
+            gap: .75rem;
+            padding: 0 .5rem .5rem .5rem;
+
+            h3 {
+                font-size: 1rem;
+                line-height: .95rem;
+                height: 1.8rem;
+                display: flex;
+                align-items: center;
+                width: 30%;
+            }
+
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .75rem;
+                width: 65%;
+
+                .tab_top_row_search_input_container {
+                    width: 55%;
+
+                    input {
+                        padding: .25rem .35rem;
+                        font-size: .75rem;
+                        width: 100%;
+                    }
+                }
+
+                .tab_top_row_sort_buttons {
+                    gap: .75rem;
+                    width: 35%;
+
+                    .sort_button_container {
+                        padding: 0rem;
+
+                        i {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    // TodoList content
+    .todolist_container {
+        gap: .5rem;
+
+        .todo_item {
+            width: 92.5%;
+            padding: .85rem .7rem;
+
+            .todo_item_edit_form {
+                margin: .25rem 0;
+                width: 57.5%;
+                gap: .5rem;
+
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                    padding: .375rem .5rem;
+                    font-size: .7rem;
+                }
+
+                button {
+                    flex: 1;
+                    width: 100%;
+                    padding: .15rem .5rem;
+                    font-size: .75rem;
+                }
+            }
+
+            .todo_item_text {
+                width: 57.5%;
+                font-size: .8rem;
+                letter-spacing: .01rem;
+                line-height: 1.1rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .55rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .15rem;
+                    width: 1.15rem;
+                    height: 1.15rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
+                    i {
+                        font-size: .7rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Media query for very small screens (mobile)
+@media screen and (max-width: 500px) and (max-height: 500px) {
+
+    // Project content
+    .project_container {
+        height: 77.5%;
+        width: 97.5%;
+        padding-top: .5rem;
+        gap: .25rem;
+
+        .project_main_title {
+            font-size: 1.05rem;
+            max-width: 90%;
+            text-align: center;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+            word-break: break-all;
+        }
+
+        .project_main_content {
+            flex-direction: column;
+            padding: .15rem .15rem 0 .15rem;
+            gap: .25rem;
+        }
+    }
+
+
+    // Todo tab content
+    .todo_tab {
+        gap: .25rem;
+        padding: .2rem;
+
+        .tab_top_row {
+            justify-content: space-between;
+            gap: .25rem;
+            padding: 0 .25rem .15rem .25rem;
+
+            h3 {
+                font-size: .725rem;
+                line-height: .75rem;
+                height: 1.8rem;
+                display: flex;
+                align-items: center;
+                width: 30%;
+            }
+
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .25rem;
+                width: 65%;
+
+                .tab_top_row_search_input_container {
+                    width: 55%;
+
+                    input {
+                        padding: .15rem .25rem;
+                        font-size: .575rem;
+                        width: 100%;
+                    }
+                }
+
+                .tab_top_row_sort_buttons {
+                    gap: .55rem;
+                    width: 35%;
+
+                    .sort_button_container {
+                        padding: 0rem;
+                        width: 1.15rem;
+                        height: 1.15rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        i {
+                            font-size: .8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    // TodoList content
+    .todolist_container {
+        gap: .25rem;
+
+        .todo_item {
+            width: 92.5%;
+            padding: .55rem .6rem;
+
+            .todo_item_edit_form {
+                margin: .25rem 0;
+                width: 57.5%;
+                gap: .5rem;
+
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                    padding: .2rem .5rem;
+                    font-size: .65rem;
+                }
+
+                button {
+                    flex: 1;
+                    width: 100%;
+                    padding: .15rem .5rem;
+                    font-size: .75rem;
+                }
+            }
+
+            .todo_item_text {
+                width: 57.5%;
+                font-size: .685rem;
+                letter-spacing: .01rem;
+                line-height: .775rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .55rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .125rem;
+                    width: 1.05rem;
+                    height: 1.05rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
+                    i {
+                        font-size: .65rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .75rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Media queries for mobile content (landscape)
+@media screen and (max-height: 650px) and (min-width: 501px) and (max-width: 1000px) {
+
+    // Project content
+    .project_container {
+        height: 80%;
+        width: 95%;
+        padding-top: 1.25rem;
+        gap: .5rem;
+
+        .project_main_title {
+            font-size: 1.4rem;
+            max-width: 72.5%;
+            text-align: center;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+            word-break: break-all;
+        }
+
+        .project_main_content {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 75%;
+            padding: .25rem 1% 0 1%;
+            gap: .5rem;
+        }
+    }
+
+
+    // Todo tab content
+    .todo_tab {
+        gap: .75rem;
+        padding: .25rem;
+
+        .tab_top_row {
+            padding: 0 .5rem .5rem .5rem;
+            gap: .5rem;
+
+            h3 {
+                font-size: .9rem;
+                line-height: .95rem;
+                height: 1.8rem;
+                display: flex;
+                align-items: center;
+                width: 30%;
+            }
+
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .75rem;
+                width: 65%;
+
+                .tab_top_row_search_input_container {
+                    width: 55%;
+
+                    input {
+                        padding: .2rem .3rem;
+                        font-size: .7rem;
+                        width: 100%;
+                    }
+                }
+
+                .tab_top_row_sort_buttons {
+                    gap: .75rem;
+                    width: 35%;
+
+                    .sort_button_container {
+                        padding: 0rem;
+
+                        i {
+                            font-size: .95rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    // TodoList content
+    .todolist_container {
+        gap: .5rem;
+
+        .todo_item {
+            width: 95%;
+            padding: .5rem .55rem;
+
+            &:hover {
+                scale: 1.035;
+            }
+
+            .todo_item_edit_form {
+                margin: .3rem 0;
+                width: 57.5%;
+                gap: .5rem;
+
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                    padding: .3rem .5rem;
+                    font-size: .675rem;
+                }
+
+                button {
+                    flex: 1;
+                    width: 100%;
+                    padding: .15rem .5rem;
+                    font-size: .725rem;
+                }
+            }
+
+            .todo_item_text {
+                width: 57.5%;
+                font-size: .775rem;
+                letter-spacing: .01rem;
+                line-height: .95rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .55rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .15rem;
+                    width: 1.1rem;
+                    height: 1.1rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
+                    i {
+                        font-size: .665rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .765rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Media queries for small tablet content (square)
+@media screen and (min-height: 651px) and (min-width: 501px) and (max-width: 700px) {
+
+    // Project content
+    .project_container {
+        gap: 1.15rem;
+
+        .project_main_title {
+            padding-top: 0rem;
+            font-size: 1.4rem;
+            max-width: 75%;
+            word-break: break-all;
+        }
+
+        .project_main_content {
+            height: 77.5%;
+            padding: .5rem 1.5% 0 1.5%;
+            gap: .25rem;
+        }
+    }
+
+
+    // Todo tab content
+    .todo_tab {
+        gap: .65rem;
+        padding: .25rem;
+
+        .tab_top_row {
+            padding: 0 .45rem .4rem .45rem;
+
+            h3 {
+                font-size: .85rem;
+                line-height: 1rem;
+                width: 30%;
+            }
+
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .25rem;
+                width: 65%;
+
+                .tab_top_row_search_input_container {
+                    width: 45%;
+
+                    input {
+                        width: 100%;
+                        padding: .2rem .25rem;
+                        font-size: .775rem;
+                    }
+                }
+
+                .tab_top_row_sort_buttons {
+                    gap: .5rem;
+                    width: 45%;
+
+                    .sort_button_container {
+                        padding: 0rem;
+
+                        i {
+                            font-size: .95rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    // TodoList content
+    .todolist_container {
+        gap: .625rem;
+
+        .todo_item {
+            width: 93.5%;
+            padding: .8rem .35rem .8rem .45rem;
+
+            .todo_item_edit_form {
+                margin: .35rem 0;
+                width: 55%;
+                gap: .5rem;
+
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                    font-size: .85rem;
+                    letter-spacing: .015rem;
+                }
+
+                button {
+                    flex: 1;
+                    width: 100%;
+                }
+            }
+
+            .todo_item_text {
+                width: 55.5%;
+                font-size: .85rem;
+                line-height: 1.1rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .35rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .25rem;
+                    width: 1rem;
+                    height: 1rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
+                    i {
+                        font-size: .6rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .7rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Media queries for tablet content (portrait)
+@media screen and (min-height: 651px) and (min-width: 701px) and (max-width: 1000px) {
+
+    // Project content
+    .project_container {
+        gap: 1.25rem;
+
+        .project_main_title {
+            padding-top: 1.35rem;
+            font-size: 1.7rem;
+            max-width: 62.5%;
+            word-break: break-all;
+        }
+
+        .project_main_content {
+            height: 77.5%;
+            padding: .5rem 3% 0 3%;
+            gap: 1rem;
+        }
+    }
+
+
+    // Todo tab content
+    .todo_tab {
+        gap: 1rem;
+        padding: .5rem;
+
+        .tab_top_row {
+            padding: 0 .65rem .65rem .65rem;
+
+            h3 {
+                font-size: 1.15rem;
+                line-height: 1.25rem;
+                display: flex;
+                align-items: center;
+                width: 30%;
+            }
+
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .75rem;
+                width: 65%;
+
+                .tab_top_row_search_input_container {
+                    width: 55%;
+
+                    input {
+                        width: 100%;
+                        padding: .3rem .5rem;
+                        font-size: .9rem;
+                    }
+                }
+
+                .tab_top_row_sort_buttons {
+                    gap: 1rem;
+                    width: 35%;
+
+                    .sort_button_container {
+                        padding: .05rem;
+
+                        i {
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    // TodoList content
+    .todolist_container {
+        gap: .75rem;
+
+        .todo_item {
+            width: 92.5%;
+            padding: .9rem .75rem;
+
+            .todo_item_edit_form {
+                margin: .4rem 0;
+                width: 57.5%;
+                gap: .5rem;
+
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                }
+
+                button {
+                    flex: 1;
+                    width: 100%;
+                }
+            }
+
+            .todo_item_text {
+                width: 57.5%;
+                line-height: 1.1rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .75rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .35rem;
+                    width: 1.2rem;
+                    height: 1.2rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
+                    i {
+                        font-size: .8rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .9rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Media queries for very wide screens content
+@media screen and (max-height: 750px) and (min-width: 1001px) {
+
+    // Project content
+    .project_container {
+        height: 70%;
+        padding-top: 0rem;
+        gap: .5rem;
+
+        .project_main_title {
+            padding-top: 0rem;
+            font-size: 1.75rem;
+            line-height: 1.75rem;
+            max-width: 60%;
+            word-break: break-all;
+        }
+
+        .project_main_content {
+            height: 70%;
+            padding: .25rem 3% 0 3%;
+            gap: .25rem;
+        }
+    }
+
+
+    // Todo tab content
+    .todo_tab {
+        gap: .45rem;
+        padding: .375rem;
+
+        .tab_top_row {
+            padding: 0 .65rem .45rem .65rem;
+
+            h3 {
+                font-size: 1.075rem;
+                line-height: 1.15rem;
+                display: flex;
+                align-items: center;
+                width: 30%;
+            }
+
+            .tab_top_row_utils_container {
+                justify-content: flex-end;
+                gap: .75rem;
+                width: 65%;
+
+                .tab_top_row_search_input_container {
+                    width: 55%;
+
+                    input {
+                        width: 100%;
+                        padding: .3rem .5rem;
+                        font-size: .9rem;
+                    }
+                }
+
+                .tab_top_row_sort_buttons {
+                    gap: 1rem;
+                    width: 35%;
+
+                    .sort_button_container {
+                        padding: .05rem;
+
+                        i {
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    // TodoList content
+    .todolist_container {
+        gap: .5rem;
+
+        .todo_item {
+            width: 92.5%;
+            padding: .8rem .75rem;
+
+            .todo_item_edit_form {
+                margin: .2rem 0;
+                width: 57.5%;
+                gap: .5rem;
+
+                .todo_item_edit_input {
+                    flex: 6;
+                    width: 100%;
+                }
+
+                button {
+                    flex: 1;
+                    width: 100%;
+                }
+            }
+
+            .todo_item_text {
+                width: 57.5%;
+                line-height: 1.1rem;
+                margin: 0;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .todo_item_btn_container {
+                gap: .75rem;
+                width: 40%;
+
+                .todo_item_icon_container {
+                    padding: .35rem;
+                    width: 1.2rem;
+                    height: 1.2rem;
+
+                    &:hover {
+                        translate: 0 0;
+                    }
+
+                    i {
+                        font-size: .8rem;
+                    }
+
+                    &:nth-of-type(1),
+                    &:nth-of-type(2) {
+                        i {
+                            font-size: .9rem;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

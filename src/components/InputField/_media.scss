@@ -1,0 +1,140 @@
+// Media query for mobile content (portrait)
+@media screen and (max-width: 500px) and (min-height: 501px) {
+
+    // Input field content
+    .input_form {
+        height: 6.5%;
+        width: 75%;
+
+        .input_field {
+            padding: .35rem 22% .35rem .6rem;
+            font-size: .9rem;
+            letter-spacing: .02rem;
+        }
+
+        .input_button {
+            border-radius: .25rem;
+            font-size: .9rem;
+            padding-top: .1rem;
+
+            &:hover {
+                background-color: var(--app-primary-color);
+            }
+        }
+    }
+}
+
+
+// Media query for very small screens (mobile)
+@media screen and (max-width: 500px) and (max-height: 500px) {
+
+     // Input field content
+     .input_form {
+        height: 6%;
+        width: 75%;
+
+        .input_field {
+            padding: .35rem 22% .35rem .45rem;
+            font-size: .75rem;
+            letter-spacing: .015rem;
+        }
+
+        .input_button {
+            border-radius: .25rem;
+            font-size: .7rem;
+            padding-top: 0rem;
+
+            &:hover {
+                background-color: var(--app-primary-color);
+            }
+        }
+    }
+}
+
+
+// Media queries for mobile content (landscape)
+@media screen and (max-height: 650px) and (min-width: 501px) and (max-width: 1000px) {
+
+    // Input field content
+    .input_form {
+        height: 7%;
+        width: 55%;
+
+        .input_field {
+            padding: .1rem 22% .1rem .6rem;
+            font-size: .8rem;
+            letter-spacing: .02rem;
+        }
+
+        .input_button {
+            border-radius: .25rem;
+            font-size: .75rem;
+
+            &:hover {
+                background-color: var(--app-primary-color);
+            }
+        }
+    }
+}
+
+
+// Media queries for small tablet content (square)
+@media screen and (min-height: 651px) and (min-width: 501px) and (max-width: 700px) {
+
+    // Input field content
+    .input_form {
+        height: 6.5%;
+        width: 60%;
+
+        .input_button {
+            right: 1.25%;
+            border-radius: .25rem;
+            font-size: .95rem;
+
+            &:hover {
+                background-color: var(--app-primary-color);
+            }
+        }
+    }
+}
+
+
+// Media queries for tablet content (portrait)
+@media screen and (min-height: 651px) and (min-width: 701px) and (max-width: 1000px) {
+
+    // Input field content
+    .input_form {
+        height: 6.5%;
+        width: 50%;
+
+        .input_button {
+            right: 1.25%;
+            border-radius: .25rem;
+            font-size: 1rem;
+
+            &:hover {
+                background-color: var(--app-primary-color);
+            }
+        }
+    }
+}
+
+
+// Media queries for very wide screens content
+@media screen and (max-height: 750px) and (min-width: 1001px) {
+
+    // Input field content
+    .input_form {
+        height: 6.5%;
+        width: 45%;
+
+        .input_button {
+            right: .75%;
+            font-size: .85rem;
+
+            &:hover {
+                background-color: var(--app-primary-color);
+            }
+        }
+    }
+}

@@ -1,0 +1,175 @@
+// Media query for mobile content (portrait)
+@media screen and (max-width: 500px) and (min-height: 501px) {
+
+    // Error page content
+    .errorpage_container {
+        height: 80%;
+
+        img {
+            height: 70%;
+        }
+
+        p {
+            font-size: 1.15rem;
+            word-spacing: .2rem;
+            letter-spacing: .075rem;
+            text-transform: uppercase;
+        }
+
+        .error_page_link {
+            margin: 1.5rem 0rem;
+            padding: .4rem 1rem;
+            font-size: 1.3rem;
+            word-spacing: .1rem;
+
+            &:hover {
+                animation: none;
+            }
+        }
+    }
+}
+
+
+// Media query for very small screens (mobile)
+@media screen and (max-width: 500px) and (max-height: 500px) {
+
+     // Error page content
+     .errorpage_container {
+        height: 75%;
+
+        img {
+            height: 65%;
+        }
+
+        p {
+            font-size: .9rem;
+            word-spacing: .15rem;
+            letter-spacing: .025rem;
+            text-transform: uppercase;
+        }
+
+        .error_page_link {
+            margin: 1rem 0rem;
+            padding: .3rem .75rem;
+            font-size: 1.1rem;
+            word-spacing: .075rem;
+
+            &:hover {
+                animation: none;
+            }
+        }
+    }
+}
+
+
+// Media queries for mobile content (landscape)
+@media screen and (max-height: 650px) and (min-width: 501px) and (max-width: 1000px) {
+
+    // Error page content
+    .errorpage_container {
+        width: 95%;
+        height: 80%;
+
+        img {
+            height: 70%;
+        }
+
+        p {
+            font-size: 1rem;
+            text-transform: uppercase;
+            word-spacing: .1rem;
+            letter-spacing: .075rem;
+        }
+
+        .error_page_link {
+            margin: 1rem 0rem;
+            padding: .35rem 1rem;
+            font-size: 1.15rem;
+            word-spacing: .1rem;
+
+            &:hover {
+                animation: none;
+            }
+        }
+    }
+}
+
+
+// Media queries for small tablet content (square)
+@media screen and (min-height: 651px) and (min-width: 501px) and (max-width: 700px) {
+
+    // Error page content
+    .errorpage_container {
+
+        img {
+            height: 65%;
+        }
+
+        p {
+            word-spacing: .075rem;
+
+        }
+
+        .error_page_link {
+
+            &:hover {
+                animation: none;
+            }
+        }
+    }
+}
+
+
+// Media queries for tablet content (portrait)
+@media screen and (min-height: 651px) and (min-width: 701px) and (max-width: 1000px) {
+
+    // Error page content
+    .errorpage_container {
+
+        img {
+            height: 75%;
+        }
+
+        p {
+            word-spacing: .15rem;
+
+        }
+
+        .error_page_link {
+
+            &:hover {
+                animation: none;
+            }
+        }
+    }
+}
+
+
+// Media queries for very wide screens content
+@media screen and (max-height: 750px) and (min-width: 1001px) {
+
+    // Error page content
+    .errorpage_container {
+        height: 60%;
+
+        img {
+            height: 70%;
+        }
+
+        p {
+            word-spacing: .1rem;
+            letter-spacing: .075rem;
+        }
+
+        .error_page_link {
+            margin: .75rem 0 0 0;
+            padding: .3rem 1.5rem;
+            font-size: 1.35rem;
+            word-spacing: .1rem;
+
+            &:hover {
+                animation: none;
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import { ProjectType } from "../../models/model";
 import { ProjectsDispatchContext } from "../../App";
@@ -28,6 +29,12 @@ export default function ProjectItem({ projectItem }: PropTypes) {
         editTnputRef.current?.focus();
     }, [isProjectTitleEditMode]);
 
+    function handleChangeProjectEditedTitle(event: React.ChangeEvent<HTMLInputElement>) {
+        projectEditedTitle.length < 56
+            ? setProjectEditedTitle(event.target.value)
+            : setProjectEditedTitle(event.target.value.slice(0, 56));
+    }
+
     function handleEditTitleAndToggle(event: React.FormEvent): void {
         event.preventDefault();
         if (projectEditedTitle) {
@@ -46,15 +53,21 @@ export default function ProjectItem({ projectItem }: PropTypes) {
     return (
         <div className={styles.home_single_project_container}>
             {isProjectTitleEditMode ? (
-                <form onSubmit={(e) => handleEditTitleAndToggle(e)}>
+                <form
+                    className={styles.home_single_project_edit_container}
+                    onSubmit={(e) => handleEditTitleAndToggle(e)}
+                >
                     <input
                         type="text"
                         placeholder="Enter new project title"
+                        className={styles.home_single_project_edit_input}
                         value={projectEditedTitle}
-                        onChange={(e) => setProjectEditedTitle(e.target.value)}
+                        onChange={handleChangeProjectEditedTitle}
                         ref={editTnputRef}
                     />
-                    <button type="submit">Go</button>
+                    <button type="submit" className={styles.home_single_project_edit_button}>
+                        Go
+                    </button>
                 </form>
             ) : (
                 <Link
@@ -64,18 +77,21 @@ export default function ProjectItem({ projectItem }: PropTypes) {
                         project: projectItem,
                     }}
                 >
-                    {projectItem.projectTitle}
+                    <h4 className={styles.project_title_text}>{projectItem.projectTitle}</h4>
+                    <p className={styles.project_date_text}>{projectItem.projectCreationDate}</p>
                 </Link>
             )}
-
-            <p className={styles.project_date_text}>{projectItem.projectCreationDate}</p>
             <div className={styles.project_buttons_container}>
-                <div className={styles.project_button_container} onClick={handleToggleEditMode}>
-                    <i className="fa-solid fa-pen"></i>
-                </div>
-                <div className={styles.project_button_container} onClick={handleDeleteProject}>
-                    <i className="fa-solid fa-trash"></i>
-                </div>
+                <Tooltip title="Edit" placement="left">
+                    <div className={styles.project_button_container} onClick={handleToggleEditMode}>
+                        <i className="fa-solid fa-pen"></i>
+                    </div>
+                </Tooltip>
+                <Tooltip title="Delete" placement="right">
+                    <div className={styles.project_button_container} onClick={handleDeleteProject}>
+                        <i className="fa-solid fa-trash"></i>
+                    </div>
+                </Tooltip>
             </div>
         </div>
     );

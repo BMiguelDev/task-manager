@@ -1,7 +1,7 @@
 export const projectArray = [
     {
         projectId: 1,
-        projectTitle: "Project 1",
+        projectTitle: "Morning Tasks",
         projectCreationDate: "10/10/2010",
         todoTabs: {
             activeTodos: [
@@ -30,7 +30,7 @@ export const projectArray = [
     },
     {
         projectId: 2,
-        projectTitle: "Project 2",
+        projectTitle: "New Project",
         projectCreationDate: "01/11/2015",
         todoTabs: {
             activeTodos: [],

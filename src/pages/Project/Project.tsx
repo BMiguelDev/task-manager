@@ -4,10 +4,13 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 
 import { SortingStatusType, tabSearchInputsType, ProjectType } from "../../models/model";
 import { ProjectsDispatchContext } from "../../App";
-import InputField from "./InputField";
+import InputField from "../../components/InputField/InputField";
 import TodosTab from "./TodosTab";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 import styles from "./Project.module.scss";
+
+const TASK_MAX_CHARACTER_LENGTH = 90;
 
 // Local Storage Keys
 const LOCAL_STORAGE_TODO_KEY = "TaskManagerApp.Todo";
@@ -20,9 +23,14 @@ interface PropTypes {
 export default function Project({ projects }: PropTypes) {
     const { projId } = useParams();
     const projectId: number = Number(projId);
-    let project: ProjectType = projects.find(project => project.projectId===projectId) || {projectId: 0, projectTitle: "placeholder", projectCreationDate: "01/01/1970", todoTabs: {activeTodos:[], completedTodos:[]}};
+    let project: ProjectType = projects.find((project) => project.projectId === projectId) || {
+        projectId: 0,
+        projectTitle: "Placeholder",
+        projectCreationDate: "01/01/1970",
+        todoTabs: { activeTodos: [], completedTodos: [] },
+    };
 
-    // Get dispatch functions from great-great-grandparent (App) using useContext
+    // Get dispatch functions from great-great-grandparent (App component) using useContext
     const projectsDispatch = useContext(ProjectsDispatchContext);
 
     const [inputTodo, setInputTodo] = useState<string>(() => {
@@ -35,7 +43,6 @@ export default function Project({ projects }: PropTypes) {
         localStorage.setItem(LOCAL_STORAGE_TODO_KEY, JSON.stringify(inputTodo));
     }, [inputTodo]);
 
-    // UseRef hook with typescript
     const inputRef = useRef<HTMLInputElement>(null);
 
     // State variable <sortingStatus> holds the data relative to the latest sorting status
@@ -64,7 +71,7 @@ export default function Project({ projects }: PropTypes) {
         localStorage.setItem(LOCAL_STORAGE_TAB_SEARCH_INPUTS_KEY, JSON.stringify(tabSearchInputs));
     }, [tabSearchInputs]);
 
-    // Function to add a inputTodo to the <todoList>
+    // Function to add a <inputTodo> to the todo list
     function handleSubmitTodoWithReducer(e: React.FormEvent) {
         e.preventDefault();
         if (inputTodo) {
@@ -193,32 +200,35 @@ export default function Project({ projects }: PropTypes) {
         if (tabChanged === "active") {
             setTabSearchInputs((prevTabSearchInputs) => ({
                 ...prevTabSearchInputs,
-                activeTodosSearchInput: event.target.value,
+                activeTodosSearchInput:
+                    event.target.value.length < TASK_MAX_CHARACTER_LENGTH ? event.target.value : event.target.value.slice(0, TASK_MAX_CHARACTER_LENGTH),
             }));
         } else if (tabChanged === "completed") {
             setTabSearchInputs((prevTabSearchInputs) => ({
                 ...prevTabSearchInputs,
-                completedTodosSearchInput: event.target.value,
+                completedTodosSearchInput:
+                    event.target.value.length < TASK_MAX_CHARACTER_LENGTH ? event.target.value : event.target.value.slice(0, TASK_MAX_CHARACTER_LENGTH),
             }));
         } else return;
     }
 
-    // TODO:
-    // Make app responsive
-    // Improve styling (Improve Help Pop up style)
-    // Add editing input to project item
+    function handleChangeTodoInput(event: React.ChangeEvent<HTMLInputElement>) {
+        inputTodo.length < TASK_MAX_CHARACTER_LENGTH ? setInputTodo(event.target.value) : setInputTodo(event.target.value.slice(0, TASK_MAX_CHARACTER_LENGTH));
+    }
 
-    return (
-        <div className={styles.project_container}>
-            <p>{project.projectId}</p>
+    return project.projectId === 0 ? (
+        <ErrorPage />
+    ) : (
+        <main className={styles.project_container}>
+            <p className={styles.project_main_title}>{project.projectTitle}</p>
             <InputField
                 inputRef={inputRef}
-                inputTodo={inputTodo}
-                setInputTodo={setInputTodo}
-                handleSubmitTodoWithReducer={handleSubmitTodoWithReducer}
+                inputText={inputTodo}
+                handleChangeInputText={handleChangeTodoInput}
+                handleSubmitForm={handleSubmitTodoWithReducer}
             />
             <DragDropContext onDragEnd={onDragEnd}>
-                <div className={styles.main_content}>
+                <div className={styles.project_main_content}>
                     <TodosTab
                         projectId={project.projectId}
                         tabName={"active"}
@@ -228,6 +238,7 @@ export default function Project({ projects }: PropTypes) {
                         tabSortingStatus={sortingStatus.activeTab}
                         handleSortAlphabetically={handleSortAlphabetically}
                         handleSortByPriority={handleSortByPriority}
+                        taskMaxCharacterLength={TASK_MAX_CHARACTER_LENGTH}
                     />
                     <TodosTab
                         projectId={project.projectId}
@@ -238,9 +249,10 @@ export default function Project({ projects }: PropTypes) {
                         tabSortingStatus={sortingStatus.completedTab}
                         handleSortAlphabetically={handleSortAlphabetically}
                         handleSortByPriority={handleSortByPriority}
+                        taskMaxCharacterLength={TASK_MAX_CHARACTER_LENGTH}
                     />
                 </div>
             </DragDropContext>
-        </div>
+        </main>
     );
 }
