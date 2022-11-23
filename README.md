@@ -17,3 +17,4 @@
 - React, Typescript, Sass
 - Gitflow Workflow
 - Agile Methodology (simulation of sprints and releases as part of a web dev team)
+- Responsive Design
