@@ -216,9 +216,6 @@ export default function Project({ projects }: PropTypes) {
         inputTodo.length < TASK_MAX_CHARACTER_LENGTH ? setInputTodo(event.target.value) : setInputTodo(event.target.value.slice(0, TASK_MAX_CHARACTER_LENGTH));
     }
 
-    // TODO:
-    // Make app responsive
-
     return project.projectId === 0 ? (
         <ErrorPage />
     ) : (

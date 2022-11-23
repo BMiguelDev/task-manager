@@ -480,45 +480,45 @@
             //     // }
             // }
 
-            .home_single_project_link {
-                // width: 100%;
-                // display: flex;
-                // flex-direction: column;
-                // align-items: center;
-                // justify-content: center;
-                // gap: .35rem;
-                // text-align: center;
-                // text-decoration: none;
-                // flex: 2;
+             .home_single_project_link {
+            //     // width: 100%;
+            //     // display: flex;
+            //     // flex-direction: column;
+            //     // align-items: center;
+            //     // justify-content: center;
+            //     // gap: .35rem;
+            //     // text-align: center;
+            //     // text-decoration: none;
+            //     // flex: 2;
 
-            //     .project_title_text {
-            //         // margin: 0;
-            //         // text-decoration: none;
-            //         // font-size: 1.5rem;
-            //         // font-weight: bold;
-            //         // letter-spacing: .035rem;
-            //         // line-height: 1.75rem;
-            //         // color: var(--app-text-color);
-            //         // width: 95%;
-            //         // text-align: center;
-            //         // overflow: hidden;
-            //         // text-overflow: ellipsis;
-            //         // white-space: nowrap;
-            //         // display: -webkit-box;
-            //         // -webkit-box-orient: vertical;
-            //         // -webkit-line-clamp: 2;
-            //         // overflow: hidden;
-            //         // transition: all .2s ease-in-out;
-            //     }
+                  .project_title_text {
+            // //         // margin: 0;
+            // //         // text-decoration: none;
+                       font-size: 1.35rem;
+            // //         // font-weight: bold;
+            // //         // letter-spacing: .035rem;
+                       line-height: 1.5rem;
+            // //         // color: var(--app-text-color);
+            // //         // width: 95%;
+            // //         // text-align: center;
+            // //         // overflow: hidden;
+            // //         // text-overflow: ellipsis;
+            // //         // white-space: nowrap;
+            // //         // display: -webkit-box;
+            // //         // -webkit-box-orient: vertical;
+            // //         // -webkit-line-clamp: 2;
+            // //         // overflow: hidden;
+            // //         // transition: all .2s ease-in-out;
+                  }
 
-            //     // .project_date_text {
-            //     //     margin: 0;
-            //     //     font-size: .75rem;
-            //     //     font-weight: lighter;
-            //     //     color: var(--app-text-support-color);
-            //     //     transition: all .2s ease-in-out;
-            //     // }
-            }
+            // //     // .project_date_text {
+            // //     //     margin: 0;
+            // //     //     font-size: .75rem;
+            // //     //     font-weight: lighter;
+            // //     //     color: var(--app-text-support-color);
+            // //     //     transition: all .2s ease-in-out;
+            // //     // }
+             }
 
             .project_buttons_container {
                 // display: flex;
@@ -555,6 +555,192 @@
         }
     }
 }
+
+
+}
+
+
+// Media queries for very wide screens content
+@media screen and (max-height: 750px) and (min-width: 1001px) {
+
+
+      // Home content
+.home_container {
+    // width: 90%;
+     height: 67.5%;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: space-evenly;
+    gap: .5rem;
+
+     .home_projects_main_title {
+         font-size: 1.65rem;
+    //     margin: 0;
+    //     color: var(--app-text-color);
+    //     transition: all .2s ease-in-out;
+     }
+    
+    .home_projects_container {
+        // display: flex;
+        // align-items: center;
+        // justify-content: space-evenly;
+        // flex-wrap: wrap;
+         gap: 0rem;
+         padding: .15rem;
+        // height: 80%;
+        // width: 100%;
+        // overflow-y: auto;
+        // overflow-x: hidden;
+
+        .home_single_project_container {
+            width: 28.5%;
+            height: 50%;
+            // display: flex;
+            // flex-direction: column;
+            // align-items: center;
+            // justify-content: space-between;
+            // gap: .5rem;
+            // padding: .5rem;
+            // margin: .5rem 0;
+            // background-color: var(--app-special-color);
+            // box-shadow: 0 0 .25rem var(--app-general-box-shadow-color);
+            // border-radius: .25rem;
+            // opacity: 0;
+            // transition: all .2s ease-in-out;
+
+            // @keyframes projectAppear {
+            //     0% {
+            //         opacity: 0;
+            //         translate: 25% 0;
+            //     }
+
+            //     100% {
+            //         opacity: 1;
+            //         translate: 0 0;
+            //     }
+            // }
+            // animation: projectAppear .4s ease-in-out;
+            // animation-fill-mode: forwards;
+
+            &:hover {
+                transform: translateY(0);
+            }
+
+            // .home_single_project_edit_container {
+            //     // width: 100%;
+            //     // display: flex;
+            //     // flex-direction: column;
+            //     // align-items: center;
+            //     // justify-content: center;
+            //     // flex: 2;
+            //     // gap: .5rem;
+            //     // text-align: center;
+              
+            //     // .home_single_project_edit_input {
+            //     //     // width: 75%;
+            //     //     // padding: .5rem .75rem;
+            //     //     // border-radius: .25rem;
+            //     //     // border: .01rem solid var(--app-special-support-color);
+            //     //     // box-shadow: 0 0 .1rem var(--app-general-box-shadow-color);
+            //     //     // background-color: var(--app-input-box-color);
+            //     //     // transition: background-color .2s ease-in-out, border .2s ease-in-out;
+
+            //     //     // &:focus {
+            //     //     //     box-shadow: 0 0 .25rem var(--app-general-box-shadow-color);
+            //     //     //     outline: .025rem solid var(--app-special-support-color);
+            //     //     // }
+            //     // }
+
+            //     // .home_single_project_edit_button{
+            //     //     background-color: var(--app-special-color);
+            //     //     color: var(--app-text-color);
+            //     //     border: .01rem solid var(--app-special-support-color);
+            //     //     border-radius: .25rem;
+            //     //     font-weight: bold;
+            //     //     padding: .2rem .5rem;
+            //     //     width: 25%;
+            //     //     cursor: pointer;
+            //     //     transition: all .2s ease-in-out;
+            //     // }
+            // }
+
+             .home_single_project_link {
+            //     // width: 100%;
+            //     // display: flex;
+            //     // flex-direction: column;
+            //     // align-items: center;
+            //     // justify-content: center;
+                  gap: .25rem;
+            //     // text-align: center;
+            //     // text-decoration: none;
+            //     // flex: 2;
+
+                  .project_title_text {
+            // //         // margin: 0;
+            // //         // text-decoration: none;
+                       font-size: 1.2rem;
+            // //         // font-weight: bold;
+            // //         // letter-spacing: .035rem;
+                       line-height: 1.35rem;
+            // //         // color: var(--app-text-color);
+            // //         // width: 95%;
+            // //         // text-align: center;
+            // //         // overflow: hidden;
+            // //         // text-overflow: ellipsis;
+            // //         // white-space: nowrap;
+            // //         // display: -webkit-box;
+            // //         // -webkit-box-orient: vertical;
+            // //         // -webkit-line-clamp: 2;
+            // //         // overflow: hidden;
+            // //         // transition: all .2s ease-in-out;
+                  }
+
+            // //     // .project_date_text {
+            // //     //     margin: 0;
+            // //     //     font-size: .75rem;
+            // //     //     font-weight: lighter;
+            // //     //     color: var(--app-text-support-color);
+            // //     //     transition: all .2s ease-in-out;
+            // //     // }
+             }
+
+            .project_buttons_container {
+                // display: flex;
+                // align-items: center;
+                // justify-content: center;
+                // gap: 1.5rem;
+                // flex: 1;
+
+                .project_button_container {
+                    // display: flex;
+                    // align-items: center;
+                    // justify-content: center;
+                    // width: 2rem;
+                    // height: 2rem;
+                    // border: .01rem solid var(--app-special-support-color);
+                    // box-shadow: 0 0 .115rem var(--app-general-box-shadow-color);
+                    // border-radius: .25rem;
+                    // padding: .75rem;
+                    // color: var(--app-text-color);
+                    // cursor: pointer;
+                    // transition: all .2s ease-in-out;
+
+                    // i {
+                    //     font-size: 1.05rem;  
+                        
+                    // }
+
+                    &:hover {
+                        translate: 0 0;
+                        color: var(--app-text-color);
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 
 }
