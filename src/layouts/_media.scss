@@ -1,3 +1,32 @@
+// Media query for unsuitable screens (mobile extremelly small)
+@media screen and (max-width: 300px),
+screen and (max-height: 300px) {
+
+    // App content
+    .app_container {
+        visibility: hidden;
+        overflow: hidden;
+
+        &::before {
+            position: fixed;
+            visibility: visible;
+            background: var(--app-bg-color);
+            color: var(--app-text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            content: "Your screen is too small to display this App :(";
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10;
+        }
+    }
+}
+
+
 // Media query for mobile content (portrait)
 @media screen and (max-width: 500px) and (min-height: 501px) {
 
