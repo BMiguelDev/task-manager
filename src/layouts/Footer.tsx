@@ -20,7 +20,7 @@ export default function Footer() {
                 <a href="https://github.com/BMiguelDev" target="_blank" rel="noreferrer">
                     <i className="fa-brands fa-github"></i>
                 </a>
-                <a href="https://google.com" target="_blank" rel="noreferrer">
+                <a href="https://www.linkedin.com/in/miguel--bruno/" target="_blank" rel="noreferrer">
                     <i className="fa-brands fa-linkedin"></i>
                 </a>
             </div>
