@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Task Manager</title>
+    
+    <!-- Script to work around the GitHub Pages bug that displays "404" error page upon page refresh in a URL that's not the homepage URL -->
+    <script type="text/javascript">
+        var pathSegmentsToKeep = 1;
+
+        var l = window.location;
+        l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+            l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash
+        );
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
